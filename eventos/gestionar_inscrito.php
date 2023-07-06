@@ -520,7 +520,10 @@ $rowus = mysqli_fetch_array($resultus);
 </div>
 <div class="col-md-4"><a href="">
 <form name="FINZLIZA" action="confirma_inscripcion.php" method="post">
-    <input type="hidden" name="idinscripcion" value="<?php echo $idinscripcion_ss;?>">
+    <input type="hidden" name="idinscripcion" value="<?php echo $row_i[0];?>">
+    <input type="hidden" name="idevento" value="<?php echo $row_i[1];?>">
+    <input type="hidden" name="idusuario_solicitante" value="<?php echo $row_i[2];?>">
+    <input type="hidden" name="idnombre_solicitante" value="<?php echo $row_i[3];?>">
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
 CONFIRMAR INSCRIPCIÓN
 </button>
@@ -584,7 +587,6 @@ CONFIRMAR INSCRIPCIÓN
 <script>
     $("#fecha1").datepicker($.datepicker.regional[ "es" ]);
     $("#fecha2").datepicker($.datepicker.regional[ "es" ]);
-    $("#fecha3").datepicker($.datepicker.regional[ "es" ]);
 </script>
 </body>
 </html>
