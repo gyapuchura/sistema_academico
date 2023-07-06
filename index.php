@@ -33,7 +33,7 @@ session_destroy(); ?>
 </div>
 	<!-- start header -->
 	<header>
-
+<h2 align="center" class="text-danger">AMBIENTE DE PRUEBAS DEL SISTEMA ACADÉMICO</h2>
 	</header>
 	<!-- end header -->
 	<section id="banner">
