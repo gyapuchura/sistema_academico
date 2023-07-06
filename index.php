@@ -34,6 +34,7 @@ session_destroy(); ?>
 	<!-- start header -->
 	<header>
 
+  
 	</header>
 	<!-- end header -->
 	<section id="banner">
