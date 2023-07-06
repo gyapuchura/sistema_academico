@@ -1,2 +1,4 @@
 inc.config.php
 index.php
+.DS_Store
+eventos/temp
