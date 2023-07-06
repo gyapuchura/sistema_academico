@@ -2,7 +2,6 @@
 <?php
 include("../inc.config.php");
 $options="";
-
 $iddireccion = $_POST["direccion"];
 
 $sql2 = "SELECT idarea, area FROM area WHERE iddireccion='$iddireccion' ORDER BY idarea";
