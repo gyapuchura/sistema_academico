@@ -4,7 +4,7 @@ date_default_timezone_set('America/La_Paz');
 $fecha_ram	= date("Ymd");
 $fecha 			= date("Y-m-d");
 
-$idinscripcion   =  $_GET['idinscripcion'];
+$idinscripcion = $_GET['idinscripcion'];
 
 $gestion       = date("Y");
 

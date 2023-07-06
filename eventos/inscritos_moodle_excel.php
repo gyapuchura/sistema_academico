@@ -74,7 +74,7 @@ while ($field = mysqli_fetch_field($result)){
         echo $lastname;?></td>
         <td style="text-align: center; font-size: 10px;"><?php echo $row[7];?></td>
         <td style="text-align: center; font-size: 10px;"><?php echo $row[9];?></td>
-
+        <td style="text-align: center; font-size: 10px;"></td>
         </tr>
 		<?php
 $numero = $numero+1; 
