@@ -40,9 +40,9 @@ $codigo="INS/MDSYD-".$correlativo."/".$gestion;
 //------ DEPENDE DE OTRA ENTIDAD -------------//
 
     $sql8 = " INSERT INTO inscripcion (idevento, idusuario, idnombre, idnombre_datos, iddato_laboral, ";
-    $sql8.= " idestado_inscripcion, correlativo, codigo, fecha_preins, fecha_ins, gestion )";
+    $sql8.= " idestado_inscripcion, idestado_evaluacion, correlativo, codigo, fecha_preins, fecha_ins, gestion )";
     $sql8.= " VALUES ('$idevento_ss','$idusuario_inscrito','$idnombre_inscrito_ss','$idnombre_datos','$iddato_laboral',";
-    $sql8.= " '1','$correlativo','$codigo','$fecha','$fecha','$gestion')";
+    $sql8.= " '1','1','$correlativo','$codigo','$fecha','$fecha','$gestion')";
     $result8 = mysqli_query($link,$sql8);  
 
     $idinscripcion = mysqli_insert_id($link);

@@ -88,7 +88,8 @@ $row_p = mysqli_fetch_array($result_p);
 
 <div class="container">
 
-<!-- javascript --->
+<!----- REGISTRA UN NUEVO EVENTO DE CAPACITACIÓN ---->
+
 <form name="FORM9" action="guarda_evento.php" method="post">
 
 <div class="box-area">
@@ -137,7 +138,7 @@ $row_p = mysqli_fetch_array($result_p);
 <div class="row">
   <div class="col-md-3"><h4>FECHA DE INICIO:</h4></div>
   <div class="col-md-3">
-  <input type="text" id="fecha1" class="form-control" name="fecha_nac" required>
+  <input type="text" id="fecha1" class="form-control" name="fecha_inicio" required>
   </div>
   <div class="col-md-3"><h4>FECHA DE FINALIZACIÓN:</h4></div>
   <div class="col-md-3">
@@ -183,7 +184,6 @@ $row_p = mysqli_fetch_array($result_p);
    <select name="idmodalidad"  id="idmodalidad" class="form-control" required>
    <option value="">-SELECCIONE-</option>
 <?php
-
 $sql1 = "select idmodalidad, modalidad from modalidad";
 $result1 = mysqli_query($link,$sql1);
 if ($row1 = mysqli_fetch_array($result1)){
@@ -202,11 +202,29 @@ echo "No se encontraron resultados!";
 
 <div id="lugar_curso"></div>  
 
+
 <div class="row">
 <div class="col-md-3"><h4>DOCENTE A CARGO:</h4></div>
-<div class="col-md-3">    
-<input type="text" class="form-control" placeholder="ESCRIBA EL NOMBRE DEL DOCENTE DESIGNADO" id="busqueda" required/></div>
-<div class="col-md-6" id="resultado">  </div>
+<div class="col-md-9">    
+<select name="iddocente"  id="iddocente" class="form-control" required>
+   <option value="">-SELECCIONE-</option>
+<?php
+$sql1 = " SELECT usuarios.idusuario, nombre.nombre, nombre.paterno, nombre.materno FROM usuarios, nombre ";
+$sql1.= " WHERE usuarios.idnombre=nombre.idnombre AND usuarios.condicion='ACTIVO' AND usuarios.perfil='DOCENTE' ";
+$sql1.= " ORDER BY nombre.paterno ";
+$result1 = mysqli_query($link,$sql1);
+if ($row1 = mysqli_fetch_array($result1)){
+mysqli_field_seek($result1,0);
+while ($field1 = mysqli_fetch_field($result1)){
+} do {
+echo "<option value=".$row1[0].">".$row1[2]." ".$row1[3]." ".$row1[1]."</option>";
+} while ($row1 = mysqli_fetch_array($result1));
+} else {
+echo "No se encontraron resultados!";
+}
+?>
+</select>
+</div>
 </div>
 
 <div class="row">

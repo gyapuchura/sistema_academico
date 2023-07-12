@@ -86,7 +86,8 @@ $row_e = mysqli_fetch_array($result_e);
 <div class="row" align="center">
 <div class="row">
 			<div class="col-lg-12">
-        <h2 class="text-muted"><?php echo $codigo_evento_ss;?> .- <?php echo $row_e[1];?></h2>
+        <h2 class="text-muted"><?php echo $codigo_evento_ss;?></h2>
+        <h2 class="text-muted"><?php echo $row_e[1];?></h2>
 			</div>		
 </div>
 <div class="container" style="padding-top: 1em;">

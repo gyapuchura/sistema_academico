@@ -69,16 +69,15 @@ mysqli_field_seek($result,0);
 while ($field = mysqli_fetch_field($result)){
 } do {	
 	?>
-<!--	
+
 	<li class="dropdown">
-	<a href="#" data-toggle="dropdown" class="dropdown-toggle">EVALUACIOES SCEP<b class="caret"></b></a>
+	<a href="#" data-toggle="dropdown" class="dropdown-toggle">EVALUACIÓN<b class="caret"></b></a>
 		<ul class="dropdown-menu">
-			<li><a href="../evaluaciones_scep/consistencia_scep.php">EVALUACIÓN DE CONSISTENCIA</a></li>
-			<li><a href="#">FIRMAS DE AUDITORIA</a></li>
-			<li><a href="#">REPORTES</a></li>
+			<li><a href="../evaluacion/para_evaluacion.php">EVENTOS PARA EVALUACIÓN</a></li>
+			<li><a href="../evaluacion/certificacion_eventos.php">CERTIFICACION</a></li>
 		</ul>
 	</li>
--->
+
 	<?php
 } while ($row = mysqli_fetch_array($result));
 } else {
