@@ -113,7 +113,7 @@ $rowus = mysqli_fetch_array($resultus);?>
             $numero=1;
             $sql =" SELECT evento.idevento, evento.codigo, tematica.tematica, evento.fecha_inicio, evento.fecha_fin, evento.iddocente, evento.idestado_ejecucion ";
             $sql.=" FROM evento, microcurricula, tematica WHERE evento.idmicrocurricula=microcurricula.idmicrocurricula AND ";
-            $sql.=" microcurricula.idtematica=tematica.idtematica ";
+            $sql.=" microcurricula.idtematica=tematica.idtematica ORDER BY evento.idevento ";
             $result = mysqli_query($link,$sql);
             if ($row = mysqli_fetch_array($result)){
             mysqli_field_seek($result,0);
@@ -200,6 +200,5 @@ $rowus = mysqli_fetch_array($resultus);?>
 <script src="../js/jquery.dataTables.min.js"></script>
 <script src="../js/script.js"></script>
 <script src="../js/dataTables.bootstrap.min.js"></script>
-<script language="javascript" src="../js/jquery-3.1.1.min.js"></script>
 </body>
 </html>

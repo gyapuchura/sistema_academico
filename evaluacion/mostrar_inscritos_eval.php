@@ -102,15 +102,15 @@ $rowus = mysqli_fetch_array($resultus);?>
 <table class="table table-bordered" id="example" width="100%" cellspacing="0">
             <thead>
                 <tr>
-                    <th>Nª</th>
-                    <th>CÓDIGO INSCRIPCIÓN</th>
-                    <th>CEDULA DE IDENTIDAD</th>
-                    <th>PATERNO</th>
-                    <th>MATERNO</th>
-                    <th>NOMBRES</th>
-                    <th>NOTA FINAL</th>
-                    <th>OBSERVACIÓN</th>
-                    <th>ACCIÓN</th>
+                <th>Nª</th>
+                <th>CÓDIGO INSCRIPCIÓN</th>
+                <th>CEDULA DE IDENTIDAD</th>
+                <th>PATERNO</th>
+                <th>MATERNO</th>
+                <th>NOMBRES</th>
+                <th>NOTA FINAL</th>
+                <th>OBSERVACIÓN</th>
+                <th>ACCIÓN</th>
                 </tr>
             </thead>
 			<tbody>
@@ -148,13 +148,47 @@ $rowus = mysqli_fetch_array($resultus);?>
             } else {
             }
             ?>
-
         </tbody>
     </table>
 </div>
 
-
+<form name="FORM_EVAL" action="finaliza_evaluacion.php" method="post">
+<input type="hidden" name="idevento" value="<?php echo $idevento_ss;?>">
+    <div class="row">
+        <div class="col-md-4"><h4></h4></div>
+        <div class="col-md-8">    
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                FINALIZAR EVALUACIÓN
+            </button>
+        </div>
+        </div>
+    </div>
  
+<!-- modal de confirmacion de envio de datos-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">FINALIZAR EVALUACIÓN</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">        
+            Esta seguro de Finalizar la evaluación?
+            posteriormenete no se podrán realizar cambios.
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCELAR</button>
+        <button type="submit" class="btn btn-primary pull-center">CONFIRMAR FINALIZACIÓN</button>    
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</form>
+<!-- Modal -->
 </br>
   </section>
 	<footer>

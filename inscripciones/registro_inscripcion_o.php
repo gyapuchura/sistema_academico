@@ -274,12 +274,8 @@ $row0 = mysqli_fetch_array($result0);
 
     <div id="dependencia_mds"></div>
 
-
-
-    </div>
-        
+    </div>        
     </br>
-
     <div class="row">
         <div class="col-md-4"><h4></h4></div>
         <div class="col-md-8">    
@@ -291,7 +287,6 @@ $row0 = mysqli_fetch_array($result0);
     </div>
 
 <!-- modal de confirmacion de envio de datos-->
-
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -315,8 +310,9 @@ $row0 = mysqli_fetch_array($result0);
   </div>
 </div>
 </div>
-
 </div>
+
+</form>
 <!-- Modal -->
 
 </div>

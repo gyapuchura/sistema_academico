@@ -96,24 +96,24 @@ $rowus = mysqli_fetch_array($resultus);?>
 <!--- GESTION DE EMPRESAS ---->
 
 <div class="table-responsive">
-      <table class="table table-bordered" id="example" width="100%" cellspacing="0">
-            <thead>
-                <tr>
-                    <th>Nª</th>
-                    <th>CÓDIGO</th>
-                    <th>EVENTO</th>
-                    <th>FECHA INICIO</th>
-                    <th>FECHA FINALIZACIÓN</th>
-                    <th>DOCENTE</th>
-                    <th>EVALUAR PARTICIPANTES</th>
-                </tr>
+    <table class="table table-bordered" id="example" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Nª</th>
+                <th>CÓDIGO</th>
+                <th>EVENTO</th>
+                <th>FECHA INICIO</th>
+                <th>FECHA FINALIZACIÓN</th>
+                <th>DOCENTE</th>
+                <th>EVALUAR PARTICIPANTES</th>
+            </tr>
             </thead>
 			<tbody>
             <?php
             $numero=1;
             $sql =" SELECT evento.idevento, evento.codigo, tematica.tematica, evento.fecha_inicio, evento.fecha_fin, evento.iddocente, evento.idestado_ejecucion ";
             $sql.=" FROM evento, microcurricula, tematica WHERE evento.idmicrocurricula=microcurricula.idmicrocurricula AND ";
-            $sql.=" microcurricula.idtematica=tematica.idtematica ";
+            $sql.=" microcurricula.idtematica=tematica.idtematica ORDER BY evento.idevento";
             $result = mysqli_query($link,$sql);
             if ($row = mysqli_fetch_array($result)){
             mysqli_field_seek($result,0);
@@ -138,12 +138,13 @@ $rowus = mysqli_fetch_array($resultus);?>
                     echo $f_final;
                     ?>   
                 </td>
-                <td><?php 
-                $sqld =" SELECT nombre.nombre, nombre.paterno, nombre.materno FROM nombre, usuarios WHERE usuarios.idnombre=nombre.idnombre ";
-                $sqld.=" AND usuarios.idusuario='$row[5]' ";
-                $resultd = mysqli_query($link,$sqld);
-                $rowd = mysqli_fetch_array($resultd);
-                ?>
+                <td>
+                    <?php 
+                    $sqld =" SELECT nombre.nombre, nombre.paterno, nombre.materno FROM nombre, usuarios WHERE usuarios.idnombre=nombre.idnombre ";
+                    $sqld.=" AND usuarios.idusuario='$row[5]' ";
+                    $resultd = mysqli_query($link,$sqld);
+                    $rowd = mysqli_fetch_array($resultd);
+                    ?>
                 <?php echo $rowd[0];?> <?php echo $rowd[1];?> <?php echo $rowd[2];?>    
                 </td>
                 
@@ -155,7 +156,7 @@ $rowus = mysqli_fetch_array($resultus);?>
                     <button type="submit" class="btn-link">EVALUAR PARTICIPANTES</button></form>
                 <?php } else { ?>
                        EVALUACIÓN CONSOLIDADA
-                    <?php  } ?>  
+                <?php } ?>  
                 </td>
                 </tr>  
             <?php
@@ -165,9 +166,9 @@ $rowus = mysqli_fetch_array($resultus);?>
             } else {
             }
             ?>
-                                    </tbody>
-                                </table>
-                            </div>
+        </tbody>
+    </table>
+</div>
 
 <!--- gestion de usuarios ---->
 
@@ -178,6 +179,7 @@ $rowus = mysqli_fetch_array($resultus);?>
 	<?php include("../footer.php");?>
 	</footer>
 </div>
+
 <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
 <!-- javascript
     ================================================== -->
@@ -200,6 +202,5 @@ $rowus = mysqli_fetch_array($resultus);?>
 <script src="../js/jquery.dataTables.min.js"></script>
 <script src="../js/script.js"></script>
 <script src="../js/dataTables.bootstrap.min.js"></script>
-<script language="javascript" src="../js/jquery-3.1.1.min.js"></script>
 </body>
 </html>
