@@ -3,12 +3,8 @@
 <?php
 
 date_default_timezone_set('America/La_Paz');
-$fecha_ram = date("Ymd");
-$fecha 		 = date("Y-m-d");
-
-$idusuario_ss = $_SESSION['idusuario_ss'];
-$idnombre_ss  = $_SESSION['idnombre_ss'];
-$perfil_ss    = $_SESSION['perfil_ss'];
+$fecha_ram	   = date("Ymd");
+$fecha 		   = date("Y-m-d");
 
 $idusuario_ss = $_SESSION['idusuario_ss'];
 $idnombre_ss  = $_SESSION['idnombre_ss'];
@@ -17,7 +13,7 @@ $perfil_ss    = $_SESSION['perfil_ss'];
 $idtematica_ss    = $_SESSION['idtematica_ss'];
 $idevento_ss      = $_SESSION['idevento_ss'];
 $codigo_evento_ss = $_SESSION['codigo_evento_ss'];
-$idinscripcion_ss = $_SESSION['idinscripcion_ss'];
+
 
 ?>
 <!DOCTYPE html>
@@ -49,7 +45,8 @@ $idinscripcion_ss = $_SESSION['idinscripcion_ss'];
         <?php
 $sqlus =" SELECT nombre, paterno, materno FROM nombre WHERE idnombre='$idnombre_ss'";
 $resultus = mysqli_query($link,$sqlus);
-$rowus = mysqli_fetch_array($resultus);?>
+$rowus = mysqli_fetch_array($resultus);
+?>
         <?php echo $rowus[0];?> <?php echo $rowus[1];?> <?php echo $rowus[2];?></p>
       </div>
     </div>
@@ -75,60 +72,38 @@ $rowus = mysqli_fetch_array($resultus);?>
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="pageTitle">FINALIZAR LA PREINSCRIPCIÓN</h2>
+				<h2 class="pageTitle">EVALUACIÓN</h2>
 			</div>
 		</div>
 	</div>
 	</section>
 	<section id="content">
 	<div class="container">
-		<div class="row">
-		<div class="tg-main-section tg-banner tg-haslayout parallax-window" data-parallax="scroll" data-bleed="100" data-speed="0.2" data-image-src="images/slider/img-03.jpg">
-    
-  </div>
-</br>
-    </div>
+        <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-8"><h2><?php echo $codigo_evento_ss;?></h2></div>
+        </div>
 
-<div class="container">
+<!-- MUESTRA LA PREINSCRIPCION REALIZADA --->
+    <div class="box-area">
+        <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-10"><h4 class="text-success">SE HA FINALIZADO LA EVALUACIÓN DE PARTICIPANTES DEL EVENTO <?php echo $codigo_evento_ss;?>.</h4></div>
+        </div>
 
-<!-- javascript --->
+        <form name="FORM9" action="para_evaluacion.php" method="post">
+            <div class="row">
+                <div class="col-md-6"></div>
+                    <div class="col-md-6"> 
+                        <button type="submit" class="btn btn-info">
+                            CONTINUAR
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
 
-<div class="box-area">
-
-<div class="row">
-  <div class="col-md-3"></div>
-  <div class="col-md-9"><h4 class="text-success">HA FINALIZADO EL PROCESO DE PREINSCRIPCIÓN AL EVENTO DE CAPACITACIÓN:</h4></div> 
-</div>
-<div class="row">
-  <div class="col-md-3"></div>
-  <div class="col-md-9">
-    <h2><?php echo $codigo_evento_ss;?></h2>
-    <?php
-        $sql_t =" SELECT idtematica, tematica FROM tematica WHERE idtematica='$idtematica_ss'";
-        $result_t = mysqli_query($link,$sql_t);
-        $row_t = mysqli_fetch_array($result_t);?>  
-    <h2><?php echo $row_t[1];?></h2>
-</div> 
-</div> 
-
-  </div>
-  <div class="row">
-  <div class="col-md-3"></div>
-  <div class="col-md-9"><h4 class="text-success">AHORA DEBE IMPRIMIR EL FORMULARIO DE PREINSCRIPCIÓN</h4></div> 
-  </div>
-  <div class="row">
-  <div class="col-md-2"></div>
-  <div class="col-md-4">
-  <a href="imprime_formulario_ins.php?idinscripcion=<?php echo $idinscripcion_ss;?>" target="_blank" class="Estilo12" onClick="window.open(this.href, this.target, 'width=750,height=850,scrollbars=YES,top=50,left=200'); return false;">
-  <h4 class="text-info">IMPRIMIR FORMULARIO</h4></a>
-  </div>
-  <div class="col-md-2"></div>
-  <div class="col-md-4"><a href="oferta_eventos.php"><h4 class="text-info">SALIR</h4></div> 
-</div>
-
-</div>
-</br>
-<!-- javascript --->
+<!-- PIE DE PAGINA --->
 </div>
 </br>
   </section>

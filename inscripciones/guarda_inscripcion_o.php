@@ -115,9 +115,9 @@ if ($iddependencia == '1') {
     $iddato_laboral = mysqli_insert_id($link);
 
     $sql8 = " INSERT INTO inscripcion (idevento, idusuario, idnombre, idnombre_datos, iddato_laboral,";
-    $sql8.= " idestado_inscripcion, correlativo, codigo, fecha_preins, fecha_ins, gestion )";
+    $sql8.= " idestado_inscripcion, idestado_evaluacion correlativo, codigo, fecha_preins, fecha_ins, gestion, idcomentario_evaluacion )";
     $sql8.= " VALUES ('$idevento_ss','$idusuario_in','$idnombre','$idnombre_datos','$iddato_laboral', ";
-    $sql8.= " '1','$correlativo','$codigo','$fecha','$fecha','$gestion')";
+    $sql8.= " '1','1','$correlativo','$codigo','$fecha','$fecha','$gestion','1')";
     $result8 = mysqli_query($link,$sql8);  
 
     $idinscripcion = mysqli_insert_id($link);
@@ -139,9 +139,9 @@ if ($iddependencia == '1') {
         $iddato_laboral = mysqli_insert_id($link);
 
         $sql8 = " INSERT INTO inscripcion (idevento, idusuario, idnombre, idnombre_datos, iddato_laboral, ";
-        $sql8.= " idestado_inscripcion, correlativo, codigo, fecha_preins, fecha_ins, gestion )";
+        $sql8.= " idestado_inscripcion, idestado_evaluacion, correlativo, codigo, fecha_preins, fecha_ins, gestion, idcomentario_evaluacion)";
         $sql8.= " VALUES ('$idevento_ss','$idusuario_in','$idnombre','$idnombre_datos','$iddato_laboral', ";
-        $sql8.= " '1','$correlativo','$codigo','$fecha','$fecha','$gestion')";
+        $sql8.= " '1','1','$correlativo','$codigo','$fecha','$fecha','$gestion','1')";
         $result8 = mysqli_query($link,$sql8); 
 
         $idinscripcion = mysqli_insert_id($link);
@@ -163,9 +163,9 @@ if ($iddependencia == '1') {
         $iddato_laboral = mysqli_insert_id($link);
 
         $sql8 = " INSERT INTO inscripcion (idevento, idusuario, idnombre, idnombre_datos, iddato_laboral, ";
-        $sql8.= " idestado_inscripcion, correlativo, codigo, fecha_preins, fecha_ins, gestion )";
+        $sql8.= " idestado_inscripcion, idestado_evaluacion, correlativo, codigo, fecha_preins, fecha_ins, gestion, idcomentario_evaluacion )";
         $sql8.= " VALUES ('$idevento_ss','$idusuario_in','$idnombre','$idnombre_datos','$iddato_laboral', ";
-        $sql8.= " '1','$correlativo','$codigo','$fecha','$fecha','$gestion')";
+        $sql8.= " '1','1','$correlativo','$codigo','$fecha','$fecha','$gestion','1')";
         $result8 = mysqli_query($link,$sql8); 
 
         $idinscripcion = mysqli_insert_id($link);
