@@ -93,8 +93,8 @@ $row_ev = mysqli_fetch_array($result_ev);
 		<div class="row">
 		<div class="tg-main-section tg-banner tg-haslayout parallax-window" data-parallax="scroll" data-bleed="100" data-speed="0.2" data-image-src="images/slider/img-03.jpg">
     <h4 align="center"><a href="eventos.php">VOLVER</a></h4>
-        </br>
-    <h2 align="center"><?php echo $codigo_evento_ss;?> .- <?php echo $row_ev[1];?></h2>
+    <h2 align="center"><?php echo $codigo_evento_ss;?></h2>
+    <h2 align="center"><?php echo $row_ev[1];?></h2>
   </div>
 </br>
     </div>

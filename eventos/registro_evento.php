@@ -15,5 +15,5 @@ $codigo_evento_ss = $_SESSION['codigo_evento_ss'];
 $sql8 = " UPDATE evento SET idestado_registro='2' WHERE idevento ='$idevento_ss' ";
 $result8 = mysqli_query($link,$sql8);
 
-header("Location:eventos.php");
+header("Location:mostrar_evento_in.php");
 ?>
