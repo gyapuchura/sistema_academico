@@ -1,99 +1,133 @@
-<?php include("../inc.config.php");?>
 <?php
-date_default_timezone_set('America/La_Paz');
-$fecha_ram	= date("Ymd");
-$fecha 	= date("Y-m-d");
- 
-$idinscripcion   =  $_GET['idinscripcion'];
+define('FPDF_FONTPATH','font/');
+require('../fpdf/fpdf.php');
 
-$gestion       = date("Y");
+class PDF extends FPDF
+{
+function hoja1()
+{	
+$this->Image('fondo_certificado_imprimible.png','0','0','210','298','PNG');								
+			//IMAGEN (RUTA,X,Y,ANCHO,ALTO,EXTEN)
 
-$sql_i = " SELECT idinscripcion, idevento, idusuario, idnombre, idnombre_datos, iddato_laboral, idestado_inscripcion, ";
-$sql_i.= " correlativo, codigo, fecha_preins, fecha_ins, gestion, nota_final FROM inscripcion WHERE idinscripcion='$idinscripcion' ";
-$result_i = mysqli_query($link,$sql_i);
-$row_i = mysqli_fetch_array($result_i);
+            include("../inc.config.php");
+            date_default_timezone_set('America/La_Paz');
+            $fecha_ram	= date("Ymd");
+            $fecha 	= date("Y-m-d");
+             
+            $idinscripcion = '1';
+            
+            // ---- cambiar a: $_GET['idinscripcion']; -----//
+            
+            $gestion       = date("Y");
+            
+            $sql_i = " SELECT idinscripcion, idevento, idusuario, idnombre, idnombre_datos, iddato_laboral, idestado_inscripcion, ";
+            $sql_i.= " correlativo, codigo, fecha_preins, fecha_ins, gestion, nota_final FROM inscripcion WHERE idinscripcion='$idinscripcion' ";
+            $result_i = mysqli_query($link,$sql_i);
+            $row_i = mysqli_fetch_array($result_i);
+            
+            $sql_l = " SELECT iddato_laboral, idusuario, idnombre, iddependencia, entidad, cargo_entidad, ";
+            $sql_l.= " idministerio, iddireccion, idarea, cargo_mds, iddepartamento, idred_salud, idestablecimiento_salud, cargo_red_salud ";
+            $sql_l.= " FROM dato_laboral WHERE iddato_laboral='$row_i[5]' ";
+            $result_l = mysqli_query($link,$sql_l);
+            $row_l = mysqli_fetch_array($result_l);
+            
+            $sql_n =" SELECT nombre.nombre, nombre.paterno, nombre.materno, nombre.ci, nombre.complemento, nombre.exp, nombre.fecha_nac, nacionalidad.nacionalidad, ";
+            $sql_n.=" genero.genero, formacion_academica.formacion_academica, profesion.profesion, especialidad_medica.especialidad_medica, nombre_datos.correo, ";
+            $sql_n.=" nombre_datos.celular, nombre_datos.idprofesion, nombre_datos.idespecialidad_medica FROM nombre, nombre_datos, usuarios, nacionalidad, genero, formacion_academica, profesion, especialidad_medica ";
+            $sql_n.=" WHERE nombre_datos.idnombre=nombre.idnombre AND nombre.idnacionalidad=nacionalidad.idnacionalidad AND nombre.idgenero=genero.idgenero AND ";
+            $sql_n.=" usuarios.idnombre=nombre.idnombre AND nombre_datos.idformacion_academica=formacion_academica.idformacion_academica AND ";
+            $sql_n.=" nombre_datos.idprofesion=profesion.idprofesion AND nombre_datos.idespecialidad_medica=especialidad_medica.idespecialidad_medica ";
+            $sql_n.=" AND usuarios.idusuario ='$row_i[2]' ";
+            $result_n = mysqli_query($link,$sql_n);
+            $row_n = mysqli_fetch_array($result_n);
+            
+            $sql_ev =" SELECT nivel_curricular.nivel_curricular, evento.codigo, tematica.tematica, departamento.departamento, tipo_evento.tipo_evento, modalidad.modalidad, evento.fecha_inicio, evento.fecha_fin, microcurricula.idtipo_costo, microcurricula.costo, microcurricula.carga_horaria ";
+            $sql_ev.=" FROM evento, microcurricula, nivel_curricular, tematica, departamento, tipo_evento, modalidad WHERE evento.idmicrocurricula=microcurricula.idmicrocurricula ";
+            $sql_ev.=" AND evento.iddepartamento=departamento.iddepartamento AND microcurricula.idtipo_evento=tipo_evento.idtipo_evento AND evento.idmodalidad=modalidad.idmodalidad ";
+            $sql_ev.=" AND microcurricula.idnivel_curricular=nivel_curricular.idnivel_curricular AND microcurricula.idtematica=tematica.idtematica AND evento.idevento='$row_i[1]' ";
+            $result_ev = mysqli_query($link,$sql_ev);
+            $row_ev = mysqli_fetch_array($result_ev);
+            
+            $paterno = mb_convert_encoding(mb_strtoupper($row_n[1]),'iso-8859-1','utf-8');
+            $materno = mb_convert_encoding(mb_strtoupper($row_n[2]),'ISO-8859-1','UTF-8');
+            $nombre  = mb_convert_encoding(mb_strtoupper($row_n[0]),'ISO-8859-1','UTF-8');
 
-$sql_l = " SELECT iddato_laboral, idusuario, idnombre, iddependencia, entidad, cargo_entidad, ";
-$sql_l.= " idministerio, iddireccion, idarea, cargo_mds, iddepartamento, idred_salud, idestablecimiento_salud, cargo_red_salud ";
-$sql_l.= " FROM dato_laboral WHERE iddato_laboral='$row_i[5]' ";
-$result_l = mysqli_query($link,$sql_l);
-$row_l = mysqli_fetch_array($result_l);
+            $fecha_i = explode('-',$row_ev[6]);
+            $f_inicio = $fecha_i[2].'/'.$fecha_i[1].'/'.$fecha_i[0];
+            
+            $fecha_f = explode('-',$row_ev[7]);
+            $f_final = $fecha_f[2].'/'.$fecha_f[1].'/'.$fecha_f[0];
 
-$sql_n =" SELECT nombre.nombre, nombre.paterno, nombre.materno, nombre.ci, nombre.complemento, nombre.exp, nombre.fecha_nac, nacionalidad.nacionalidad, ";
-$sql_n.=" genero.genero, formacion_academica.formacion_academica, profesion.profesion, especialidad_medica.especialidad_medica, nombre_datos.correo, ";
-$sql_n.=" nombre_datos.celular, nombre_datos.idprofesion, nombre_datos.idespecialidad_medica FROM nombre, nombre_datos, usuarios, nacionalidad, genero, formacion_academica, profesion, especialidad_medica ";
-$sql_n.=" WHERE nombre_datos.idnombre=nombre.idnombre AND nombre.idnacionalidad=nacionalidad.idnacionalidad AND nombre.idgenero=genero.idgenero AND ";
-$sql_n.=" usuarios.idnombre=nombre.idnombre AND nombre_datos.idformacion_academica=formacion_academica.idformacion_academica AND ";
-$sql_n.=" nombre_datos.idprofesion=profesion.idprofesion AND nombre_datos.idespecialidad_medica=especialidad_medica.idespecialidad_medica ";
-$sql_n.=" AND usuarios.idusuario ='$row_i[2]' ";
-$result_n = mysqli_query($link,$sql_n);
-$row_n = mysqli_fetch_array($result_n);
+            $lugar = strtolower($row_ev[3]);
+            $lugar_cap = ucwords($lugar);
 
-$sql_ev =" SELECT nivel_curricular.nivel_curricular, evento.codigo, tematica.tematica, departamento.departamento, tipo_evento.tipo_evento, modalidad.modalidad, evento.fecha_inicio, evento.fecha_fin, microcurricula.idtipo_costo, microcurricula.costo, microcurricula.carga_horaria ";
-$sql_ev.=" FROM evento, microcurricula, nivel_curricular, tematica, departamento, tipo_evento, modalidad WHERE evento.idmicrocurricula=microcurricula.idmicrocurricula ";
-$sql_ev.=" AND evento.iddepartamento=departamento.iddepartamento AND microcurricula.idtipo_evento=tipo_evento.idtipo_evento AND evento.idmodalidad=modalidad.idmodalidad ";
-$sql_ev.=" AND microcurricula.idnivel_curricular=nivel_curricular.idnivel_curricular AND microcurricula.idtematica=tematica.idtematica AND evento.idevento='$row_i[1]' ";
-$result_ev = mysqli_query($link,$sql_ev);
-$row_ev = mysqli_fetch_array($result_ev);
-?>
+            $fecha_i = explode('-',$row_i[10]);
+            $fecha_form = $fecha_i[2].'-'.$fecha_i[1].'-'.$fecha_i[0];
 
-<!DOCTYPE html>
-<head>
-<meta content="charset=utf-8">
-<title>CERTIFICADO_DE_APROBACION_MSYD</title>
-</head>
-<body>
-<table align="center" width="794"800"" cellspacing="1" cellpadding="1" border="0">
-    <tbody background="certificado_fondo_msyd.png">
-        <tr>
-            <td>
-				<table width="792" border="0">
-				  <tbody>
-				    <tr>
-				      <td><p>&nbsp;</p>
-			          <p>&nbsp;</p>
-			          <p>&nbsp;</p>
-			          <p>&nbsp;</p>
-			          <p>&nbsp;</p>
-			          <p>&nbsp;</p>
-			          <p>&nbsp;</p>
-			          <p>&nbsp;</p>
-			          <p>&nbsp;</p>
-			          <p>&nbsp;</p></td>
-			        </tr>
-				    <tr>
-				      <td><table width="790" border="0">
-				        <tbody>
-				          <tr>
-				            <td width="390" style="text-align: right; font-size: 18px; font-family: Arial;">APELLIDO PATERNO:</td>
-				            <td width="384" style="font-size: 18px; font-family: Arial;"><strong><?php $paterno = strtoupper($row_n[1]); echo $paterno;?></strong></td>
-			              </tr>
-				          <tr>
-				            <td width="390" style="text-align: right; font-size: 18px; font-family: Arial;">APELLIDO MATERNO:</td>
-				            <td style="font-size: 18px; font-family: Arial;"><strong><?php $materno = strtoupper($row_n[2]); echo $materno;?>
-				            </strong></td>
-			              </tr>
-				          <tr>
-			                <td width="390" style="text-align: right; font-size: 18px; font-family: Arial;">NOMBRES:</td>
-				            <td style="font-family: Arial; font-size: 18px;"><strong><?php $nombres = strtoupper($row_n[0]); echo $nombres;?></strong></td>
-			              </tr>
-				          <tr>
-			                <td width="390" style="text-align: right; font-size: 18px; font-family: Arial;">CÉDULA DE IDENTIDAD:</td>
-				            <td style="font-family: Arial; font-size: 18px;"><strong><?php echo $row_n[3];?> <?php echo $row_n[4];?> <?php echo $row_n[5];?></strong></td>
-			              </tr>
-				          <tr>
-				            <td>&nbsp;</td>
-				            <td>&nbsp;</td>
-			              </tr>
-				          <tr>
-				            <td colspan="2" style="font-family: Arial; font-size: 16px;">Por haber obtenido la calificación correspondiente a
-<?php 
-    $nota_final_literal = number_format($row_i[12], 2, '.', '.');
-    echo $nota_final_literal;?> <?php $cantidad = $row_i[12];
-    echo isset($cantidad) ? numtoletras($cantidad) : ''; ?>
-<?php 
+            switch ($fecha_i[1]) {
+                case 1:
+                    $mes = 'Enero';
+                    break;
+                case 2:
+                    $mes = 'Febrero';
+                    break;
+                case 3:
+                    $mes = 'Marzo';
+                    break;
+                case 4:
+                  $mes = 'Abril';
+                  break;
+                case 5:
+                  $mes = 'Mayo';
+                  break;
+                case 6:
+                  $mes = 'Junio';
+                  break;
+                case 7:
+                  $mes = 'Julio';
+                  break;
+                case 8:
+                  $mes = 'Agosto';
+                  break;
+                case 9:
+                  $mes = 'Septiembre';
+                  break;
+                case 10:
+                  $mes = 'Octubre';
+                  break;
+                case 11:
+                  $mes = 'Noviembre';
+                  break;
+                case 12:
+                  $mes = 'Diciembre';
+                  break;
+            } 
 
-//------    CONVERTIR NUMEROS A LETRAS         ---------------
+$this->Ln(76);
+$this->SetFont('Arial','','14');
+$this->Cell('95','10','APELLIDO PATERNO:','0','0','R','');
+$this->SetFont('Arial','B','14');
+$this->Cell(95,10,$paterno,0,1,'L','');
+$this->SetFont('Arial','','14');
+$this->Cell(95,10,'APELLIDO MATERNO:',0,0,'R','');
+$this->SetFont('Arial','B','14'); 
+$this->Cell('95','10',$materno,'0','1','L','');
+$this->SetFont('Arial','','14');
+$this->Cell('95','10','NOMBRE:','0','0','R','');
+$this->SetFont('Arial','B','14');
+$this->Cell('95','10',$nombre,'0','1','L','');
+$this->SetFont('Arial','','14');
+$this->Cell('95','10', mb_convert_encoding('CÉDULA DE IDENTIDAD','iso-8859-1','utf-8'),'0','0','R','');
+$this->SetFont('Arial','B','14');
+$this->Cell('95','10',$row_n[3].' '.$row_n[4].' '.$row_n[5],'0','1','L','');
+
+$this->Ln(5);
+$this->SetFont('Arial','','14');
+$this->Cell('190','10',mb_convert_encoding(' Por haber obtenido la calificación correspondiente a: ','iso-8859-1','utf-8'),'0','1','C','');
+
+// ------ Begin Convertir numeros a literal ------- //
+$nota_final_literal = number_format($row_i[12], 2, '.', '.');
+$cantidad = $row_i[12];
 
 function numtoletras($xcifra)
 {
@@ -134,7 +168,7 @@ function numtoletras($xcifra)
             $xaux = substr($xaux, $x3digitos, abs($x3digitos)); // obtengo la centena (los tres d�gitos)
             for ($xy = 1; $xy < 4; $xy++) { // ciclo para revisar centenas, decenas y unidades, en ese orden
                 switch ($xy) {
-                    case 1: // verifica las centenas
+                    case 1: // checa las centenas
                         if (substr($xaux, 0, 3) < 100) { // si el grupo de tres d�gitos es menor a una centena ( < 99) no hace nada y pasa a revisar las decenas
 
                         } else {
@@ -256,53 +290,39 @@ function subfijo($xx)
 }
 
 // END FUNCTION
-?>
-						 puntos, en el curso de capacitación:</td>
-			              </tr>
-				          <tr>
-				            <td colspan="2">&nbsp;</td>
-			              </tr>
-				          <tr>
-				            <td colspan="2" style="text-align: center; font-size: 24px; font-family: Arial;"><?php echo $row_ev[2];?></td>
-			              </tr>
-				          <tr>
-				            <td colspan="2">&nbsp;</td>
-			              </tr>
-				          <tr>
-				            <td colspan="2" style="font-size: 16px; font-family: Arial;">Dirigido al nivel <?php echo $row_ev[0];?> y realizado en el Departamento de <?php echo $row_ev[3];?>, en fechas  
-							<?php 
-								$fecha_i = explode('-',$row_ev[6]);
-								$f_inicio    = $fecha_i[2].'/'.$fecha_i[1].'/'.$fecha_i[0];
-								echo $f_inicio;
-								?>
-							al 
-							<?php 
-								$fecha_f = explode('-',$row_ev[7]);
-								$f_final = $fecha_f[2].'/'.$fecha_f[1].'/'.$fecha_f[0];
-								echo $f_final;
-								?>
-						 con una carga horaria de <?php echo $row_ev[10];?> Hrs.</td>
-			              </tr>
-				          <tr>
-				            <td colspan="2">&nbsp;</td>
-			              </tr>
-				          <tr>
-				            <td>&nbsp;</td>
-				            <td>&nbsp;</td>
-			              </tr>
-			            </tbody>
-			          </table></td>
-			        </tr>
-				    <tr>
-				      <td><table width="790" border="0">
-				        <tbody>
-				          <tr>
-				            <td width="252">&nbsp;</td>
-				            <td width="257">&nbsp;</td>
-				            <td width="267">&nbsp;</td>
-			              </tr>
-				          <tr>
-				            <td><p style="text-align: center"><?php
+
+
+// ------ End Convertir numeros a literal ------- //
+
+$this->Cell('190','10',$nota_final_literal.' - '.numtoletras($cantidad).' puntos.','0','1','C','');
+$this->SetFont('Arial','','14');
+$this->Cell('190','10', mb_convert_encoding('En el curso de capacitación:','iso-8859-1','utf-8'),'0','1','C','');
+$this->Ln(5);
+$this->SetFont('Arial','B','18');
+$this->Cell('190','10',mb_convert_encoding($row_ev[2],'iso-8859-1','utf-8'),'0','1','C','');
+
+$this->Ln(5);
+$this->SetFont('Arial','','14');
+$this->Cell('190','10',mb_convert_encoding('Dirigido al nivel '.$row_ev[0],'iso-8859-1','utf-8'),'0','1','C','');
+$this->Cell('190','10',mb_convert_encoding('Realizado en el Departamento de '.$row_ev[3],'iso-8859-1','utf-8'),'0','1','C','');
+$this->Cell('190','10',mb_convert_encoding('Del '.$f_inicio.' al '.$f_final.' con una carga horaria de '.$row_ev[10].' Hrs.','iso-8859-1','utf-8'),'0','1','C','');
+
+$this->Cell('95','38','','0','0','C','');
+$this->Cell('95','38','','0','1','C','');
+
+$this->SetFont('Arial','','8');
+$this->Cell('95','5',mb_convert_encoding('CÓDIGO DE VERIFICACIÓN','iso-8859-1','utf-8'),'0','0','C','');
+$this->SetFont('Arial','','8');
+$this->Cell('95','5',mb_convert_encoding('Dr. Daniel Castañon Clavijo','iso-8859-1','utf-8'),'0','1','C','');
+$this->Cell('95','5','EVENTO: '.$row_ev[1],'0','0','C','');
+$this->Cell('95','5',mb_convert_encoding('RESPONSABLE DE CAPACITACIÓN PERMANENTE','iso-8859-1','utf-8'),'0','1','C','');
+$this->Cell('95','5',$row_i[8],'0','0','C','');
+$this->Cell('95','5','MINISTERIO DE SALUD Y DEPORTES','0','1','C','');
+
+$this->SetFont('Arial','','12');
+$this->Cell('190','12',$lugar_cap.', '.$fecha_i[2].' de '.$mes.' de '.$fecha_i[0],'0','0','C','');
+
+// ----- generamos el codigo QR desde BAse de datos ---- //
 /*
  * Algoritmo para codificacion QR
  *
@@ -321,7 +341,7 @@ function subfijo($xx)
     $separador='|';
     $tamano='M';
 
-    $_REQUEST['data'] = 'http://192.168.250.253:8888/sistema_academico/evaluacion/imprime_certificado.php?idinscripcion='.$row_i[0];
+    $_REQUEST['data'] = 'http://192.168.250.134:8888/sistema_academico/evaluacion/imprime_certificado.php?idinscripcion='.$row_i[0];
     $_REQUEST['size'] = 2 ;
     $_REQUEST['level'] = $tamano ;
 
@@ -362,93 +382,18 @@ function subfijo($xx)
 
     }
 
-echo '<img src="'.$PNG_WEB_DIR.basename($filename).'" />';
 
-?></p>
-            <p style="text-align: center; font-size: 10px; font-family: Arial;">CÓDIGO DE VERIFICACIÓN</p>
-			<p style="text-align: center; font-size: 12px; font-family: Arial;"><span style="font-size: 12px">EVENTO :</span><?php echo $row_ev[1];?></p>
-            <p style="text-align: center; font-size: 12px; font-family: Arial;">INSCRIPCIÓN : <span style="font-family: Arial"><?php echo $row_i[8];?></span></p>
-			                
-                        
-                        </td>
-				            <td>&nbsp;</td>
-				            <td><p>&nbsp;</p>
-			                <p style="text-align: center; font-size: 16px; font-family: Arial;">RESPONSABLE DE CAPACITACIÓN PERMANENTE MINISTERIO DE SALUD Y DEPORTES</p></td>
-			              </tr>
-				          <tr>
-				            <td>&nbsp;</td>
-				            <td style="font-family: Arial; text-align: center; font-size: 14px;"><?php
-              $fecha_i = explode('-',$row_i[10]);
-              $fecha_form = $fecha_i[2].'-'.$fecha_i[1].'-'.$fecha_i[0];
-              ?>
+//--- incrustamos el codigo QR ------//
 
-            <?php
-              $lugar = strtolower($row_ev[3]);
-              $lugar_cap = ucwords($lugar);
-              
-              echo $lugar_cap;?>, <?php echo $fecha_i[2];?> de <?php 
-              
-              switch ($fecha_i[1]) {
-                case 1:
-                    echo "Enero";
-                    break;
-                case 2:
-                    echo "Febrero";
-                    break;
-                case 3:
-                    echo "Marzo";
-                    break;
-                case 4:
-                  echo "Abril";
-                  break;
-                case 5:
-                  echo "Mayo";
-                  break;
-                case 6:
-                  echo "Junio";
-                  break;
-                case 7:
-                  echo "Julio";
-                  break;
-                case 8:
-                  echo "Agosto";
-                  break;
-                case 9:
-                  echo "Septiembre";
-                  break;
-                case 10:
-                  echo "Octubre";
-                  break;
-                case 11:
-                  echo "Noviembre";
-                  break;
-                case 12:
-                  echo "Diciembre";
-                  break;
-            }              
-              ?> de <?php echo $fecha_i[0];?></td>
-				            <td>&nbsp;</td>
-			              </tr>
-				          <tr>
-				            <td>&nbsp;</td>
-				            <td>&nbsp;</td>
-				            <td>&nbsp;</td>
-			              </tr>
-				          <tr>
-				            <td>&nbsp;</td>
-				            <td>&nbsp;</td>
-				            <td>&nbsp;</td>
-			              </tr>
-			            </tbody>
-				        </table></td>
-			        </tr>
-			      </tbody>
-			  </table>
-				<p>&nbsp;</p>
+$this->Image($PNG_WEB_DIR.basename($filename),40,215,34);
 
-            </td>
-        </tr>
-    </tbody>
-</table>
-</body>
-</html>
+			
+}
+}
+// fin clase
+$pdf=new PDF(); //constructor pdf
+$pdf->SetFont('Arial','','10');
+$pdf->AddPage();
+$pdf->hoja1();
+$pdf->Output();
+?>

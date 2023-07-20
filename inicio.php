@@ -182,7 +182,7 @@ while ($field = mysqli_fetch_field($result)){
                     <div class="gallery-thumb">
                         <img src="img/works/administrativa.jpg" class="img-responsive" alt="5th gallery Thumb">
                         <div class="image-overlay"></div>    
-                        <a href="contrataciones_uai.php" class="gallery-link"><i class="fa fa-link"></i></a>
+                        <a href="#" class="gallery-link"><i class="fa fa-link"></i></a>
                     </div>
                     <div class="gallery-details">
                         <div class="editContent">
@@ -217,7 +217,7 @@ while ($field = mysqli_fetch_field($result)){
                     <div class="gallery-thumb">
                         <img src="img/works/usuarios.jpg" class="img-responsive" alt="5th gallery Thumb">
                         <div class="image-overlay"></div>                             
-                        <a href="contrataciones/declaraciones_juradas_scep.php" class="gallery-link"><i class="fa fa-link"></i></a>
+                        <a href="#" class="gallery-link"><i class="fa fa-link"></i></a>
                     </div>
                     <div class="gallery-details">
                         <div class="editContent">
