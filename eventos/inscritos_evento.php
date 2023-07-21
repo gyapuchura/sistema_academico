@@ -94,7 +94,7 @@ $rowus = mysqli_fetch_array($resultus);?>
 
 <div class="container">
         <div class="row">
-        <div class="col-lg-12"><h2>PREINSCRITOS</h2></div>
+        <div class="col-lg-12"><h2 class="text-info">PREINSCRITOS</h2></div>
         </div>
 <!--- REGISTRO DE PRE-INSCRITOS ---->
 
@@ -109,6 +109,7 @@ $rowus = mysqli_fetch_array($resultus);?>
                     <th>MATERNO</th>
                     <th>NOMBRES</th>
                     <th>VER FORMULARIO</th>
+                    <th>IMPRIMIR PDF</th>
                     <th>GESTIONAR INSCRIPCIÓN</th>
                 </tr>
             </thead>
@@ -131,7 +132,10 @@ $rowus = mysqli_fetch_array($resultus);?>
                 <td><?php echo $row[5];?></td>
                 <td><?php echo $row[6];?></td>
                 <td>
-                <a href="imprime_formulario_ins.php?idinscripcion=<?php echo $row[0];?>" target="_blank" class="Estilo12" onClick="window.open(this.href, this.target, 'width=750,height=850,scrollbars=YES,top=50,left=200'); return false;">VER FORMULARIO</a>
+                <a href="imprime_formulario_ins.php?idinscripcion=<?php echo $row[0];?>" target="_blank" class="Estilo12" onClick="window.open(this.href, this.target, 'width=750,height=850,scrollbars=YES,top=50,left=200'); return false;">VISTA PREVIA</a>
+                </td>
+                <td> 
+                <a href="../inscripciones/imprime_formulario_preins.php?idinscripcion=<?php echo $row[0];?>" target="_blank">IMPRIMIR</a>
                 </td>
                 <td>  
                     <form name="VALIDA" action="valida_inscrito_adm.php" method="post">
@@ -152,7 +156,7 @@ $rowus = mysqli_fetch_array($resultus);?>
                             </div>
 
         <div class="row">
-        <div class="col-lg-12"><h2>INSCRITOS</h2></div>
+        <div class="col-lg-12"><h2 class="text-success">INSCRITOS</h2></div>
         </div>
 <!--- REGISTRO DE INSCRITOS CONFIRMADOS ---->
 
@@ -167,6 +171,7 @@ $rowus = mysqli_fetch_array($resultus);?>
                     <th>MATERNO</th>
                     <th>NOMBRES</th>
                     <th>VER FORMULARIO</th>
+                    <th>IMPRIMIR PDF</th>
                 </tr>
             </thead>
 			<tbody>
@@ -189,6 +194,9 @@ $rowus = mysqli_fetch_array($resultus);?>
                 <td><?php echo $row[6];?></td>
                 <td>
                 <a href="imprime_formulario_ins.php?idinscripcion=<?php echo $row[0];?>" target="_blank" class="Estilo12" onClick="window.open(this.href, this.target, 'width=750,height=850,scrollbars=YES,top=50,left=200'); return false;">VER FORMULARIO</a>
+                </td>
+                <td> 
+                <a href="../inscripciones/imprime_formulario_preins.php?idinscripcion=<?php echo $row[0];?>" target="_blank">IMPRIMIR</a>
                 </td>
                 </tr>  
             <?php

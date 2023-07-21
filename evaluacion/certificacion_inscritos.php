@@ -106,8 +106,9 @@ $rowus = mysqli_fetch_array($resultus);?>
                     <th>PATERNO</th>
                     <th>MATERNO</th>
                     <th>NOMBRES</th>
-                    <th>VER FORMULARIO</th>
+                    <th>VER CERTIFICADO</th>
                     <th>NOTA FINAL</th>
+                    <th>IMPRIMIR PDF</th>
                     <th>OBSERVACIÓN</th>
                 </tr>
             </thead>
@@ -131,11 +132,19 @@ $rowus = mysqli_fetch_array($resultus);?>
                 <td><?php echo $row[5];?></td>
                 <td><?php echo $row[6];?></td>
                 <td>
-                <a href="imprime_certificado.php?idinscripcion=<?php echo $row[0];?>" target="_blank" class="Estilo12" onClick="window.open(this.href, this.target, 'width=810,height=1000,scrollbars=YES,top=50,left=200'); return false;">
+                <a href="imprime_certificado.php?idinscripcion=<?php echo $row[0];?>" target="_blank" class="Estilo12" onClick="window.open(this.href, this.target, 'width=920,height=1000,scrollbars=YES,top=50,left=200'); return false;">
                 <?php if ($row[10] == '4') { echo "CERTIFICADO"; } else { }?></a>
                 </td>                
-                <td><input type="text" class="form-control" name="nota_final" value="<?php echo $row[7]?>" disabled ></td>
-                <td><?php echo $row[9];?></td>
+                <td>
+                 <?php  if ($row[7] >= '71') { echo '<p class="text-success">'; } else { echo '<p class="text-danger">'; } ?>  
+                <?php echo $row[7]?></p></td>
+                <td> 
+                <a href="imprime_certificado_aprob.php?idinscripcion=<?php echo $row[0];?>" target="_blank">
+                <?php if ($row[10] == '4') { echo "IMPRIMIR EN PDF"; } else { }?></a>
+                </td>
+                <td>
+                <?php  if ($row[7] >= '71') { echo '<p class="text-success">'; } else { echo '<p class="text-danger">'; } ?>     
+                <?php echo $row[9];?></p></td>
                
                 </tr>  
             <?php
