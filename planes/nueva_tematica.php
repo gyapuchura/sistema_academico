@@ -1,16 +1,6 @@
 <?php include("../cabf.php");?>
 <?php include("../inc.config.php");?>
 <?php
-/*
-*
-* SE REALIZA EL REGISTRO DE UNA NUEVO OBJETIVO ANUAL.
-* Desde esta pagina se puede regustrar un nuevo plan anual dentro de una unidad organizacional.
-*
-* @idusuario_ss int //variable de sesion de usuario en formato numero entero
-* @idnombre_ss int //variable de sesion de nombres y apellidos de usuario en formato numero entero
-* @perfil_ss varchar //variable de sesion de perfil de usuario en formato numero entero
-*
-*/
 date_default_timezone_set('America/La_Paz');
 $fecha_ram	   = date("Ymd");
 $fecha 		   = date("Y-m-d");

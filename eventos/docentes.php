@@ -9,14 +9,9 @@ $idusuario_ss  =  $_SESSION['idusuario_ss'];
 $idnombre_ss   =  $_SESSION['idnombre_ss'];
 $perfil_ss     =  $_SESSION['perfil_ss'];
 
-$idevento_ss      = $_SESSION['idevento_ss'];
-$codigo_evento_ss = $_SESSION['codigo_evento_ss'];
-
-$sql0 =" SELECT tematica.tematica FROM evento, microcurricula, tematica WHERE evento.idmicrocurricula=microcurricula.idmicrocurricula  ";
-$sql0.=" AND microcurricula.idtematica=tematica.idtematica AND evento.idevento='$idevento_ss' ";
-$result0 = mysqli_query($link,$sql0);
-$row0 = mysqli_fetch_array($result0);
-
+if($_SESSION['perfil_ss'] != "ADMINISTRADOR"){ 		
+	header("Location:../index.php");	
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -26,7 +21,6 @@ $row0 = mysqli_fetch_array($result0);
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="" />
 
-<!-- c+ss -->
 <link href="../css/bootstrap.min.css" rel="stylesheet" />
 <link href="../css/fancybox/jquery.fancybox.css" rel="stylesheet">
 <link href="../css/flexslider.css" rel="stylesheet" />
@@ -68,56 +62,64 @@ $rowus = mysqli_fetch_array($resultus);?>
                 <?php include("../menu_academico.php");?>
             </div>
         </div>
+
+<script language="javascript" src="../js/jquery-3.1.1.min.js"></script>
+
 	</header><!-- end header -->
 	<section id="inner-headline">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="pageTitle">CERTIFICACIÓN</h2>
+				<h2 class="pageTitle">DOCENTES</h2>
 			</div>
 		</div>
 	</div>
 	</section>
-
 	<section id="content">
+
 	<div class="container">
 		<div class="row">
 		<div class="tg-main-section tg-banner tg-haslayout parallax-window" data-parallax="scroll" data-bleed="100" data-speed="0.2" data-image-src="images/slider/img-03.jpg">
-        <h4 align="center"><a href="certificacion_eventos.php">VOLVER</a></h4>
-        <h2 align="center"><?php echo $codigo_evento_ss;?></h2>
-        <h2 align="center"><?php echo $row0[0];?></h2>
 		</div>
+            <div class="about-logo">
+            <p>EN ESTA SECCIÓN SE REALIZA la GESTIÓN DE INFORMACIÓN DE DOCENTES.</p>
+            </div>
+            </div>
+        <div class="row">
+        <form name="FORMU" action="nuevo_docente.php" method="post">
+        <button type="submit" class="btn btn-primary">NUEVO DOCENTRE</button>
+        </form>
     </div>
 
 <div class="container">
-        <div class="row">
-        <div class="col-lg-12"><h2>PARTICIPANTES CON CERTIFICADO DE APROBACIÓN</h2></div>
-        </div>
-<!--- REGISTRO DE PRE-INSCRITOS ---->
+<div class="row">
+<div class="col-lg-12">
+
+</div>
+</div>
+<!--- GESTION DE EMPRESAS ---->
 
 <div class="table-responsive">
       <table class="table table-bordered" id="example" width="100%" cellspacing="0">
-     
             <thead>
                 <tr>
                     <th>Nª</th>
-                    <th>CÓDIGO INSCRIPCIÓN</th>
-                    <th>CEDULA DE IDENTIDAD</th>
+                    <th>CÉDULA DE IDENTIDAD</th>
+                    <th>NOMBRE</th>
                     <th>PATERNO</th>
                     <th>MATERNO</th>
-                    <th>NOMBRES</th>
-                    <th>VER CERTIFICADO</th>
-                    <th>NOTA FINAL</th>
-                    <th>IMPRIMIR PDF</th>
-                    <th>OBSERVACIÓN</th>
+                    <th>ESPECIALIDAD</th>
+                    <th>ÚLTIMO DESEMPEÑO</th>
+                    <th>ESTADO HABILITACIÓN</th>
+                    <th>VER REGISTRO</th>
                 </tr>
             </thead>
 			<tbody>
             <?php
             $numero=1;
-            $sql =" SELECT inscripcion.idinscripcion, inscripcion.codigo, nombre.ci, nombre.complemento, nombre.paterno, nombre.materno, nombre.nombre, inscripcion.nota_final, inscripcion.nota_final, ";
-            $sql.=" comentario_evaluacion.comentario_evaluacion, inscripcion.idcomentario_evaluacion FROM inscripcion, nombre, comentario_evaluacion WHERE inscripcion.idnombre=nombre.idnombre AND inscripcion.idestado_inscripcion='2' ";
-            $sql.=" AND inscripcion.idcomentario_evaluacion=comentario_evaluacion.idcomentario_evaluacion AND inscripcion.idevento='$idevento_ss' ORDER BY inscripcion.idinscripcion ";
+            $sql =" SELECT docente.iddocente, usuarios.idusuario, nombre.ci, nombre.nombre, nombre.paterno, nombre.materno, estado_docente.estado_docente  ";
+            $sql.=" FROM usuarios, nombre, docente, estado_docente WHERE usuarios.idnombre=nombre.idnombre AND docente.idusuario=usuarios.idusuario  ";
+            $sql.=" AND docente.idestado_docente=estado_docente.idestado_docente AND usuarios.condicion='ACTIVO' AND usuarios.perfil='DOCENTE' ";
             $result = mysqli_query($link,$sql);
             if ($row = mysqli_fetch_array($result)){
             mysqli_field_seek($result,0);
@@ -126,26 +128,46 @@ $rowus = mysqli_fetch_array($resultus);?>
             ?>
 				<tr>
 				<td><?php echo $numero;?></td>
-                <td><?php echo $row[1];?></td>
-				<td><?php echo $row[2];?> <?php echo $row[3];?></td>
+                <td><?php echo $row[2];?></td>
+				<td><?php echo $row[3];?></td>
                 <td><?php echo $row[4];?></td>
                 <td><?php echo $row[5];?></td>
+                <td><?php 
+                    $sqle =" SELECT tematica.tematica FROM especialidad_docente, tematica WHERE especialidad_docente.idtematica=tematica.idtematica ";
+                    $sqle.=" AND especialidad_docente.iddocente='$row[0]' ";
+                    $resulte = mysqli_query($link,$sqle);
+                    if ($rowe = mysqli_fetch_array($resulte)){
+                    mysqli_field_seek($resulte,0);
+                    while ($fielde = mysqli_fetch_field($resulte)){
+                    } do {
+                            echo '- '.$rowe[0].'</br>';
+                    }
+                    while ($rowe = mysqli_fetch_array($resulte));
+                    } else {
+                    }               
+                ?></td>
+                <td><?php 
+                        $sqld =" SELECT eval_docente.ideval_docente, ponderacion.valor, ponderacion.ponderacion  ";
+                        $sqld.=" FROM eval_docente, ponderacion WHERE eval_docente.idponderacion=ponderacion.idponderacion ";
+                        $sqld.=" AND eval_docente.iddocente='1' ORDER BY eval_docente.ideval_docente DESC LIMIT 1 ";
+                        $resultd = mysqli_query($link,$sqld);
+                        if ($rowd = mysqli_fetch_array($resultd)){
+                        mysqli_field_seek($resultd,0);
+                        while ($fieldd = mysqli_fetch_field($resultd)){
+                        } do {
+                                echo '- '.$rowd[1].' : '.$rowd[2].'</br>';
+                        }
+                        while ($rowd = mysqli_fetch_array($resultd));
+                        } else {
+                        }
+                        ?></td>
                 <td><?php echo $row[6];?></td>
-                <td>
-                <a href="imprime_certificado.php?idinscripcion=<?php echo $row[0];?>" target="_blank" class="Estilo12" onClick="window.open(this.href, this.target, 'width=920,height=1000,scrollbars=YES,top=50,left=200'); return false;">
-                <?php if ($row[10] == '4') { echo "CERTIFICADO"; } else { }?></a>
-                </td>                
-                <td>
-                 <?php  if ($row[7] >= '71') { echo '<p class="text-success">'; } else { echo '<p class="text-danger">'; } ?>  
-                <?php echo $row[7]?></p></td>
-                <td> 
-                <a href="imprime_certificado_aprob.php?idinscripcion=<?php echo $row[0];?>" target="_blank">
-                <?php if ($row[10] == '4') { echo "IMPRIMIR EN PDF"; } else { }?></a>
+                <td>                    
+                    <form name="VALIDA" action="valida_docente.php" method="post">
+                    <input name="codigo" type="hidden" value="<?php echo $row[1];?>">
+                    <input name="idevento" type="hidden" value="<?php echo $row[0];?>">
+                    <button type="submit" class="btn-link">VER/MODIFICAR</button></form>
                 </td>
-                <td>
-                <?php  if ($row[7] >= '71') { echo '<p class="text-success">'; } else { echo '<p class="text-danger">'; } ?>     
-                <?php echo $row[9];?></p></td>
-               
                 </tr>  
             <?php
             $numero=$numero+1;  
@@ -154,12 +176,14 @@ $rowus = mysqli_fetch_array($resultus);?>
             } else {
             }
             ?>
+                                    </tbody>
+                                </table>
+                            </div>
 
-        </tbody>
-    </table>
+<!--- gestion de usuarios ---->
+
 </div>
-
-   </br>
+</br>
   </section>
 	<footer>
 	<?php include("../footer.php");?>
