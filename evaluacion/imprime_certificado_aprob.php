@@ -341,7 +341,7 @@ $this->Cell('190','12',$lugar_cap.', '.$fecha_i[2].' de '.$mes.' de '.$fecha_i[0
     $separador='|';
     $tamano='M';
 
-    $_REQUEST['data'] = 'http://192.168.250.134:8888/sistema_academico/evaluacion/imprime_certificado.php?idinscripcion='.$row_i[0];
+    $_REQUEST['data'] = 'http://192.168.251.203:8888/sistema_academico/evaluacion/imprime_certificado.php?idinscripcion='.$row_i[0];
     $_REQUEST['size'] = 2 ;
     $_REQUEST['level'] = $tamano ;
 
