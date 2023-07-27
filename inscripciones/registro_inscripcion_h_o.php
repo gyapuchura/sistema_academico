@@ -10,11 +10,11 @@ $idtematica_ss    = $_SESSION['idtematica_ss'];
 $idevento_ss      = $_SESSION['idevento_ss'];
 $codigo_evento_ss = $_SESSION['codigo_evento_ss'];
 
-$idnombre_inscrito_ss =  $_SESSION['idnombre_inscrito_ss'];
-$nombre_inscrito_ss   =  $_SESSION['nombre_inscrito_ss'];
-$paterno_inscrito_ss  =  $_SESSION['paterno_inscrito_ss'];
-$materno_inscrito_ss  =  $_SESSION['materno_inscrito_ss'];
-$ci_inscrito_ss       =  $_SESSION['ci_inscrito_ss'];
+$idnombre_inscrito_ss = $_SESSION['idnombre_inscrito_ss'];
+$nombre_inscrito_ss   = $_SESSION['nombre_inscrito_ss'];
+$paterno_inscrito_ss  = $_SESSION['paterno_inscrito_ss'];
+$materno_inscrito_ss  = $_SESSION['materno_inscrito_ss'];
+$ci_inscrito_ss       = $_SESSION['ci_inscrito_ss'];
 
 $sql0 =" SELECT idtematica, tematica FROM tematica WHERE idtematica='$idtematica_ss' ";
 $result0 = mysqli_query($link,$sql0);

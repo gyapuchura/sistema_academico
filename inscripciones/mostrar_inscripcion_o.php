@@ -88,8 +88,9 @@ $row_l = mysqli_fetch_array($result_l);
 	<div class="container">
 
 <div class="row">
-  <div class="col-md-4"></div>
-  <div class="col-md-8"><h2><?php echo $row_i[8];?> </h2></div>
+  <div class="col-md-12">
+  <h2 class="text-success" align="center">SE REGISTRÓ CORRECTAMENTE</h2>
+  <h2 align="center"><?php echo $row_i[8];?> </h2></div>
 </div>
 <!-- MUESTRA LA PREINSCRIPCION REALIZADA --->
 <div class="box-area">
