@@ -69,7 +69,7 @@ session_destroy(); ?>
             <a href="inscripciones/oferta.php"><h1>OFERTA ACADÉMICA</h1></a>
             </div>
             <div class="col-sm-4">
-            <a href="../aula/index.php"><h1>OFERTA ACADÉMICA</h1></a>
+            <a href="../aula/index.php"><h1>AULA VIRTUAL</h1></a>
             </div>
         </div>
 </div>
