@@ -84,13 +84,13 @@ session_destroy(); ?>
                         <div class="box">
                              <div class="content">
                                 <div class="error"></div>
-                                <div class="form loginBox">
-                                    <form method="post" action="validacion.php" accept-charset="UTF-8">
-                                    <input id="usuario" class="form-control" type="text" placeholder="usuario" name="usuario">
-                                    <input id="password" class="form-control" type="password" placeholder="password" name="password">
-                                   <button type="submit" class="tg-btn" align="center">ACCEDER</button>
-                                    </form>
-                                </div>
+                                  <div class="form loginBox">
+                                      <form method="post" action="validacion.php" accept-charset="UTF-8">
+                                      <input id="usuario" class="form-control" type="text" placeholder="usuario" name="usuario">
+                                      <input id="password" class="form-control" type="password" placeholder="password" name="password">
+                                    <button type="submit" class="tg-btn" align="center">ACCEDER</button>
+                                      </form>
+                                  </div>
                                 </div>
                              </div>
                         </div>
