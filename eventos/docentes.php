@@ -149,7 +149,7 @@ $rowus = mysqli_fetch_array($resultus);?>
                 <td><?php 
                         $sqld =" SELECT eval_docente.ideval_docente, ponderacion.valor, ponderacion.ponderacion  ";
                         $sqld.=" FROM eval_docente, ponderacion WHERE eval_docente.idponderacion=ponderacion.idponderacion ";
-                        $sqld.=" AND eval_docente.iddocente='1' ORDER BY eval_docente.ideval_docente DESC LIMIT 1 ";
+                        $sqld.=" AND eval_docente.iddocente='$row[0]' ORDER BY eval_docente.ideval_docente DESC LIMIT 1 ";
                         $resultd = mysqli_query($link,$sqld);
                         if ($rowd = mysqli_fetch_array($resultd)){
                         mysqli_field_seek($resultd,0);
@@ -164,9 +164,8 @@ $rowus = mysqli_fetch_array($resultus);?>
                 <td><?php echo $row[6];?></td>
                 <td>                    
                     <form name="VALIDA" action="valida_docente.php" method="post">
-                    <input name="codigo" type="hidden" value="<?php echo $row[1];?>">
-                    <input name="idevento" type="hidden" value="<?php echo $row[0];?>">
-                    <button type="submit" class="btn-link">VER/MODIFICAR</button></form>
+                    <input name="iddocente" type="hidden" value="<?php echo $row[0];?>">
+                    <button type="submit" class="btn-link">VER/ACTUALIZAR</button></form>
                 </td>
                 </tr>  
             <?php
