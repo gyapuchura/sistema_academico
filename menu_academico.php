@@ -18,7 +18,7 @@ while ($field = mysqli_fetch_field($result)){
 	<a href="#" data-toggle="dropdown" class="dropdown-toggle">PROGRAMACION<b class="caret"></b></a>
 		<ul class="dropdown-menu">
 		<li><a href="../eventos/eventos.php">EVENTOS</a></li>		
-		<li><a href="../eventos/docentes.php">DOCENTES</a></li>
+<!--    <li><a href="../eventos/docentes.php">DOCENTES</a></li> --->
 <!--	<li><a href="../eventos/oferta_eventos.php">OFERTA ACADÉMICA</a></li> --->
 		<li><a href="../eventos/administrar_eventos.php">ADMINISTRAR EVENTOS</a></li>
 		</ul>
@@ -30,7 +30,34 @@ while ($field = mysqli_fetch_field($result)){
 ?>
 
 <?php
-/****** EVALUACIÓN DE CONTRATACIONES PARA EL DAF DE LA EMPRESA PUBLICA ******/	
+/****** MENU GESTION DE DOCENTES ******/	
+
+$sql = "SELECT perfil  from usuarios  where idusuario = '$idusuario_ss' and perfil = '$perfil_ss' ";
+$result = mysqli_query($link,$sql);
+$row = mysqli_fetch_array($result);
+
+/****** Seleccionamos el perfil del suaurio que accedera a las opciones de sistema ******/	
+if ($row[0] == 'ADMINISTRADOR' || $row[0] =='USUARIO'){
+
+mysqli_field_seek($result,0);
+while ($field = mysqli_fetch_field($result)){
+} do {	
+	?> 
+	<li class="dropdown">
+	<a href="#" data-toggle="dropdown" class="dropdown-toggle">DOCENTES<b class="caret"></b></a>
+		<ul class="dropdown-menu">
+		<li><a href="../eventos/docentes.php">REGISTRO DE DOCENTES</a></li>
+	<!--	<li><a href="#">SEGUIMIENTO DE F-3009</a></li>  -->
+		</ul>
+	</li>
+<?php
+} while ($row = mysqli_fetch_array($result));
+} else {
+}
+?>
+
+<?php
+/****** MENU DE GESTION DE INSCRIPCIONES ******/	
 
 $sql = "SELECT perfil  from usuarios  where idusuario = '$idusuario_ss' and perfil = '$perfil_ss' ";
 $result = mysqli_query($link,$sql);

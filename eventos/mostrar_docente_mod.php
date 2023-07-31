@@ -20,14 +20,14 @@ $row_d = mysqli_fetch_array($result_d);
 
 $sql_n =" SELECT nombre.nombre, nombre.paterno, nombre.materno, nombre.ci, nombre.complemento, nombre.exp, nombre.fecha_nac, nombre.idnacionalidad, ";
 $sql_n.=" nombre.idgenero, nombre_datos.idformacion_academica, nombre_datos.idprofesion, nombre_datos.idespecialidad_medica, nombre_datos.correo, ";
-$sql_n.=" nombre_datos.celular FROM nombre, nombre_datos, usuarios WHERE nombre_datos.idnombre=nombre.idnombre AND  ";
-$sql_n.=" usuarios.idnombre=nombre.idnombre AND usuarios.idusuario='$row_d[1]' ";
+$sql_n.=" nombre_datos.celular, nombre.idnombre, nombre_datos.direccion_dom, nombre_datos.idnombre_datos FROM nombre, nombre_datos, usuarios  ";
+$sql_n.=" WHERE nombre_datos.idnombre=nombre.idnombre AND usuarios.idnombre=nombre.idnombre AND usuarios.idusuario='$row_d[1]' ";
 $result_n = mysqli_query($link,$sql_n);
 $row_n = mysqli_fetch_array($result_n);
 
 $sql_l = " SELECT iddato_laboral, idusuario, idnombre, iddependencia, entidad, cargo_entidad, ";
 $sql_l.= " idministerio, iddireccion, idarea, cargo_mds, iddepartamento, idred_salud, idestablecimiento_salud, cargo_red_salud ";
-$sql_l.= " FROM dato_laboral WHERE iddato_laboral='$row_d[4]' ";
+$sql_l.= " FROM dato_laboral WHERE iddato_laboral='$row_d[4]' ORDER BY iddato_laboral LIMIT 1";
 $result_l = mysqli_query($link,$sql_l);
 $row_l = mysqli_fetch_array($result_l);
 
@@ -89,10 +89,20 @@ $row_l = mysqli_fetch_array($result_l);
 	</section>
 	<section id="content">
 	<div class="container">
-
+  <h4 align="center"><a href="mostrar_docente_reg.php">VOLVER</a></h4>
+</br>
 <!-- MUESTRA LA PREINSCRIPCION REALIZADA --->
-<div class="box-area">
 
+<div class="row">
+    <div class="col-md-6"><h3>1.- ACTUALIZAR DATOS PERSONALES:</h3></div>
+    <div class="col-md-6"></div>
+</div>
+
+<form name="PERSONALES" action="guarda_datospersonales_docente.php" method="post">
+
+<input type="hidden" name="idnombre" value="<?php echo $row_n[14];?>">
+
+<div class="box-area">
 <div class="form-group row">
     <div class="col-sm-3 mb-3 mb-sm-0">
     <h4>NOMBRES:</h4>
@@ -195,19 +205,60 @@ $row_l = mysqli_fetch_array($result_l);
           </select>
     </div>
 </div>
+
+
+<div class="row">
+        <div class="col-md-4"><h4></h4></div>
+        <div class="col-md-8">    
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#datosPersonales">
+              GUARDAR CAMBIOS
+            </button>
+        </div>
+        </div>
 </div>
 
-   <div class="row">
+<!-- modal de confirmacion de envio de datos-->
+
+<div class="modal fade" id="datosPersonales" tabindex="-1" role="dialog" aria-labelledby="datosPersonalesLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="datosPersonalesLabel">ACTUALIZAR DATOS PERSONALES DEL DOCENTE</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        Esta seguro de actualizar los datos personales del docente?
+        posteriormenete no se podran realizar cambios.
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCELAR</button>
+        <button type="submit" class="btn btn-primary pull-center">CONFIRMAR</button>    
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+
+
+<!-- Modal -->
+
+  <div class="row">
     <div class="col-md-6"><h3>2.- DATOS COMPLEMENTARIOS:</h3></div>
     <div class="col-md-6"></div>
   </div>
 
-  <div class="box-area">
+<form name="PERSONALES" action="guarda_complementarios_docente.php" method="post">
 
+<input type="hidden" name="idnombre_datos" value="<?php echo $row_n[16];?>">
+<div class="box-area">
 <div class="row">
 <div class="col-md-3"><h4>FORMACIÓN ACADÉMICA:</h4></div>
 <div class="col-md-3">
-      <select name="idformacion_academica"  id="idformacion_academica" class="form-control" required disabled>
+      <select name="idformacion_academica"  id="idformacion_academica" class="form-control" required >
           <option selected>Seleccione</option>
           <?php
           $sqlv = "SELECT idformacion_academica, formacion_academica FROM formacion_academica ";
@@ -227,7 +278,7 @@ $row_l = mysqli_fetch_array($result_l);
 </div>
 <div class="col-md-3"><h4>PROFESIÓN/OCUPACIÓN:</h4></div>
 <div class="col-md-3">
-        <select name="idprofesion"  id="idprofesion" class="form-control" required disabled>
+        <select name="idprofesion"  id="idprofesion" class="form-control" required >
           <option selected>Seleccione</option>
           <?php
           $sqlv = " SELECT idprofesion, profesion FROM profesion ";
@@ -253,7 +304,7 @@ $row_l = mysqli_fetch_array($result_l);
   <div class="col-md-3"><h4>ESPECIALIDAD MÉDICA:</h4></div>
   <div class="col-md-9">
 
-        <select name="idespecialidad_medica"  id="idespecialidad_medica" class="form-control" required disabled>
+        <select name="idespecialidad_medica"  id="idespecialidad_medica" class="form-control" required >
           <option selected>Seleccione</option>
           <?php
           $sqlv = " SELECT idespecialidad_medica, especialidad_medica FROM especialidad_medica ";
@@ -279,14 +330,76 @@ $row_l = mysqli_fetch_array($result_l);
 
 <div class="row">
 <div class="col-md-3"><h4>CORREO ELECTRÓNICO:</h4></div>
-<div class="col-md-3"><input type="mail" class="form-control" name="correo" value="<?php echo $row_n[12];?>" disabled required></div>
+<div class="col-md-3"><input type="mail" class="form-control" name="correo" value="<?php echo $row_n[12];?>"  required></div>
 <div class="col-md-3"><h4>TELÉFONO CELULAR/WHATSAPP:</h4></div>
-<div class="col-md-3"><input type="text" class="form-control" name="celular" value="<?php echo $row_n[13];?>" disabled required></div>
-</div>
+<div class="col-md-3"><input type="text" class="form-control" name="celular" value="<?php echo $row_n[13];?>"  required></div>
 </div>
 
 <div class="row">
-<div class="col-md-6"><h3>3.- DATOS LABORALES:</h3></div>
+<div class="col-md-3"><h4>DEPARTAMENTO DE RESIDENCIA:</h4></div>
+<div class="col-md-3">
+<select name="idresidencia"  id="idresidencia" class="form-control" required >
+          <option selected>Seleccione</option>
+          <?php
+          $sqlv = " SELECT iddepartamento, departamento FROM departamento ";
+          $resultv = mysqli_query($link,$sqlv);
+          if ($rowv = mysqli_fetch_array($resultv)){
+          mysqli_field_seek($resultv,0);
+          while ($fieldv = mysqli_fetch_field($resultv)){
+          } do {
+          ?>
+          <option value="<?php echo $rowv[0];?>" <?php if ($rowv[0]==$row_d[5]) echo "selected";?> ><?php echo $rowv[1];?></option>
+          <?php
+          } while ($rowv = mysqli_fetch_array($resultv));
+          } else {
+          }
+          ?>
+        </select>
+</div>
+<div class="col-md-2"><h4>DOMICILIO:</h4></div>
+<div class="col-md-4"><textarea class="form-control" rows="3" name="direccion_dom" required><?php echo $row_n[15];?></textarea></div>
+</div>
+
+<div class="row">
+        <div class="col-md-4"><h4></h4></div>
+        <div class="col-md-8">    
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#datosComplementarios">
+              GUARDAR CAMBIOS
+            </button>
+        </div>
+        </div>
+</div>
+
+<!-- modal de confirmacion de envio de datos-->
+
+<div class="modal fade" id="datosComplementarios" tabindex="-1" role="dialog" aria-labelledby="datosComplementariosLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="datosComplementariosLabel">ACTUALIZAR DATOS COMPLEMENTARIOS DEL DOCENTE</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        Esta seguro de registrar los datos complementarios del docente?
+        posteriormenete no se podran realizar cambios.
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCELAR</button>
+        <button type="submit" class="btn btn-primary pull-center">CONFIRMAR REGISTRO</button>    
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+<!-- Modal -->
+
+
+<div class="row">
+<div class="col-md-6"><h3>3.- DATOS LABORALES: <?php echo $row_d[4];?></h3></div>
 <div class="col-md-6"></div>
 </div>
 
@@ -425,8 +538,10 @@ $row_l = mysqli_fetch_array($result_l);
           }
           ?>
       </select>
-
     </div>
+
+    
+
     </div>
 
     <div class="row">
@@ -541,6 +656,19 @@ $row_l = mysqli_fetch_array($result_l);
 
 <?php } } ?>
 
+<form name="LABORALES" action="mostrar_docente_modlab.php" method="post">
+      <div class="row">
+        <div class="col-md-4"><h4></h4></div>
+        <div class="col-md-8">   
+            <button type="submit" class="btn btn-primary">
+            ACTUALIZAR DATOS LABORAES
+            </button>
+        </div>
+      </div>
+  </form>
+
+
+<!-- modal de confirmacion de envio de datos-->
 </div>
 
 <div class="row">

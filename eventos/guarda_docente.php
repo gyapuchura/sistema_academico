@@ -64,11 +64,7 @@ $cargo_red_salud = $link->real_escape_string(htmlentities($_POST['cargo_red_salu
     $result9 = mysqli_query($link,$sql9);
       if ($row9 = mysqli_fetch_array($result9)) {
          
-            $_SESSION['idnombre_inscrito_ss'] = $row9[0]; 
-            $_SESSION['nombre_inscrito_ss']   = $row9[3]; 
-            $_SESSION['paterno_inscrito_ss']  = $row9[1]; 
-            $_SESSION['materno_inscrito_ss']  = $row9[2]; 
-            $_SESSION['ci_inscrito_ss']       = $row9[4];  
+            $_SESSION['idnombre_docente_ss'] = $row9[0]; 
 
             header("Location:docente_existe.php");
       }  
@@ -102,7 +98,7 @@ if ($iddependencia == '1') {
     $sql2 = " INSERT INTO dato_laboral (idnombre, idusuario, iddependencia, entidad, cargo_entidad, ";
     $sql2.= " idministerio, iddireccion, idarea, cargo_mds, iddepartamento, idred_salud, idestablecimiento_salud, cargo_red_salud ) ";
     $sql2.= " VALUES ('$idnombre','$idusuario_in','$iddependencia','$entidad','$cargo_entidad',";
-    $sql2.= " '0','0','0','','0','0','0','') ";
+    $sql2.= " '0','0','0','','$idresidencia','0','0','') ";
     $result2 = mysqli_query($link,$sql2);
 
     $iddato_laboral = mysqli_insert_id($link);
@@ -126,7 +122,7 @@ if ($iddependencia == '1') {
         $sql2 = " INSERT INTO dato_laboral (idnombre, idusuario, iddependencia, entidad, cargo_entidad, ";
         $sql2.= " idministerio, iddireccion, idarea, cargo_mds, iddepartamento, idred_salud, idestablecimiento_salud, cargo_red_salud ) ";
         $sql2.= " VALUES ('$idnombre','$idusuario_in','$iddependencia','','',";
-        $sql2.= " '$idministerio','$iddireccion','$idarea','$cargo_mds','0','0','0','') ";
+        $sql2.= " '$idministerio','$iddireccion','$idarea','$cargo_mds','$idresidencia','0','0','') ";
         $result2 = mysqli_query($link,$sql2);
 
         $iddato_laboral = mysqli_insert_id($link);
