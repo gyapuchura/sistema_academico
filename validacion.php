@@ -13,7 +13,6 @@ $pass_f   	= $_POST['password'];
 $usuario    = $link->real_escape_string($usuario_f);
 $password   = $link->real_escape_string($pass_f);
 
-
 if($usuario == "" or $password == ""){
 
 header("Location:index.php");

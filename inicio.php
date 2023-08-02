@@ -206,25 +206,25 @@ $sql = "SELECT perfil  from usuarios  where idusuario = '$idusuario_ss' and perf
 $result = mysqli_query($link,$sql);
 $row = mysqli_fetch_array($result);
 
-if ($row[0] == 'ADMINISTRADOR' || $row[0] =='GERENTE' || $row[0] =='USUARIO' ){
+if ($row[0] == 'PARTICIPANTE' ){
 mysqli_field_seek($result,0);
 while ($field = mysqli_fetch_field($result)){
 } do {
 ?>  
-        <!--- CONTROL EXTERNO POSTERIOR -->
+        <!--- SESIÓN DEL PARTICIPANTE -->
             <div class="col-md-4 col-sm-6 col-xs-12 gallery-item-wrapper nature">
                 <div class="gallery-item">
                     <div class="gallery-thumb">
                         <img src="img/works/usuarios.jpg" class="img-responsive" alt="5th gallery Thumb">
                         <div class="image-overlay"></div>                             
-                        <a href="#" class="gallery-link"><i class="fa fa-link"></i></a>
+                        <a href="evaluacion/eventos_participante.php" class="gallery-link"><i class="fa fa-link"></i></a>
                     </div>
                     <div class="gallery-details">
                         <div class="editContent">
-                            <h5>ASISTENCIA VIRTUAL Y SOPORTE TÉCNICO</h5>
+                            <h5>SESIÓN DEL PARTICIPANTE</h5>
                         </div>
                         <div class="editContent">
-                            <p>Permite realizar la gestión de la Informacion relacionada al SOPORTE TÉCNIUCO Y ATENCION AL USUARIO</p>
+                            <p>PERMITE REALIZAR EL SEGUIMIENTO A LA EVALUACION DE EVENTOS DE CAPACITACIÓN EN SALUD</p>
                         </div>
                     </div>
                 </div>
@@ -241,7 +241,7 @@ $sql = "SELECT perfil  from usuarios  where idusuario = '$idusuario_ss' and perf
 $result = mysqli_query($link,$sql);
 $row = mysqli_fetch_array($result);
 
-if ($row[0] =='DAF-EMPRESA'){
+if ($row[0] =='PEDAGOGO'){
 mysqli_field_seek($result,0);
 while ($field = mysqli_fetch_field($result)){
 } do {
@@ -259,7 +259,7 @@ while ($field = mysqli_fetch_field($result)){
                             <h5>DESARROLLO CURRICULAR</h5>
                         </div>
                         <div class="editContent">
-                            <p>Permite realizar la gestión de la Informacion relacionada al Control Externo Posterior</p>
+                            <p>Permite realizar la gestión de la Informacion relacionada al desarrollo curricular</p>
                         </div>
                     </div>
                 </div>
