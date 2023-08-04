@@ -10,6 +10,7 @@ $idusuario_ss = $_SESSION['idusuario_ss'];
 $idnombre_ss  = $_SESSION['idnombre_ss'];
 $perfil_ss    = $_SESSION['perfil_ss'];
 
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -59,7 +60,7 @@ $rowus = mysqli_fetch_array($resultus);
                     </button>
                   <a class="navbar-brand" href="../intranet.php"><img src="../img/logo_saes.png" alt="logo"/></a>
                 </div>
-                <?php include("../menu_academico.php");?>
+                <?php include("../menu_planes.php");?>
             </div>
         </div>
 	</header><!-- end header -->
@@ -67,7 +68,7 @@ $rowus = mysqli_fetch_array($resultus);
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="pageTitle">ACCESSO DEL PARTICIPANTE</h2>
+				<h2 class="pageTitle">NUEVO PERFIL DE USUARIO</h2>
 			</div>
 		</div>
 	</div>
@@ -77,22 +78,22 @@ $rowus = mysqli_fetch_array($resultus);
         <div class="row">
         <div class="col-md-4"> </div>
         <div class="col-md-8"> 
-            <h4 class="text-success">EL PASSWORD DEL PARTICIPANTE</h4>
-            <h4 class="text-success">FUE MODIFICADO CORRECTAMENTE!!!</h4> </div>
+            <h4 class="text-success">EL NUEVO PERFIL DE USUARIO </h4>
+            <h4 class="text-success">FUE CREADO CORRECTAMENTE!!!</h4> </div>
         </div>
 
 <!-- MUESTRA LA PREINSCRIPCION REALIZADA --->
 
-   <form name="FORM9" action="acceso_participante_mod.php" method="post">
-    <div class="row">
-      <div class="col-md-4"></div>
-       <div class="col-md-8"> 
-        <button type="submit" class="btn btn-primary" >
-        VOLVER A DATOS DEL PARTICIPANTE
-        </button>
-       </div>
-      </div>
-    </div>
+    <form name="FORM9" action="usuarios.php" method="post">
+        <div class="row">
+            <div class="col-md-4"></div>
+                <div class="col-md-8"> 
+                    <button type="submit" class="btn btn-primary" >
+                    VOLVER A USUARIOS DE SISTEMA
+                    </button>
+                </div>
+            </div>
+        </div>
     </form>
 
 </br>

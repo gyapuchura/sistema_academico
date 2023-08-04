@@ -63,8 +63,8 @@
 			<a href="#" data-toggle="dropdown" class="dropdown-toggle">ADMINISTRAR SISTEMA<b class="caret"></b></a>
 			<ul class="dropdown-menu">
 				<li><a href="../administrar_sistema/usuarios.php">USUARIOS</a></li>
-				<li><a href="../administrar_sistema/unidades_areas.php">UNIDADES-AREAS-CARGOS</a></li>
-				<li><a href="../administrar_sistema/redes_salud.php">REDES DE SALUD</a></li>
+			<!---	<li><a href="../administrar_sistema/unidades_areas.php">UNIDADES-AREAS-CARGOS</a></li>  --->
+			<!---	<li><a href="../administrar_sistema/redes_salud.php">REDES DE SALUD</a></li>  -->
 			</ul>
 			</li>
 <?php
