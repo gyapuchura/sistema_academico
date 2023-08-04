@@ -63,14 +63,17 @@ else {
                     header("Location:mensaje_perfil_creado.php");
 
                 } else {
+
                     $sql = " INSERT INTO usuarios (idnombre, usuario, password, fecha, condicion, perfil) ";
                     $sql.= " VALUES ('$idnombre_user','$user_mod','$new_password','$fecha','ACTIVO','$perfil') ";
                     $result = mysqli_query($link,$sql);
             
                     header("Location:mensaje_perfil_creado.php");
+
                 }
             } else {
-                header("Location:mensaje_pass_noigual.php");
+
+                    header("Location:mensaje_pass_noigual.php");
             }
    }
  }
