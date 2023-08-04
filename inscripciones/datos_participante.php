@@ -10,26 +10,16 @@ $idusuario_ss = $_SESSION['idusuario_ss'];
 $idnombre_ss  = $_SESSION['idnombre_ss'];
 $perfil_ss    = $_SESSION['perfil_ss'];
 
-$idtematica_ss    = $_SESSION['idtematica_ss'];
-$idevento_ss      = $_SESSION['idevento_ss'];
-$codigo_evento_ss = $_SESSION['codigo_evento_ss'];
-$idinscripcion_ss = $_SESSION['idinscripcion_ss'];
-
-$sql_i = " SELECT idinscripcion, idevento, idusuario, idnombre, idnombre_datos, iddato_laboral, idestado_inscripcion, ";
-$sql_i.= " correlativo, codigo, fecha_preins, fecha_ins, gestion FROM inscripcion WHERE idinscripcion='$idinscripcion_ss' ";
-$result_i = mysqli_query($link,$sql_i);
-$row_i = mysqli_fetch_array($result_i);
-
 $sql_n =" SELECT nombre.nombre, nombre.paterno, nombre.materno, nombre.ci, nombre.complemento, nombre.exp, nombre.fecha_nac, nombre.idnacionalidad, ";
 $sql_n.=" nombre.idgenero, nombre_datos.idformacion_academica, nombre_datos.idprofesion, nombre_datos.idespecialidad_medica, nombre_datos.correo, ";
 $sql_n.=" nombre_datos.celular FROM nombre, nombre_datos, usuarios WHERE nombre_datos.idnombre=nombre.idnombre AND  ";
-$sql_n.=" usuarios.idnombre=nombre.idnombre AND usuarios.idusuario='$row_i[2]' ";
+$sql_n.=" usuarios.idnombre=nombre.idnombre AND usuarios.idusuario='$idusuario_ss' ";
 $result_n = mysqli_query($link,$sql_n);
 $row_n = mysqli_fetch_array($result_n);
 
 $sql_l = " SELECT iddato_laboral, idusuario, idnombre, iddependencia, entidad, cargo_entidad, ";
 $sql_l.= " idministerio, iddireccion, idarea, cargo_mds, iddepartamento, idred_salud, idestablecimiento_salud, cargo_red_salud ";
-$sql_l.= " FROM dato_laboral WHERE iddato_laboral='$row_i[5]' ";
+$sql_l.= " FROM dato_laboral WHERE idusuario='$idusuario_ss' ";
 $result_l = mysqli_query($link,$sql_l);
 $row_l = mysqli_fetch_array($result_l);
 
@@ -90,18 +80,18 @@ $rowus = mysqli_fetch_array($resultus);
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="pageTitle">GESTIONAR INSCRIPCIÓN</h2>
+				<h2 class="pageTitle">DATOS DEL PARTICIPANTE</h2>
 			</div>
 		</div>
 	</div>
 	</section>
 	<section id="content">
 	<div class="container">
-    <h4 align="center"><a href="inscritos_evento.php">VOLVER</a></h4>
-<div class="row">
-  <div class="col-md-4"></div>
-  <div class="col-md-8"><h2><?php echo $row_i[8];?> </h2></div>
-</div>
+
+    <div class="row">
+    <div class="col-md-6"><h3>1.- DATOS PERSONALES:</h3></div>
+    <div class="col-md-6"></div>
+   </div>
 <!-- MUESTRA LA PREINSCRIPCION REALIZADA --->
 <div class="box-area">
 
@@ -213,7 +203,7 @@ $rowus = mysqli_fetch_array($resultus);
    <div class="row">
     <div class="col-md-6"><h3>2.- DATOS COMPLEMENTARIOS:</h3></div>
     <div class="col-md-6"></div>
-  </div>
+   </div>
 
   <div class="box-area">
 
@@ -512,44 +502,12 @@ $rowus = mysqli_fetch_array($resultus);
 </div>
 </br>
 
-<div class="row">
-  <div class="col-md-4"></div>
-  <div class="col-md-4">
 
+<div class="row">
+  <div class="col-md-4"><a href="../eventos/acceso_participante_mod.php"><h4 class="text-primary">ACTUALIZAR PASSWORD</h4></div>
+  <div class="col-md-4"></div>
+  <div class="col-md-4"><a href="../eventos/mostrar_participante_mod.php"><h4 class="text-primary">ACTUALIZAR DATOS</h4></div> 
 </div>
-<div class="col-md-4"><a href="">
-<form name="CONFIRMA_INS" action="confirma_inscripcion.php" method="post">
-    <input type="hidden" name="idinscripcion" value="<?php echo $row_i[0];?>">
-    <input type="hidden" name="idevento" value="<?php echo $row_i[1];?>">
-    <input type="hidden" name="idusuario_solicitante" value="<?php echo $row_i[2];?>">
-    <input type="hidden" name="idnombre_solicitante" value="<?php echo $row_i[3];?>">
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-CONFIRMAR INSCRIPCIÓN
-</button>
-</div> 
-<!------- modal ------->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">       
-        <h5 class="modal-title" id="exampleModalLabel">CONFIRMAR INSCRIPCIÓN</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-          </div>
-          <div class="modal-body">       
-            Esta seguro de Confirmar la  Preinscripción?
-          </div>
-          <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCELAR</button>
-        <button type="submit" class="btn btn-primary pull-center">CONFIRMAR</button>    
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-<!------- modal ------->
-</form>
 
 </div>
 
@@ -586,6 +544,7 @@ CONFIRMAR INSCRIPCIÓN
 <script>
     $("#fecha1").datepicker($.datepicker.regional[ "es" ]);
     $("#fecha2").datepicker($.datepicker.regional[ "es" ]);
+    $("#fecha3").datepicker($.datepicker.regional[ "es" ]);
 </script>
 </body>
 </html>

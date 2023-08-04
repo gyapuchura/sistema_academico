@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:8889
--- Tiempo de generación: 05-07-2023 a las 20:58:05
+-- Tiempo de generación: 04-08-2023 a las 15:47:53
 -- Versión del servidor: 5.7.34
 -- Versión de PHP: 7.4.21
 
@@ -170,6 +170,27 @@ CREATE TABLE `cargo` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `comentario_evaluacion`
+--
+
+CREATE TABLE `comentario_evaluacion` (
+  `idcomentario_evaluacion` int(11) NOT NULL,
+  `comentario_evaluacion` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `comentario_evaluacion`
+--
+
+INSERT INTO `comentario_evaluacion` (`idcomentario_evaluacion`, `comentario_evaluacion`) VALUES
+(1, 'SIN EVALUAR'),
+(2, 'NO SE PRESENTO'),
+(3, 'REPROBADO(A)'),
+(4, 'APROBADO(A)');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `dato_laboral`
 --
 
@@ -205,7 +226,31 @@ INSERT INTO `dato_laboral` (`iddato_laboral`, `idusuario`, `idnombre`, `iddepend
 (8, 32, 32, 2, '', '', 3, 24, 31, 'Administrator ', 4, 0, 0, ''),
 (9, 33, 33, 1, 'Ministerio de Justicia y Tarnasparencia Institucional', 'Encargado de Archivo Documental', 0, 0, 0, '', 4, 0, 0, ''),
 (10, 34, 34, 3, '', '', 0, 0, 0, '', 4, 26, 1949, 'Medico de Emergencias'),
-(11, 35, 35, 1, 'Ministerio de Obras P&uacute;blicas', 'Profesional de Recursos Humanos', 0, 0, 0, '', 4, 0, 0, '');
+(11, 35, 35, 1, 'Ministerio de Obras P&uacute;blicas', 'Profesional de Recursos Humanos', 0, 0, 0, '', 4, 0, 0, ''),
+(12, 36, 36, 1, 'Ministerio de Obras P&uacute;blicas', 'Encargado de Soporte en Sistemas ', 0, 0, 0, '', 4, 0, 0, ''),
+(13, 37, 37, 1, 'MINISTERIO DE ECONOMIA Y FINANZAS PUBLICAS', 'AUXILIAR DE PRESUPUESTOS', 0, 0, 0, '', 4, 0, 0, ''),
+(14, 38, 38, 3, '', '', 0, 0, 0, '', 4, 29, 2018, 'M&eacute;dico Pediatra'),
+(15, 39, 39, 2, '', '', 3, 24, 31, 'Medico Cirujano', 0, 0, 0, ''),
+(16, 40, 40, 3, '', '', 0, 0, 0, '', 4, 29, 2018, 'M&eacute;dico Especialista'),
+(17, 41, 41, 2, '', '', 3, 24, 31, 'ENCARGADO DE ARCHIVO DOCUMENTAL SAFCI-MI SALUD', 4, 0, 0, ''),
+(18, 40, 40, 2, '', '', 5, 27, 27, 'Encargado de Redes de Salud', 4, 0, 0, ''),
+(19, 40, 40, 1, 'Ministerio de Justicia', 'Encargado de Servicios', 0, 0, 0, '', 4, 0, 0, ''),
+(20, 40, 40, 2, '', '', 1, 1, 32, 'Asesor Administrativo', 4, 0, 0, ''),
+(21, 40, 40, 3, '', '', 0, 0, 0, '', 8, 110, 3569, 'Encargado de Activos Fijos'),
+(22, 40, 40, 1, 'Ministerio de Desarrollo Productivo y Economia Plural.', 'Encargado de Archivo Documental.', 0, 0, 0, '', 4, 0, 0, ''),
+(23, 40, 40, 1, 'Ministerio', 'Encargado', 0, 0, 0, '', 4, 0, 0, ''),
+(24, 40, 40, 1, 'Ministerio de Prueba', 'cargo Encargado en la Entidas', 0, 0, 0, '', 4, 0, 0, ''),
+(25, 40, 40, 1, 'Ministerio de Justicia', 'Encargado de Archivo', 0, 0, 0, '', 4, 0, 0, ''),
+(26, 40, 40, 3, '', '', 0, 0, 0, '', 4, 26, 1945, 'Encargado de Archivo'),
+(27, 42, 42, 1, 'Ministwrio de Desarrollo Rural ', 'Encargado de Bienes', 0, 0, 0, '', 4, 0, 0, ''),
+(28, 43, 43, 1, 'CGE', 'Pedagogo', 0, 0, 0, '', 4, 0, 0, ''),
+(29, 44, 44, 1, 'CONTRALORIA GENERAL DEL ESTADO', 'PEDAGOGO', 0, 0, 0, '', 4, 0, 0, ''),
+(30, 27, 27, 1, 'Organo Judicial', 'Encargada de Recepci&oacute;n', 0, 0, 0, '', 3, 0, 0, ''),
+(31, 27, 27, 1, 'Organo Judicial', 'Encargada de Protocolo', 0, 0, 0, '', 4, 0, 0, ''),
+(32, 27, 27, 2, '', '', 3, 24, 31, 'ENCARGADO DE ALMACENES', 4, 0, 0, ''),
+(33, 27, 27, 2, '', '', 3, 24, 31, 'ENCARGADA DE ALMACENES', 4, 0, 0, ''),
+(34, 34, 34, 1, 'Ministerio de Planificacion', 'Chofer', 0, 0, 0, '', 4, 0, 0, ''),
+(35, 51, 45, 1, 'Ministerio de Justicia', 'Encargado de Archivo Documental', 0, 0, 0, '', 4, 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -335,7 +380,7 @@ INSERT INTO `direccion` (`iddireccion`, `idministerio`, `direccion`, `sigla`, `i
 (1, 1, 'Despacho Ministerio de Salud y Deportes', 'DESP-MSYD', 5),
 (2, 1, 'Dirección General de Asuntos Jurídicos', 'DGAJ', 5),
 (3, 1, 'Dirección General de Asuntos Administrativos', 'DGAA', 5),
-(4, 1, 'Dirección General de Planificación', 'DGAA', 5),
+(4, 1, 'Dirección General de Planificación', 'DGP', 5),
 (5, 1, 'Autoridad de Supervición de la Seguridad Social de Corto Plazo', 'ASSUS', 5),
 (6, 1, 'Loteria Nacional de Beneficencia', 'LONABOL', 5),
 (7, 1, 'Instituto Nacional de Salud Ocupacional', 'INSO', 5),
@@ -375,20 +420,56 @@ INSERT INTO `direccion` (`iddireccion`, `idministerio`, `direccion`, `sigla`, `i
 CREATE TABLE `docente` (
   `iddocente` int(11) NOT NULL,
   `idusuario` varchar(45) DEFAULT NULL,
-  `celular` varchar(45) DEFAULT NULL,
-  `iddepartamento` int(11) DEFAULT NULL,
-  `domicilio` text,
-  `idprofesion` int(11) DEFAULT NULL,
-  `correo` varchar(45) DEFAULT NULL
+  `idnombre` int(11) DEFAULT NULL,
+  `idnombre_datos` int(11) DEFAULT NULL,
+  `iddato_laboral` int(11) DEFAULT NULL,
+  `idresidencia` int(11) DEFAULT NULL,
+  `idestado_docente` int(11) DEFAULT NULL,
+  `fecha_registro` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `docente`
 --
 
-INSERT INTO `docente` (`iddocente`, `idusuario`, `celular`, `iddepartamento`, `domicilio`, `idprofesion`, `correo`) VALUES
-(1, '2', '77229736', 4, 'Domicilio Dr. Castanon', 1, 'daniel@gmail.com'),
-(2, '3', '67335066', 4, 'Domicilio Lic. Gutierrez', 2, 'patricia@gmail.com');
+INSERT INTO `docente` (`iddocente`, `idusuario`, `idnombre`, `idnombre_datos`, `iddato_laboral`, `idresidencia`, `idestado_docente`, `fecha_registro`) VALUES
+(1, '2', 2, 2, 2, 4, 1, '2023-07-27'),
+(2, '3', 3, 3, 3, 4, 1, '2023-07-27'),
+(3, '39', 39, 15, 15, 4, 1, '2023-07-27'),
+(4, '40', 40, 16, 26, 4, 1, '2023-07-27'),
+(5, '41', 41, 17, 17, 4, 1, '2023-07-28'),
+(6, '40', 40, 16, 18, 4, 1, '2023-07-31'),
+(7, '54', 45, 22, 35, 4, 1, '2023-08-04');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `especialidad_docente`
+--
+
+CREATE TABLE `especialidad_docente` (
+  `idespecialidad_docente` int(11) NOT NULL,
+  `iddocente` int(11) DEFAULT NULL,
+  `idtematica` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `especialidad_docente`
+--
+
+INSERT INTO `especialidad_docente` (`idespecialidad_docente`, `iddocente`, `idtematica`) VALUES
+(1, 1, 2),
+(2, 1, 3),
+(3, 2, 2),
+(4, 1, 1),
+(5, 3, 2),
+(10, 4, 2),
+(11, 3, 3),
+(12, 5, 2),
+(13, 9, 3),
+(14, 6, 2),
+(15, 6, 4),
+(16, 4, 4);
 
 -- --------------------------------------------------------
 
@@ -4681,6 +4762,67 @@ INSERT INTO `establecimiento_salud` (`idestablecimiento_salud`, `iddepartamento`
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `estado_docente`
+--
+
+CREATE TABLE `estado_docente` (
+  `idestado_docente` int(11) NOT NULL,
+  `estado_docente` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `estado_docente`
+--
+
+INSERT INTO `estado_docente` (`idestado_docente`, `estado_docente`) VALUES
+(1, 'REGISTRADO'),
+(2, 'HABILITADO'),
+(3, 'INHABILITADO');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estado_ejecucion`
+--
+
+CREATE TABLE `estado_ejecucion` (
+  `idestado_ejecucion` int(11) NOT NULL,
+  `estado_ejecucion` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `estado_ejecucion`
+--
+
+INSERT INTO `estado_ejecucion` (`idestado_ejecucion`, `estado_ejecucion`) VALUES
+(1, 'PROGRAMADO'),
+(2, 'EN EJECUCION'),
+(3, 'EN EVALUACION'),
+(4, 'CONCLUIDO');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estado_evaluacion`
+--
+
+CREATE TABLE `estado_evaluacion` (
+  `idestado_evaluacion` int(11) NOT NULL,
+  `estado_evaluacion` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `estado_evaluacion`
+--
+
+INSERT INTO `estado_evaluacion` (`idestado_evaluacion`, `estado_evaluacion`) VALUES
+(1, 'SIN EVALUAR'),
+(2, 'EVALUADO'),
+(3, 'CON CERTIFICACION');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `estado_inscripcion`
 --
 
@@ -4719,6 +4861,31 @@ INSERT INTO `estado_registro` (`idestado_registro`, `estado_registro`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `eval_docente`
+--
+
+CREATE TABLE `eval_docente` (
+  `ideval_docente` int(11) NOT NULL,
+  `iddocente` int(11) DEFAULT NULL,
+  `idevento` int(11) DEFAULT NULL,
+  `idponderacion` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `eval_docente`
+--
+
+INSERT INTO `eval_docente` (`ideval_docente`, `iddocente`, `idevento`, `idponderacion`) VALUES
+(1, 1, 1, 3),
+(2, 1, 2, 3),
+(3, 1, 3, 4),
+(4, 1, 4, 2),
+(5, 2, 5, 4),
+(6, 2, 6, 4);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `evento`
 --
 
@@ -4741,28 +4908,34 @@ CREATE TABLE `evento` (
   `cupo_max` int(11) DEFAULT NULL,
   `iddocente` int(11) DEFAULT NULL,
   `idusuario` int(11) DEFAULT NULL,
-  `idestado_registro` int(11) DEFAULT NULL
+  `idestado_registro` int(11) DEFAULT NULL,
+  `idestado_ejecucion` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `evento`
 --
 
-INSERT INTO `evento` (`idevento`, `idobjetivo_anual`, `idmacrocurricula`, `idmicrocurricula`, `codigo`, `correlativo`, `gestion`, `fecha_inicio`, `fecha_fin`, `iddepartamento`, `idprovincia`, `idmunicipio`, `idpublicacion`, `idmodalidad`, `cupo_min`, `cupo_max`, `iddocente`, `idusuario`, `idestado_registro`) VALUES
-(1, 1, 1, 3, 'MDSYD/LP-1/2023', 1, '2023', '2023-07-03', '2023-07-23', 4, 52, 137, 1, 2, 10, 40, 2, 1, 2),
-(2, 1, 1, 1, 'MDSYD/LP-2/2023', 2, '2023', '2023-05-30', '2023-05-31', 4, 52, 137, 1, 2, 10, 30, 3, 1, 1),
-(3, 1, 1, 1, 'MDSYD/LP-3/2023', 3, '2023', '2023-05-30', '2023-06-04', 4, 52, 137, 1, 2, 10, 30, 3, 1, 2),
-(4, 1, 1, 1, 'MDSYD/LP-4/2023', 4, '2023', '2023-06-05', '2023-06-14', 4, 52, 137, 1, 2, 10, 30, 2, 1, 2),
-(5, 1, 1, 1, 'MDSYD/LP-5/2023', 5, '2023', '2023-06-05', '2023-06-13', 4, 52, 137, 1, 2, 10, 32, 3, 1, 2),
-(6, 1, 1, 1, 'MDSYD/LP-6/2023', 6, '2023', '2023-06-01', '2023-06-08', 4, 52, 137, 1, 2, 10, 20, 3, 1, 1),
-(7, 1, 1, 2, 'MDSYD/LP-7/2023', 7, '2023', '2023-06-01', '2023-06-11', 4, 52, 137, 3, 2, 10, 20, 3, 1, 2),
-(8, 1, 1, 1, 'MDSYD/LP-8/2023', 8, '2023', '2023-06-01', '2023-06-11', 4, 52, 137, 1, 2, 10, 30, 2, 1, 2),
-(9, 1, 1, 2, 'MDSYD/LP-9/2023', 9, '2023', '2023-06-01', '2023-06-08', 4, 52, 137, 1, 2, 10, 30, 3, 1, 1),
-(10, 1, 1, 1, 'MDSYD/LP-10/2023', 10, '2023', '2023-06-01', '2023-06-08', 4, 52, 137, 1, 2, 10, 30, 2, 1, 1),
-(11, 1, 1, 2, 'MDSYD/LP-11/2023', 11, '2023', '2023-06-01', '2023-06-08', 4, 52, 137, 1, 2, 10, 30, 3, 1, 1),
-(12, 1, 1, 1, 'MDSYD/LP-12/2023', 12, '2023', '2023-06-05', '2023-06-11', 4, 52, 137, 1, 2, 10, 40, 3, 1, 1),
-(13, 1, 1, 1, 'MDSYD/LP-13/2023', 13, '2023', '2023-06-05', '2023-06-09', 4, 52, 137, 1, 2, 10, 30, 2, 1, 1),
-(14, 1, 1, 1, 'MDSYD/LP-14/2023', 14, '2023', '2023-06-12', '2023-06-18', 4, 52, 137, 1, 2, 10, 30, 3, 1, 1);
+INSERT INTO `evento` (`idevento`, `idobjetivo_anual`, `idmacrocurricula`, `idmicrocurricula`, `codigo`, `correlativo`, `gestion`, `fecha_inicio`, `fecha_fin`, `iddepartamento`, `idprovincia`, `idmunicipio`, `idpublicacion`, `idmodalidad`, `cupo_min`, `cupo_max`, `iddocente`, `idusuario`, `idestado_registro`, `idestado_ejecucion`) VALUES
+(1, 1, 1, 3, 'MDSYD/LP-1/2023', 1, '2023', '2023-07-03', '2023-07-23', 4, 52, 137, 1, 2, 10, 40, 2, 1, 2, 1),
+(2, 1, 1, 1, 'MDSYD/LP-2/2023', 2, '2023', '2023-05-30', '2023-05-31', 4, 52, 137, 1, 2, 10, 30, 3, 1, 1, 1),
+(3, 1, 1, 1, 'MDSYD/LP-3/2023', 3, '2023', '2023-05-30', '2023-06-04', 4, 52, 137, 1, 2, 10, 30, 3, 1, 2, 4),
+(4, 1, 1, 1, 'MDSYD/LP-4/2023', 4, '2023', '2023-06-05', '2023-06-14', 4, 52, 137, 1, 2, 10, 30, 2, 1, 2, 4),
+(5, 1, 1, 1, 'MDSYD/LP-5/2023', 5, '2023', '2023-06-05', '2023-06-13', 4, 52, 137, 1, 2, 10, 32, 3, 1, 2, 4),
+(6, 1, 1, 1, 'MDSYD/LP-6/2023', 6, '2023', '2023-06-01', '2023-06-08', 4, 52, 137, 1, 2, 10, 20, 3, 1, 1, 1),
+(7, 1, 1, 2, 'MDSYD/LP-7/2023', 7, '2023', '2023-06-01', '2023-06-11', 4, 52, 137, 3, 2, 10, 20, 3, 1, 2, 1),
+(8, 1, 1, 1, 'MDSYD/LP-8/2023', 8, '2023', '2023-06-01', '2023-06-11', 4, 52, 137, 1, 2, 10, 30, 2, 1, 2, 1),
+(9, 1, 1, 2, 'MDSYD/LP-9/2023', 9, '2023', '2023-06-01', '2023-06-08', 4, 52, 137, 1, 2, 10, 30, 3, 1, 1, 1),
+(10, 1, 1, 1, 'MDSYD/LP-10/2023', 10, '2023', '2023-06-01', '2023-06-08', 4, 52, 137, 1, 2, 10, 30, 2, 1, 1, 1),
+(11, 1, 1, 2, 'MDSYD/LP-11/2023', 11, '2023', '2023-06-01', '2023-06-08', 4, 52, 137, 1, 2, 10, 30, 3, 1, 1, 1),
+(12, 1, 1, 1, 'MDSYD/LP-12/2023', 12, '2023', '2023-06-05', '2023-06-11', 4, 52, 137, 1, 2, 10, 40, 3, 1, 1, 1),
+(13, 1, 1, 1, 'MDSYD/LP-13/2023', 13, '2023', '2023-06-05', '2023-06-09', 4, 52, 137, 1, 2, 10, 30, 2, 1, 1, 1),
+(14, 1, 1, 1, 'MDSYD/LP-14/2023', 14, '2023', '2023-06-12', '2023-06-18', 4, 52, 137, 1, 2, 10, 30, 3, 1, 2, 1),
+(15, 1, 1, 1, 'MDSYD/LP-15/2023', 15, '2023', '2023-07-09', '2023-07-17', 4, 52, 137, 1, 2, 10, 20, 40, 1, 1, 1),
+(16, 1, 1, 1, 'MSYD/LP-16/2023', 16, '2023', '2023-07-10', '2023-07-16', 4, 52, 137, 1, 2, 10, 30, 2, 1, 2, 1),
+(17, 1, 1, 1, 'MSYD/LP-17/2023', 17, '2023', '2023-07-10', '2023-07-30', 4, 52, 137, 1, 2, 10, 30, 3, 1, 2, 1),
+(18, 1, 1, 1, 'MSYD/LP-18/2023', 18, '2023', '2023-07-17', '2023-07-30', 4, 52, 137, 1, 2, 10, 30, 2, 1, 2, 1),
+(19, 1, 1, 2, 'MSYD/LP-19/2023', 19, '2023', '2023-08-14', '2023-08-31', 4, 48, 129, 1, 1, 10, 30, 2, 1, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -4852,7 +5025,18 @@ INSERT INTO `horario` (`idhorario`, `idevento`, `idaula`, `inicio`, `fin`, `hora
 (29, 1, 1, '2023-07-10', '2023-07-13', '19:00', '20:00'),
 (30, 1, 1, '2023-07-14', '2023-07-16', '19:00', '21:00'),
 (31, 1, 1, '2023-07-17', '2023-07-20', '19:00', '20:00'),
-(32, 1, 1, '2023-07-21', '2023-07-23', '19:00', '21:00');
+(32, 1, 1, '2023-07-21', '2023-07-23', '19:00', '21:00'),
+(33, 0, 1, '2023-07-10', '2023-07-16', '19:00', '20:00'),
+(34, 0, 1, '2023-07-17', '2023-07-30', '19:00', '20:00'),
+(35, 16, 1, '2023-07-10', '2023-07-14', '19:00', '20:00'),
+(36, 16, 1, '2023-07-15', '2023-07-16', '19:00', '21:00'),
+(37, 11, 1, '2023-07-03', '2023-07-07', '19:00', '20:00'),
+(38, 11, 1, '2023-07-08', '2023-07-09', '19:00', '21:00'),
+(39, 17, 1, '2023-07-10', '2023-07-23', '19:00', '20:00'),
+(40, 17, 1, '2023-07-24', '2023-07-30', '19:00', '21:00'),
+(41, 18, 1, '2023-07-17', '2023-07-30', '19:00', '21:00'),
+(42, 19, 1, '2023-08-14', '2023-08-27', '19:00', '20:00'),
+(43, 19, 1, '2023-08-28', '2023-08-31', '19:00', '21:00');
 
 -- --------------------------------------------------------
 
@@ -4868,36 +5052,44 @@ CREATE TABLE `inscripcion` (
   `idnombre_datos` int(11) DEFAULT NULL,
   `iddato_laboral` int(11) DEFAULT NULL,
   `idestado_inscripcion` int(11) DEFAULT NULL,
+  `idestado_evaluacion` int(11) DEFAULT NULL,
   `correlativo` int(11) DEFAULT NULL,
   `codigo` varchar(45) DEFAULT NULL,
   `fecha_preins` date DEFAULT NULL,
   `fecha_ins` date DEFAULT NULL,
-  `gestion` varchar(45) DEFAULT NULL
+  `gestion` varchar(45) DEFAULT NULL,
+  `nota_final` int(11) DEFAULT NULL,
+  `idcomentario_evaluacion` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `inscripcion`
 --
 
-INSERT INTO `inscripcion` (`idinscripcion`, `idevento`, `idusuario`, `idnombre`, `idnombre_datos`, `iddato_laboral`, `idestado_inscripcion`, `correlativo`, `codigo`, `fecha_preins`, `fecha_ins`, `gestion`) VALUES
-(1, 4, 25, 25, 1, 1, 1, 1, 'INS/MDSYD-1/2023', '2023-07-02', '2023-07-02', '2023'),
-(2, 4, 26, 26, 2, 2, 2, 2, 'INS/MDSYD-2/2023', '2023-07-02', '2023-07-02', '2023'),
-(3, 4, 27, 27, 3, 3, 2, 3, 'INS/MDSYD-3/2023', '2023-07-02', '2023-07-02', '2023'),
-(4, 4, 28, 28, 4, 4, 1, 4, 'INS/MDSYD-4/2023', '2023-07-02', '2023-07-02', '2023'),
-(5, 5, 27, 27, 3, 3, 1, 5, 'INS/MDSYD-5/2023', '2023-07-02', '2023-07-02', '2023'),
-(6, 4, 28, 28, 4, 4, 2, 6, 'INS/MDSYD-6/2023', '2023-07-03', '2023-07-03', '2023'),
-(7, 4, 27, 27, 3, 3, 2, 7, 'INS/MDSYD-7/2023', '2023-07-03', '2023-07-03', '2023'),
-(8, 4, 27, 27, 3, 3, 1, 8, 'INS/MDSYD-8/2023', '2023-07-03', '2023-07-03', '2023'),
-(9, 4, 29, 29, 5, 5, 1, 9, 'INS/MDSYD-9/2023', '2023-07-03', '2023-07-03', '2023'),
-(10, 4, 29, 29, 5, 5, 1, 10, 'INS/MDSYD-10/2023', '2023-07-03', '2023-07-03', '2023'),
-(11, 4, 28, 28, 4, 4, 1, 11, 'INS/MDSYD-11/2023', '2023-07-03', '2023-07-03', '2023'),
-(12, 4, 30, 30, 6, 6, 1, 12, 'INS/MDSYD-12/2023', '2023-07-03', '2023-07-03', '2023'),
-(13, 3, 31, 31, 7, 7, 1, 13, 'INS/MDSYD-13/2023', '2023-07-04', '2023-07-04', '2023'),
-(14, 4, 32, 32, 8, 8, 1, 14, 'INS/MDSYD-14/2023', '2023-07-04', '2023-07-04', '2023'),
-(15, 4, 33, 33, 9, 9, 1, 15, 'INS/MDSYD-15/2023', '2023-07-04', '2023-07-04', '2023'),
-(16, 8, 34, 34, 10, 10, 1, 16, 'INS/MDSYD-16/2023', '2023-07-04', '2023-07-04', '2023'),
-(17, 4, 35, 35, 11, 11, 1, 17, 'INS/MDSYD-17/2023', '2023-07-04', '2023-07-04', '2023'),
-(18, 4, 35, 35, 11, 11, 1, 18, 'INS/MDSYD-18/2023', '2023-07-04', '2023-07-04', '2023');
+INSERT INTO `inscripcion` (`idinscripcion`, `idevento`, `idusuario`, `idnombre`, `idnombre_datos`, `iddato_laboral`, `idestado_inscripcion`, `idestado_evaluacion`, `correlativo`, `codigo`, `fecha_preins`, `fecha_ins`, `gestion`, `nota_final`, `idcomentario_evaluacion`) VALUES
+(1, 4, 25, 25, 1, 1, 2, 1, 1, 'INS/MDSYD-1/2023', '2023-07-02', '2023-07-10', '2023', 89, 4),
+(2, 4, 26, 26, 2, 2, 2, 1, 2, 'INS/MDSYD-2/2023', '2023-07-02', '2023-07-02', '2023', 98, 4),
+(3, 4, 27, 27, 3, 3, 2, 1, 3, 'INS/MDSYD-3/2023', '2023-07-02', '2023-07-02', '2023', 23, 3),
+(4, 4, 28, 28, 4, 4, 1, 1, 4, 'INS/MDSYD-4/2023', '2023-07-02', '2023-07-02', '2023', 80, 2),
+(5, 5, 27, 27, 3, 3, 1, 1, 5, 'INS/MDSYD-5/2023', '2023-07-02', '2023-07-02', '2023', 75, 4),
+(6, 4, 28, 28, 4, 4, 2, 1, 6, 'INS/MDSYD-6/2023', '2023-07-03', '2023-07-03', '2023', 75, 4),
+(7, 4, 27, 27, 3, 3, 2, 1, 7, 'INS/MDSYD-7/2023', '2023-07-03', '2023-07-03', '2023', 10, 3),
+(8, 4, 27, 27, 3, 3, 1, 1, 8, 'INS/MDSYD-8/2023', '2023-07-03', '2023-07-03', '2023', 72, 2),
+(9, 4, 29, 29, 5, 5, 1, 1, 9, 'INS/MDSYD-9/2023', '2023-07-03', '2023-07-03', '2023', 100, 2),
+(10, 4, 29, 29, 5, 5, 2, 1, 10, 'INS/MDSYD-10/2023', '2023-07-03', '2023-07-03', '2023', 0, 2),
+(11, 4, 28, 28, 4, 4, 1, 1, 11, 'INS/MDSYD-11/2023', '2023-07-03', '2023-07-03', '2023', NULL, 1),
+(12, 4, 30, 30, 6, 6, 1, 1, 12, 'INS/MDSYD-12/2023', '2023-07-03', '2023-07-03', '2023', NULL, 1),
+(13, 3, 31, 31, 7, 7, 2, 1, 13, 'INS/MDSYD-13/2023', '2023-07-04', '2023-07-04', '2023', 80, 4),
+(14, 4, 32, 32, 8, 8, 1, 1, 14, 'INS/MDSYD-14/2023', '2023-07-04', '2023-07-04', '2023', NULL, 1),
+(15, 4, 33, 33, 9, 9, 1, 1, 15, 'INS/MDSYD-15/2023', '2023-07-04', '2023-07-04', '2023', NULL, 1),
+(16, 8, 34, 34, 10, 10, 1, 1, 16, 'INS/MDSYD-16/2023', '2023-07-04', '2023-07-04', '2023', NULL, 1),
+(17, 4, 35, 35, 11, 11, 1, 1, 17, 'INS/MDSYD-17/2023', '2023-07-04', '2023-07-04', '2023', NULL, 1),
+(18, 4, 35, 35, 11, 11, 1, 1, 18, 'INS/MDSYD-18/2023', '2023-07-04', '2023-07-04', '2023', NULL, 1),
+(19, 5, 32, 32, 8, 8, 2, 1, 19, 'INS/MDSYD-19/2023', '2023-07-05', '2023-07-06', '2023', 98, 4),
+(20, 3, 36, 36, 12, 12, 1, 1, 20, 'INS/MDSYD-20/2023', '2023-07-10', '2023-07-10', '2023', NULL, 1),
+(21, 8, 38, 38, 14, 14, 1, 1, 21, 'INS/MDSYD-21/2023', '2023-07-21', '2023-07-21', '2023', NULL, 1),
+(22, 4, 44, 44, 20, 29, 1, 1, 22, 'INS/MDSYD-22/2023', '2023-08-01', '2023-08-01', '2023', NULL, 1),
+(23, 3, 34, 34, 10, 34, 1, 1, 23, 'INS/MDSYD-23/2023', '2023-08-02', '2023-08-02', '2023', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -4997,7 +5189,65 @@ INSERT INTO `log_login` (`idlog_login`, `usuario`, `fecha`, `fecha_hora`, `ip`, 
 (76, 'lyapuchura', '2023-07-04', '2023-07-04 16:26:01', '192.168.251.88', 'OPEN'),
 (77, 'lyapuchura', '2023-07-04', '2023-07-04 18:34:40', '192.168.251.88', 'OPEN'),
 (78, 'lyapuchura', '2023-07-04', '2023-07-04 19:58:41', '::1', 'OPEN'),
-(79, 'lyapuchura', '2023-07-05', '2023-07-05 13:35:26', '::1', 'OPEN');
+(79, 'lyapuchura', '2023-07-05', '2023-07-05 13:35:26', '::1', 'OPEN'),
+(80, 'lyapuchura', '2023-07-05', '2023-07-05 22:49:58', '::1', 'OPEN'),
+(81, 'lyapuchura', '2023-07-05', '2023-07-05 23:40:11', '::1', 'OPEN'),
+(82, 'lyapuchura', '2023-07-05', '2023-07-05 23:57:08', '::1', 'OPEN'),
+(83, 'lyapuchura', '2023-07-06', '2023-07-06 00:06:58', '::1', 'OPEN'),
+(84, 'lyapuchura', '2023-07-06', '2023-07-06 03:13:35', '::1', 'OPEN'),
+(85, 'lyapuchura', '2023-07-06', '2023-07-06 03:30:30', '::1', 'OPEN'),
+(86, 'lyapuchura', '2023-07-06', '2023-07-06 14:53:18', '::1', 'OPEN'),
+(87, 'lyapuchura', '2023-07-06', '2023-07-06 15:12:37', '::1', 'OPEN'),
+(88, 'mcalle', '2023-07-06', '2023-07-06 15:27:02', '10.0.71.82', 'OPEN'),
+(89, 'lyapuchura', '2023-07-07', '2023-07-07 16:01:48', '::1', 'OPEN'),
+(90, 'lyapuchura', '2023-07-10', '2023-07-10 13:49:05', '::1', 'OPEN'),
+(91, 'lyapuchura', '2023-07-10', '2023-07-10 18:49:53', '::1', 'OPEN'),
+(92, 'lyapuchura', '2023-07-11', '2023-07-11 14:50:37', '::1', 'OPEN'),
+(93, 'lyapuchura', '2023-07-11', '2023-07-11 16:12:46', '::1', 'OPEN'),
+(94, 'lyapuchura', '2023-07-12', '2023-07-12 14:57:36', '::1', 'OPEN'),
+(95, 'lyapuchura', '2023-07-12', '2023-07-12 22:24:35', '::1', 'OPEN'),
+(96, 'lyapuchura', '2023-07-12', '2023-07-12 23:37:03', '192.168.250.253', 'OPEN'),
+(97, 'lyapuchura', '2023-07-13', '2023-07-13 14:53:19', '::1', 'OPEN'),
+(98, 'lyapuchura', '2023-07-18', '2023-07-18 13:23:42', '::1', 'OPEN'),
+(99, 'lyapuchura', '2023-07-19', '2023-07-19 13:23:15', '::1', 'OPEN'),
+(100, 'lyapuchura', '2023-07-19', '2023-07-19 16:05:24', '::1', 'OPEN'),
+(101, 'lyapuchura', '2023-07-20', '2023-07-20 13:28:37', '::1', 'OPEN'),
+(102, 'lyapuchura', '2023-07-20', '2023-07-20 19:53:05', '::1', 'OPEN'),
+(103, 'lyapuchura', '2023-07-20', '2023-07-20 20:44:44', '::1', 'OPEN'),
+(104, 'lyapuchura', '2023-07-21', '2023-07-21 22:58:28', '::1', 'OPEN'),
+(105, 'lyapuchura', '2023-07-24', '2023-07-24 13:14:57', '::1', 'OPEN'),
+(106, 'lyapuchura', '2023-07-24', '2023-07-24 15:18:50', '::1', 'OPEN'),
+(107, 'lyapuchura', '2023-07-25', '2023-07-25 14:11:17', '::1', 'OPEN'),
+(108, 'lyapuchura', '2023-07-26', '2023-07-26 18:45:15', '::1', 'OPEN'),
+(109, 'lyapuchura', '2023-07-26', '2023-07-26 18:49:49', '192.168.251.203', 'OPEN'),
+(110, 'lyapuchura', '2023-07-26', '2023-07-26 19:07:51', '192.168.251.203', 'OPEN'),
+(111, 'lyapuchura', '2023-07-26', '2023-07-26 19:22:03', '192.168.251.203', 'OPEN'),
+(112, 'lyapuchura', '2023-07-26', '2023-07-26 20:59:21', '192.168.251.203', 'OPEN'),
+(113, 'lyapuchura', '2023-07-27', '2023-07-27 14:57:38', '::1', 'OPEN'),
+(114, 'lyapuchura', '2023-07-27', '2023-07-27 20:49:59', '::1', 'OPEN'),
+(115, 'lyapuchura', '2023-07-28', '2023-07-28 13:33:24', '::1', 'OPEN'),
+(116, 'lyapuchura', '2023-07-31', '2023-07-31 13:50:00', '::1', 'OPEN'),
+(117, 'lyapuchura', '2023-07-31', '2023-07-31 19:22:23', '::1', 'OPEN'),
+(118, 'lyapuchura', '2023-07-31', '2023-07-31 20:32:40', '::1', 'OPEN'),
+(119, '8942971', '2023-07-31', '2023-07-31 22:22:00', '::1', 'OPEN'),
+(120, '7942979', '2023-07-31', '2023-07-31 22:31:41', '::1', 'OPEN'),
+(121, 'lyapuchura', '2023-08-01', '2023-08-01 12:55:16', '::1', 'OPEN'),
+(122, '7942979', '2023-08-01', '2023-08-01 13:07:54', '::1', 'OPEN'),
+(123, '8954971', '2023-08-01', '2023-08-01 13:32:22', '::1', 'OPEN'),
+(124, '8954971', '2023-08-01', '2023-08-01 15:18:31', '::1', 'OPEN'),
+(125, '8954971', '2023-08-01', '2023-08-01 15:23:01', '::1', 'OPEN'),
+(126, 'lyapuchura', '2023-08-01', '2023-08-01 15:25:59', '::1', 'OPEN'),
+(127, '8954971', '2023-08-01', '2023-08-01 15:37:32', '::1', 'OPEN'),
+(128, '8954971', '2023-08-01', '2023-08-01 15:48:36', '::1', 'OPEN'),
+(129, '8954971', '2023-08-01', '2023-08-01 19:13:36', '::1', 'OPEN'),
+(130, 'lyapuchura', '2023-08-02', '2023-08-02 13:02:00', '::1', 'OPEN'),
+(131, '8954971', '2023-08-02', '2023-08-02 13:21:49', '::1', 'OPEN'),
+(132, '4576231', '2023-08-02', '2023-08-02 22:17:07', '::1', 'OPEN'),
+(133, 'lyapuchura', '2023-08-03', '2023-08-03 13:16:00', '::1', 'OPEN'),
+(134, 'lyapuchura', '2023-08-03', '2023-08-03 18:55:58', '::1', 'OPEN'),
+(135, '5966304', '2023-08-03', '2023-08-03 19:20:41', '::1', 'OPEN'),
+(136, 'lyapuchura', '2023-08-03', '2023-08-03 19:24:08', '::1', 'OPEN'),
+(137, 'lyapuchura', '2023-08-04', '2023-08-04 13:11:57', '::1', 'OPEN');
 
 -- --------------------------------------------------------
 
@@ -5021,7 +5271,8 @@ CREATE TABLE `log_login_failure` (
 INSERT INTO `log_login_failure` (`idlog_login_failure`, `usuario`, `password`, `fecha`, `fecha_hora`, `ip`) VALUES
 (1, 'gyapuchura', '5987634', '2023-05-15', '2023-05-15 21:39:32', '::1'),
 (2, 'lyapuchura', 'lyapuchura', '2023-06-20', '2023-06-20 21:11:06', '::1'),
-(3, 'lyapuchura', 'lyapuchura', '2023-06-20', '2023-06-20 21:11:23', '::1');
+(3, 'lyapuchura', 'lyapuchura', '2023-06-20', '2023-06-20 21:11:23', '::1'),
+(4, 'lyapuchura', 'lyapucvhura', '2023-07-31', '2023-07-31 13:49:49', '::1');
 
 -- --------------------------------------------------------
 
@@ -5088,9 +5339,9 @@ CREATE TABLE `microcurricula` (
 --
 
 INSERT INTO `microcurricula` (`idmicrocurricula`, `idmacrocurricula`, `correlativo`, `codigo`, `idtematica`, `carga_horaria`, `objetivo_curso`, `idtipo_costo`, `costo`, `pre_requisito`, `idtipo_evento`, `idnivel_curricular`, `idusuario`) VALUES
-(1, 1, 1, 'MICRO-1/1/2023', 2, '40', 'OBJETIVO DEL CURSO DE CAPACITACIÓN', 1, 0, 1, 1, 2, 1),
-(2, 1, 2, 'MICRO-2/1/2023', 3, '40', 'OBJETIVO DEL CURSO DE CAPACITACIÓN', 1, 0, 2, 1, 2, 1),
-(3, 1, 3, 'MICRO-3/1/2023', 4, '40', 'Promocionar la Salud en la Sopciedad Civil', 2, 50, 3, 1, 2, 1);
+(1, 1, 1, 'MICRO-1/1/2023', 2, '30', 'OBJETIVO DEL CURSO DE CAPACITACIÓN', 1, 0, 1, 1, 2, 1),
+(2, 1, 2, 'MICRO-2/1/2023', 3, '30', 'OBJETIVO DEL CURSO DE CAPACITACIÓN', 1, 0, 2, 1, 2, 1),
+(3, 1, 3, 'MICRO-3/1/2023', 4, '30', 'Promocionar la Salud en la Sopciedad Civil', 2, 50, 3, 1, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -5534,7 +5785,7 @@ CREATE TABLE `nacionalidad` (
 --
 
 INSERT INTO `nacionalidad` (`idnacionalidad`, `nacionalidad`) VALUES
-(1, 'NACIONAL'),
+(1, 'BOLIVIANA'),
 (2, 'EXTRANJERO');
 
 -- --------------------------------------------------------
@@ -5554,7 +5805,7 @@ CREATE TABLE `nivel_curricular` (
 
 INSERT INTO `nivel_curricular` (`idnivel_curricular`, `nivel_curricular`) VALUES
 (1, 'PERSONAL DE APOYO'),
-(2, 'PROFESIONAL-TECNICO'),
+(2, 'PROFESIONAL-TÉCNICO'),
 (3, 'EJECUTIVO');
 
 -- --------------------------------------------------------
@@ -5607,8 +5858,8 @@ CREATE TABLE `nombre` (
 --
 
 INSERT INTO `nombre` (`idnombre`, `paterno`, `materno`, `nombre`, `ci`, `complemento`, `exp`, `fecha_nac`, `idnacionalidad`, `idgenero`) VALUES
-(1, 'Yapuchura', 'Chuquimia', 'Luis Gonzalo', '5966306', NULL, 'LP', '1982-07-25', 1, 2),
-(2, 'Castañon', 'Clavijo', 'Daniel', '8888888', NULL, 'LP', '1982-07-25', 1, 2),
+(1, 'Yapuchura', 'Chuquimia', 'Luis Gonzalo', '5966306', '', 'LP', '1982-07-25', 1, 2),
+(2, 'Castañon', 'Espinoza', 'Daniel', '8888888', NULL, 'LP', '1982-07-25', 1, 2),
 (3, 'Gutierrez', 'Gutierrez', 'Patricia', '7777777', NULL, 'LP', '1982-07-25', 1, 2),
 (4, 'Calle', 'Calle', 'Marcelo', '6666666', NULL, 'LP', '1982-07-25', 1, 2),
 (5, 'Machaca', 'Machaca', 'Susana', '5555555', NULL, 'LP', '1982-07-25', 1, 2),
@@ -5631,17 +5882,27 @@ INSERT INTO `nombre` (`idnombre`, `paterno`, `materno`, `nombre`, `ci`, `complem
 (22, 'Medina', 'Tarqui', 'Franklin', '6942975', 'SM', 'LP', '1970-08-15', 1, 2),
 (23, 'Valdivia', 'Borda', 'Mariela Carla', '4567364', '', 'TJ', '1984-09-25', 1, 1),
 (24, 'Yapuchura', 'Chuquimia', 'Jesus Marcelo', '5943971', '1S', 'LP', '1982-08-20', 1, 2),
-(25, 'Garcia', 'Martinez', 'Fernando Simon', '4952971', 'AM', 'CB', '1972-09-15', 1, 2),
+(25, 'García', 'Martínez', 'Fernando Simón', '4952971', 'AM', 'CB', '1972-09-15', 1, 2),
 (26, 'Tarqui', 'Lopez', 'Abel', '3942973', '1S', 'LP', '1985-08-31', 1, 2),
-(27, 'Choque', 'Quispe', 'Angela', '8954971', '1A', 'LP', '1990-01-16', 1, 1),
+(27, 'Quispe', 'Mamani', 'Maribel Roxana', '8954971', '1A', 'OR', '1994-01-16', 1, 1),
 (28, 'Choque', 'Quispe', 'Angela', '3987654', '1A', 'LP', '1989-01-23', 1, 1),
 (29, 'Arias', 'Arenas', 'Juan Carlos', '2942971', '', 'LP', '1970-08-28', 1, 2),
-(30, 'Qui&ntilde;ajo', 'Gutierrez', 'Javier', '7942979', '1M', 'LP', '1982-08-14', 1, 2),
+(30, 'Quiñajo', 'Gutierrez', 'Javier', '7942979', '1M', 'LP', '1982-08-14', 1, 2),
 (31, 'Saravia ', 'Miranda', 'Norma', '3697123', '1M', 'LP', '1986-01-06', 1, 1),
 (32, 'Alvarez', 'Quispe', 'Adela', '3842971', '1M', 'LP', '2023-11-12', 1, 1),
 (33, 'Choque', 'Quispe', 'Fidel', '6758901', '', 'LP', '1993-07-06', 1, 2),
 (34, 'Molina', 'Casanova', 'Franklin', '4576231', '1M', 'LP', '1980-02-12', 1, 2),
-(35, 'Quispe', 'Mamani', 'Sergio', '3497123', '', 'LP', '1982-07-25', 1, 2);
+(35, 'Quispe', 'Mamani', 'Sergio', '3497123', '', 'LP', '1982-07-25', 1, 2),
+(36, 'Manzaneda', 'Choque', 'Serafin', '47897123', '1M', 'LP', '1986-03-06', 1, 2),
+(37, 'Hernandez', 'Flores', 'Gabriel', '4567822', '1M', 'LP', '1979-05-31', 1, 2),
+(38, 'Peric&oacute;n', 'Romero', 'Andrea Paola', '5766303', '', 'LP', '1988-01-12', 1, 1),
+(39, 'Claros', 'Espinoza', 'Fernando', '5942972', '', 'CH', '1979-09-07', 1, 2),
+(40, 'Segura', 'Gutierrez', 'Oscar Luis', '3897259', '', 'LP', '1970-07-26', 1, 2),
+(41, 'Quispe', 'Choque', 'Sergio Andres', '4378651', '', 'LP', '1989-08-23', 1, 2),
+(42, 'Mamani', 'Parapo', 'Javier', '7966398', '', 'LP', '1978-09-23', 1, 2),
+(43, 'Manzaneda', 'Mamani', 'Elias ', '6767898', '', 'LP', '1985-03-20', 1, 2),
+(44, 'Manzaneda', 'Mamani', 'Elias ', '6767899', '', 'LP', '1985-03-20', 1, 2),
+(45, 'Herrera', 'Flores', 'David', '7942797', '', 'LP', '1981-09-12', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -5657,25 +5918,38 @@ CREATE TABLE `nombre_datos` (
   `idprofesion` int(11) DEFAULT NULL,
   `idespecialidad_medica` int(11) DEFAULT NULL,
   `correo` text,
-  `celular` text
+  `celular` text,
+  `direccion_dom` text,
+  `iddepartamento` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `nombre_datos`
 --
 
-INSERT INTO `nombre_datos` (`idnombre_datos`, `idnombre`, `idusuario`, `idformacion_academica`, `idprofesion`, `idespecialidad_medica`, `correo`, `celular`) VALUES
-(1, 25, 25, 4, 8, 45, 'fernando@gmail.com', '78909938'),
-(2, 26, 26, 4, 7, 45, 'abel@gmail.com', '75634212'),
-(3, 27, 27, 4, 9, 45, 'angelachoque@gmail.com', '78107737'),
-(4, 28, 28, 4, 9, 45, 'angela@gmail.com', '78945321'),
-(5, 29, 29, 4, 9, 45, 'juan@gmail.com', '79109937'),
-(6, 30, 30, 4, 8, 45, 'javier@gmail.com', '67853423'),
-(7, 31, 31, 4, 1, 41, 'norma@gmail.com', '79109937'),
-(8, 32, 32, 4, 4, 45, 'adela@gmail.com', '70587007'),
-(9, 33, 33, 4, 7, 45, 'fidel@gmail.com', '79567234'),
-(10, 34, 34, 4, 1, 6, 'franklin@gmail.com', '611101797'),
-(11, 35, 35, 4, 1, 2, 'sergio@gmail.com', '79389231');
+INSERT INTO `nombre_datos` (`idnombre_datos`, `idnombre`, `idusuario`, `idformacion_academica`, `idprofesion`, `idespecialidad_medica`, `correo`, `celular`, `direccion_dom`, `iddepartamento`) VALUES
+(1, 25, 25, 4, 8, 45, 'fernando@gmail.com', '78909938', NULL, NULL),
+(2, 26, 26, 4, 7, 45, 'abel@gmail.com', '75634212', NULL, NULL),
+(3, 27, 27, 5, 8, 45, 'corre@gmail.com', '79109937', 'domiciilio 2', 2),
+(4, 28, 28, 4, 9, 45, 'angela@gmail.com', '78945321', NULL, NULL),
+(5, 29, 29, 4, 9, 45, 'juan@gmail.com', '79109937', NULL, NULL),
+(6, 30, 30, 4, 8, 45, 'javier@gmail.com', '67853423', NULL, NULL),
+(7, 31, 31, 4, 1, 41, 'norma@gmail.com', '79109937', NULL, NULL),
+(8, 32, 32, 4, 4, 45, 'adela@gmail.com', '70587007', NULL, NULL),
+(9, 33, 33, 4, 7, 45, 'fidel@gmail.com', '79567234', NULL, NULL),
+(10, 34, 34, 4, 1, 2, 'franklin@gmail.com', '611101797', 'DOMICILIO:', 4),
+(11, 35, 35, 4, 1, 2, 'sergio@gmail.com', '79389231', NULL, 4),
+(12, 36, 36, 4, 6, 45, 'serafin@gmail.com', '78109938', NULL, 4),
+(13, 37, 37, 1, 3, 45, 'gaby@gmail.com', '781077037', NULL, 4),
+(14, 38, 38, 4, 1, 4, 'paolaandrea@gmail.com', '78107726', NULL, 2),
+(15, 39, 39, 5, 1, 3, 'victorhugo@gmail.com', '69107731', 'Calle 8 N&deg; 81 Obrajes Zona Sur ', 4),
+(16, 40, 40, 4, 3, 45, 'Jose_antonio1970@gmail.com', '67823421', 'Calle 8 N&deg; 129 Zona Villa San Martin', 4),
+(17, 41, 41, 4, 7, 45, 'sergiochoque@gmail.com', '79394427', 'Calle C N&deg; 231 Zon El Tejar', 4),
+(18, 42, 42, 4, 6, 45, 'javier@gmail.com', '78942352', NULL, 4),
+(19, 43, 43, 4, 3, 45, 'elias@gmail.com', '71500109', NULL, 4),
+(20, 44, 44, 4, 3, 45, 'elias@gmail.com', '71500109', NULL, 4),
+(21, 1, 1, 4, 9, 45, 'luis_miguel@gmail.com', '79109937', 'Calle B Nro 127 Villa Dolores', 2),
+(22, 45, 51, 4, 6, 45, 'david@gmail.com', '68109937', 'DIRECCI&Oacute;N DOMICILIO', NULL);
 
 -- --------------------------------------------------------
 
@@ -5751,6 +6025,29 @@ CREATE TABLE `plan_anual` (
 INSERT INTO `plan_anual` (`idplan_anual`, `denominacion`, `gestion`, `idtipo_documento`, `fecha_aprob`, `vigencia_i`, `vigencia_f`, `no_doc`, `idpartida_presup`, `presupuesto`, `codigo`, `idusuario`) VALUES
 (1, 'PLAN DE CAPACITACI&Oacute;N CONTINUA MDSYD - 2023', '2023', 1, '2023-05-05', '2023-05-08', '2023-12-29', 'MDS-RES-2024', 2, 84000, 'P-2023', 1),
 (2, 'PLAN ANUAL DE CAPACITACI&Oacute;N 2023 SEGUNDA VERSI&Oacute;N', '2023', 2, '2023-05-05', '2023-05-05', '2023-05-05', 'MDS-02', 1, 85000, 'P-001', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ponderacion`
+--
+
+CREATE TABLE `ponderacion` (
+  `idponderacion` int(11) NOT NULL,
+  `valor` int(11) DEFAULT NULL,
+  `ponderacion` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `ponderacion`
+--
+
+INSERT INTO `ponderacion` (`idponderacion`, `valor`, `ponderacion`) VALUES
+(1, 1, 'No suficiente'),
+(2, 2, 'Suficiente'),
+(3, 3, 'Bueno'),
+(4, 4, 'Muy Bueno'),
+(5, 5, 'Excelente');
 
 -- --------------------------------------------------------
 
@@ -6266,7 +6563,26 @@ INSERT INTO `usuarios` (`idusuario`, `idnombre`, `usuario`, `password`, `fecha`,
 (32, 32, '3842971', '3842971', '2023-07-04', 'ACTIVO', 'PARTICIPANTE'),
 (33, 33, '6758901', '6758901', '2023-07-04', 'ACTIVO', 'PARTICIPANTE'),
 (34, 34, '4576231', '4576231', '2023-07-04', 'ACTIVO', 'PARTICIPANTE'),
-(35, 35, '3497123', '3497123', '2023-07-04', 'ACTIVO', 'PARTICIPANTE');
+(35, 35, '3497123', '3497123', '2023-07-04', 'ACTIVO', 'PARTICIPANTE'),
+(36, 36, '47897123', '47897123', '2023-07-10', 'ACTIVO', 'PARTICIPANTE'),
+(37, 37, '4567822', '4567822', '2023-07-11', 'ACTIVO', 'PARTICIPANTE'),
+(38, 38, '5766303', '5766303', '2023-07-21', 'ACTIVO', 'PARTICIPANTE'),
+(39, 39, '3966309', '3966309', '2023-07-27', 'ACTIVO', 'DOCENTE'),
+(40, 40, '3897259', '3897259', '2023-07-27', 'ACTIVO', 'DOCENTE'),
+(41, 41, '4378651', '4378651', '2023-07-28', 'ACTIVO', 'DOCENTE'),
+(42, 42, '7966398', '7966398', '2023-08-01', 'ACTIVO', 'PARTICIPANTE'),
+(43, 43, '6767898', '6767898', '2023-08-01', 'ACTIVO', 'PARTICIPANTE'),
+(44, 44, '6767899', '6767899', '2023-08-01', 'ACTIVO', 'PARTICIPANTE'),
+(45, 12, '5942972-A', 'javier', '2023-08-03', 'ACTIVO', 'ADMINISTRADOR'),
+(46, 42, '7966398-A', 'javier', '2023-08-03', 'ACTIVO', 'ADMINISTRADOR'),
+(47, 42, '7966398-A-D', ' ', '2023-08-03', 'ACTIVO', 'DOCENTE'),
+(48, 40, '3897259-D', 'oscar', '2023-08-03', 'ACTIVO', 'DOCENTE'),
+(49, 40, '3897259-D-A', 'OSCAR', '2023-08-03', 'ACTIVO', 'ADMINISTRADOR'),
+(50, 40, '3897259-D-A-P', 'oscar', '2023-08-03', 'ACTIVO', 'PARTICIPANTE'),
+(51, 45, '7942797', '7942797', '2023-08-03', 'ACTIVO', 'ADMINISTRADOR'),
+(52, 44, '6767899-A', 'elias', '2023-08-04', 'ACTIVO', 'ADMINISTRADOR'),
+(53, 43, '6767898-D', 'elias', '2023-08-04', 'ACTIVO', 'DOCENTE'),
+(54, 45, '7942797-D', 'david', '2023-08-04', 'ACTIVO', 'DOCENTE');
 
 --
 -- Índices para tablas volcadas
@@ -6313,6 +6629,12 @@ ALTER TABLE `cargo`
   ADD KEY `idusuario_idx` (`idusuario`);
 
 --
+-- Indices de la tabla `comentario_evaluacion`
+--
+ALTER TABLE `comentario_evaluacion`
+  ADD PRIMARY KEY (`idcomentario_evaluacion`);
+
+--
 -- Indices de la tabla `dato_laboral`
 --
 ALTER TABLE `dato_laboral`
@@ -6349,7 +6671,13 @@ ALTER TABLE `direccion`
 ALTER TABLE `docente`
   ADD PRIMARY KEY (`iddocente`),
   ADD KEY `idusuario_idx` (`idusuario`),
-  ADD KEY `iddepartamento_idx` (`iddepartamento`);
+  ADD KEY `iddepartamento_idx` (`idresidencia`);
+
+--
+-- Indices de la tabla `especialidad_docente`
+--
+ALTER TABLE `especialidad_docente`
+  ADD PRIMARY KEY (`idespecialidad_docente`);
 
 --
 -- Indices de la tabla `especialidad_medica`
@@ -6369,6 +6697,24 @@ ALTER TABLE `establecimiento_salud`
   ADD KEY `idtipo_establecimiento_idx` (`idtipo_establecimiento`);
 
 --
+-- Indices de la tabla `estado_docente`
+--
+ALTER TABLE `estado_docente`
+  ADD PRIMARY KEY (`idestado_docente`);
+
+--
+-- Indices de la tabla `estado_ejecucion`
+--
+ALTER TABLE `estado_ejecucion`
+  ADD PRIMARY KEY (`idestado_ejecucion`);
+
+--
+-- Indices de la tabla `estado_evaluacion`
+--
+ALTER TABLE `estado_evaluacion`
+  ADD PRIMARY KEY (`idestado_evaluacion`);
+
+--
 -- Indices de la tabla `estado_inscripcion`
 --
 ALTER TABLE `estado_inscripcion`
@@ -6379,6 +6725,12 @@ ALTER TABLE `estado_inscripcion`
 --
 ALTER TABLE `estado_registro`
   ADD PRIMARY KEY (`idestado_registro`);
+
+--
+-- Indices de la tabla `eval_docente`
+--
+ALTER TABLE `eval_docente`
+  ADD PRIMARY KEY (`ideval_docente`);
 
 --
 -- Indices de la tabla `evento`
@@ -6537,6 +6889,12 @@ ALTER TABLE `plan_anual`
   ADD KEY `idpartida_presup_idx` (`idpartida_presup`);
 
 --
+-- Indices de la tabla `ponderacion`
+--
+ALTER TABLE `ponderacion`
+  ADD PRIMARY KEY (`idponderacion`);
+
+--
 -- Indices de la tabla `profesion`
 --
 ALTER TABLE `profesion`
@@ -6646,7 +7004,7 @@ ALTER TABLE `cargo`
 -- AUTO_INCREMENT de la tabla `dato_laboral`
 --
 ALTER TABLE `dato_laboral`
-  MODIFY `iddato_laboral` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `iddato_laboral` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT de la tabla `departamento`
@@ -6670,13 +7028,37 @@ ALTER TABLE `direccion`
 -- AUTO_INCREMENT de la tabla `docente`
 --
 ALTER TABLE `docente`
-  MODIFY `iddocente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `iddocente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de la tabla `especialidad_docente`
+--
+ALTER TABLE `especialidad_docente`
+  MODIFY `idespecialidad_docente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `establecimiento_salud`
 --
 ALTER TABLE `establecimiento_salud`
   MODIFY `idestablecimiento_salud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4196;
+
+--
+-- AUTO_INCREMENT de la tabla `estado_docente`
+--
+ALTER TABLE `estado_docente`
+  MODIFY `idestado_docente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `estado_ejecucion`
+--
+ALTER TABLE `estado_ejecucion`
+  MODIFY `idestado_ejecucion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `estado_evaluacion`
+--
+ALTER TABLE `estado_evaluacion`
+  MODIFY `idestado_evaluacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `estado_inscripcion`
@@ -6691,10 +7073,16 @@ ALTER TABLE `estado_registro`
   MODIFY `idestado_registro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT de la tabla `eval_docente`
+--
+ALTER TABLE `eval_docente`
+  MODIFY `ideval_docente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT de la tabla `evento`
 --
 ALTER TABLE `evento`
-  MODIFY `idevento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `idevento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `formacion_academica`
@@ -6712,25 +7100,25 @@ ALTER TABLE `genero`
 -- AUTO_INCREMENT de la tabla `horario`
 --
 ALTER TABLE `horario`
-  MODIFY `idhorario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `idhorario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT de la tabla `inscripcion`
 --
 ALTER TABLE `inscripcion`
-  MODIFY `idinscripcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `idinscripcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `log_login`
 --
 ALTER TABLE `log_login`
-  MODIFY `idlog_login` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `idlog_login` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
 
 --
 -- AUTO_INCREMENT de la tabla `log_login_failure`
 --
 ALTER TABLE `log_login_failure`
-  MODIFY `idlog_login_failure` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idlog_login_failure` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `lugar`
@@ -6796,13 +7184,13 @@ ALTER TABLE `nivel_establecimiento`
 -- AUTO_INCREMENT de la tabla `nombre`
 --
 ALTER TABLE `nombre`
-  MODIFY `idnombre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `idnombre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT de la tabla `nombre_datos`
 --
 ALTER TABLE `nombre_datos`
-  MODIFY `idnombre_datos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `idnombre_datos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `objetivo_anual`
@@ -6821,6 +7209,12 @@ ALTER TABLE `partida_presup`
 --
 ALTER TABLE `plan_anual`
   MODIFY `idplan_anual` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `ponderacion`
+--
+ALTER TABLE `ponderacion`
+  MODIFY `idponderacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `profesion`
@@ -6886,7 +7280,7 @@ ALTER TABLE `tipo_evento`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- Restricciones para tablas volcadas

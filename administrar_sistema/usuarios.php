@@ -1,6 +1,14 @@
 <?php include("../cabf.php");?>
 <?php include("../inc.config.php");?>
 <?php
+/**
+* Se mostrara el listado de todas las areas organizacionales correspondientes a una subcontraloria o despacho de la CGE.
+*
+* @idusuario_ss int //variable de sesion de usuario en formato numero entero
+* @idnombre_ss int //variable de sesion de nombres y apellidos de usuario en formato numero entero
+* @perfil_ss varchar //variable de sesion de perfil de usuario en formato numero entero
+*
+*/
 date_default_timezone_set('America/La_Paz');
 $fecha_ram			= date("Ymd");
 $fecha 			    = date("Y-m-d");
@@ -12,6 +20,7 @@ $perfil_ss     =  $_SESSION['perfil_ss'];
 if($_SESSION['perfil_ss'] != "ADMINISTRADOR"){ 		
 	header("Location:../index.php");	
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -21,6 +30,7 @@ if($_SESSION['perfil_ss'] != "ADMINISTRADOR"){
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="" />
 
+<!-- c+ss -->
 <link href="../css/bootstrap.min.css" rel="stylesheet" />
 <link href="../css/fancybox/jquery.fancybox.css" rel="stylesheet">
 <link href="../css/flexslider.css" rel="stylesheet" />
@@ -59,16 +69,18 @@ $rowus = mysqli_fetch_array($resultus);?>
                     </button>
                   <a class="navbar-brand" href="../intranet.php"><img src="../img/logo_saes.png" alt="logo"/></a>
                 </div>
-                <?php include("../menu_academico.php");?>
+                <?php include("../menu_planes.php");?>
             </div>
         </div>
-	</header>
-    <!-- end header -->
+
+<script language="javascript" src="../js/jquery-3.1.1.min.js"></script>
+
+	</header><!-- end header -->
 	<section id="inner-headline">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="pageTitle">EVALUACIÓN</h2>
+				<h2 class="pageTitle">GESTIÓN DE USUARIOS</h2>
 			</div>
 		</div>
 	</div>
@@ -78,14 +90,19 @@ $rowus = mysqli_fetch_array($resultus);?>
 	<div class="container">
 		<div class="row">
 		<div class="tg-main-section tg-banner tg-haslayout parallax-window" data-parallax="scroll" data-bleed="100" data-speed="0.2" data-image-src="images/slider/img-03.jpg">
+        <h4 align="center"><a href="../inicio.php">VOLVER</a></h4>
 		</div>
    	<div class="about-logo">
       <h3 align="center"> </h3>
     
-       <p>EN ESTA SECCIÓN SE REALIZA LA EVALUACIÓN DE INSCRITOS A LOS EVENTOS DE CAPACITACIÓN.</p>
+       <p>EN ESTA SECCIÓN SE REALIZA LA GESTIÓN DE USUARIOS DEL SISTEMA.</p>
     </div>
     </div>
-
+    <div class="row">
+        <form name="FORMU" action="nuevo_usuario.php" method="post">
+        <button type="submit" class="btn btn-primary">NUEVO USUARIO</button>
+        </form>
+    </div>
 
 <div class="container">
 <div class="row">
@@ -96,24 +113,24 @@ $rowus = mysqli_fetch_array($resultus);?>
 <!--- GESTION DE EMPRESAS ---->
 
 <div class="table-responsive">
-    <table class="table table-bordered" id="example" width="100%" cellspacing="0">
-        <thead>
-            <tr>
-                <th>Nª</th>
-                <th>CÓDIGO</th>
-                <th>EVENTO</th>
-                <th>FECHA INICIO</th>
-                <th>FECHA FINALIZACIÓN</th>
-                <th>DOCENTE</th>
-                <th>EVALUAR PARTICIPANTES</th>
-            </tr>
+      <table class="table table-bordered" id="example" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Nª</th>
+                    <th>USUARIO</th>
+                    <th>APELLIDO PATERNO</th>
+                    <th>APELLIDO MATERNO</th>
+                    <th>NOMBRES</th>
+                    <th>PERFIL</th>
+                    <th>ESTADO</th>
+                    <th>ACCIÓN</th>
+                </tr>
             </thead>
 			<tbody>
             <?php
             $numero=1;
-            $sql =" SELECT evento.idevento, evento.codigo, tematica.tematica, evento.fecha_inicio, evento.fecha_fin, evento.iddocente, evento.idestado_ejecucion ";
-            $sql.=" FROM evento, microcurricula, tematica WHERE evento.idmicrocurricula=microcurricula.idmicrocurricula AND ";
-            $sql.=" microcurricula.idtematica=tematica.idtematica ORDER BY evento.idevento";
+            $sql =" SELECT usuarios.idusuario, usuarios.usuario, nombre.paterno, nombre.materno, nombre.nombre, usuarios.perfil, usuarios.condicion, ";
+            $sql.=" nombre.idnombre FROM usuarios, nombre WHERE usuarios.idnombre=nombre.idnombre ORDER BY idusuario ";
             $result = mysqli_query($link,$sql);
             if ($row = mysqli_fetch_array($result)){
             mysqli_field_seek($result,0);
@@ -124,39 +141,15 @@ $rowus = mysqli_fetch_array($resultus);?>
 				<td><?php echo $numero;?></td>
                 <td><?php echo $row[1];?></td>
 				<td><?php echo $row[2];?></td>
-                <td>
-                    <?php 
-                    $fecha_i = explode('-',$row[3]);
-                    $f_inicio    = $fecha_i[2].'/'.$fecha_i[1].'/'.$fecha_i[0];
-                    echo $f_inicio;
-                    ?>            
-                </td>
-                <td>
-                    <?php 
-                    $fecha_f = explode('-',$row[4]);
-                    $f_final = $fecha_f[2].'/'.$fecha_f[1].'/'.$fecha_f[0];
-                    echo $f_final;
-                    ?>   
-                </td>
-                <td>
-                    <?php 
-                    $sqld =" SELECT nombre.nombre, nombre.paterno, nombre.materno FROM nombre, usuarios WHERE usuarios.idnombre=nombre.idnombre ";
-                    $sqld.=" AND usuarios.idusuario='$row[5]' ";
-                    $resultd = mysqli_query($link,$sqld);
-                    $rowd = mysqli_fetch_array($resultd);
-                    ?>
-                <?php echo $rowd[0];?> <?php echo $rowd[1];?> <?php echo $rowd[2];?>    
-                </td>
-                
-                <td>     
-                <?php  if ($row[6] == '1') { ?>
-                    <form name="VALIDA" action="valida_evento_eval.php" method="post">
-                    <input name="codigo" type="hidden" value="<?php echo $row[1];?>">
-                    <input name="idevento" type="hidden" value="<?php echo $row[0];?>">
-                    <button type="submit" class="btn-link">EVALUAR PARTICIPANTES</button></form>
-                <?php } else { ?>
-                       <p align="center">EVALUACIÓN CONSOLIDADA</p>
-                <?php } ?>  
+                <td><?php echo $row[3];?></td>
+                <td><?php echo $row[4];?></td>
+                <td><?php echo $row[5];?></td>
+                <td><?php echo $row[6];?></td>
+                <td>                                                
+                <form name="VALIDA" action="valida_usuario_mod.php" method="post">
+                <input name="idusuario_mod" type="hidden" value="<?php echo $row[0];?>">
+                <input name="idnombre_mod" type="hidden" value="<?php echo $row[7];?>">
+                <button type="submit" class="btn btn-primary">VER USUARIO</button></form>
                 </td>
                 </tr>  
             <?php
@@ -166,9 +159,9 @@ $rowus = mysqli_fetch_array($resultus);?>
             } else {
             }
             ?>
-        </tbody>
-    </table>
-</div>
+                                    </tbody>
+                                </table>
+                            </div>
 
 <!--- gestion de usuarios ---->
 
@@ -179,7 +172,6 @@ $rowus = mysqli_fetch_array($resultus);?>
 	<?php include("../footer.php");?>
 	</footer>
 </div>
-
 <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
 <!-- javascript
     ================================================== -->

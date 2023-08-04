@@ -32,7 +32,7 @@ $idnombre_datos     = $row_n[15];
 
 $sql_l = " SELECT iddato_laboral, idusuario, idnombre, iddependencia, entidad, cargo_entidad, ";
 $sql_l.= " idministerio, iddireccion, idarea, cargo_mds, iddepartamento, idred_salud, idestablecimiento_salud, cargo_red_salud ";
-$sql_l.= " FROM dato_laboral WHERE idnombre='$idnombre_inscrito_ss' ";
+$sql_l.= " FROM dato_laboral WHERE idnombre='$idnombre_inscrito_ss' ORDER BY iddato_laboral DESC LIMIT 1";
 $result_l = mysqli_query($link,$sql_l);
 $row_l = mysqli_fetch_array($result_l);
 
