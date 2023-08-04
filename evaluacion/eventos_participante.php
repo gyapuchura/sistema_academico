@@ -9,7 +9,7 @@ $idusuario_ss  =  $_SESSION['idusuario_ss'];
 $idnombre_ss   =  $_SESSION['idnombre_ss'];
 $perfil_ss     =  $_SESSION['perfil_ss'];
 
-if($_SESSION['perfil_ss'] != "ADMINISTRADOR"){ 		
+if($_SESSION['perfil_ss'] != "PARTICIPANTE"){ 		
 	header("Location:../index.php");	
 }
 ?>
@@ -68,7 +68,7 @@ $rowus = mysqli_fetch_array($resultus);?>
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="pageTitle">EVALUACIÓN</h2>
+				<h2 class="pageTitle">EVENTOS DEL PARTICIPANTE</h2>
 			</div>
 		</div>
 	</div>
@@ -80,40 +80,39 @@ $rowus = mysqli_fetch_array($resultus);?>
 		<div class="tg-main-section tg-banner tg-haslayout parallax-window" data-parallax="scroll" data-bleed="100" data-speed="0.2" data-image-src="images/slider/img-03.jpg">
 		</div>
    	<div class="about-logo">
-      <h3 align="center"> </h3>
+      <h3>USUARIO:</h3>
+      <h3 class="text-muted"><?php echo $rowus[0];?> <?php echo $rowus[1];?> <?php echo $rowus[2];?></h3>   
+       <p>EN ESTA SECCIÓN SE REALIZA EL SEGUIMIENTO A LA EVALUACIÓN DE EVENTOS DEL PARTICIPANTE.</p>
+    </div>
+    </div>
     
-       <p>EN ESTA SECCIÓN SE REALIZA LA EVALUACIÓN DE INSCRITOS A LOS EVENTOS DE CAPACITACIÓN.</p>
-    </div>
-    </div>
-
-
 <div class="container">
-<div class="row">
-<div class="col-lg-12">
-
-</div>
 </div>
 <!--- GESTION DE EMPRESAS ---->
 
 <div class="table-responsive">
-    <table class="table table-bordered" id="example" width="100%" cellspacing="0">
-        <thead>
-            <tr>
-                <th>Nª</th>
-                <th>CÓDIGO</th>
-                <th>EVENTO</th>
-                <th>FECHA INICIO</th>
-                <th>FECHA FINALIZACIÓN</th>
-                <th>DOCENTE</th>
-                <th>EVALUAR PARTICIPANTES</th>
-            </tr>
+      <table class="table table-bordered" id="example" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Nª</th>
+                    <th>CÓDIGO EVENTO</th>
+                    <th>EVENTO</th>
+                    <th>FECHA INICIO</th>
+                    <th>FECHA FINALIZACIÓN</th>
+                    <th>DOCENTE</th>
+                    <th>CÓDIGO INSCRIPCIÓN</th>
+                    <th>NOTA FINAL</th>
+                    <th>OBSERVACIÓN</th>
+                    <th>EMITIR CERTIFICADOS</th>
+                </tr>
             </thead>
 			<tbody>
             <?php
             $numero=1;
-            $sql =" SELECT evento.idevento, evento.codigo, tematica.tematica, evento.fecha_inicio, evento.fecha_fin, evento.iddocente, evento.idestado_ejecucion ";
-            $sql.=" FROM evento, microcurricula, tematica WHERE evento.idmicrocurricula=microcurricula.idmicrocurricula AND ";
-            $sql.=" microcurricula.idtematica=tematica.idtematica ORDER BY evento.idevento";
+            $sql =" SELECT evento.idevento, evento.codigo, tematica.tematica, evento.fecha_inicio, evento.fecha_fin, evento.iddocente, evento.idestado_ejecucion, inscripcion.idinscripcion, ";
+            $sql.=" inscripcion.nota_final, inscripcion.idcomentario_evaluacion, inscripcion.codigo, comentario_evaluacion.comentario_evaluacion FROM evento, microcurricula, tematica, inscripcion, comentario_evaluacion ";
+            $sql.=" WHERE inscripcion.idevento=evento.idevento AND evento.idmicrocurricula=microcurricula.idmicrocurricula AND microcurricula.idtematica=tematica.idtematica AND ";
+            $sql.=" inscripcion.idcomentario_evaluacion=comentario_evaluacion.idcomentario_evaluacion AND inscripcion.idusuario='$idusuario_ss' ORDER BY evento.idevento ";
             $result = mysqli_query($link,$sql);
             if ($row = mysqli_fetch_array($result)){
             mysqli_field_seek($result,0);
@@ -138,25 +137,26 @@ $rowus = mysqli_fetch_array($resultus);?>
                     echo $f_final;
                     ?>   
                 </td>
-                <td>
-                    <?php 
-                    $sqld =" SELECT nombre.nombre, nombre.paterno, nombre.materno FROM nombre, usuarios WHERE usuarios.idnombre=nombre.idnombre ";
-                    $sqld.=" AND usuarios.idusuario='$row[5]' ";
-                    $resultd = mysqli_query($link,$sqld);
-                    $rowd = mysqli_fetch_array($resultd);
-                    ?>
+                <td><?php 
+                $sqld =" SELECT nombre.nombre, nombre.paterno, nombre.materno FROM nombre, usuarios WHERE usuarios.idnombre=nombre.idnombre ";
+                $sqld.=" AND usuarios.idusuario='$row[5]' ";
+                $resultd = mysqli_query($link,$sqld);
+                $rowd = mysqli_fetch_array($resultd);
+                ?>
                 <?php echo $rowd[0];?> <?php echo $rowd[1];?> <?php echo $rowd[2];?>    
                 </td>
-                
+                <td><?php echo $row[10];?></td>
+                <td> <?php echo $row[8];?> </td>
+                <td> 
+                <?php  if ($row[8] >= '71') { echo '<p class="text-success">'; } else { echo '<p class="text-danger">'; } ?>     
+                <?php echo $row[11];?></p>            
+                </td>
                 <td>     
-                <?php  if ($row[6] == '1') { ?>
-                    <form name="VALIDA" action="valida_evento_eval.php" method="post">
-                    <input name="codigo" type="hidden" value="<?php echo $row[1];?>">
-                    <input name="idevento" type="hidden" value="<?php echo $row[0];?>">
-                    <button type="submit" class="btn-link">EVALUAR PARTICIPANTES</button></form>
+                <?php  if ($row[9] == '4') { ?>
+                <a href="imprime_certificado_aprob.php?idinscripcion=<?php echo $row[7];?>" target="_blank">IMPRIMIR CERTIFICADO</a>                    
                 <?php } else { ?>
-                       <p align="center">EVALUACIÓN CONSOLIDADA</p>
-                <?php } ?>  
+                       
+                    <?php  } ?>  
                 </td>
                 </tr>  
             <?php
@@ -166,9 +166,9 @@ $rowus = mysqli_fetch_array($resultus);?>
             } else {
             }
             ?>
-        </tbody>
-    </table>
-</div>
+                    </tbody>
+                </table>
+            </div>
 
 <!--- gestion de usuarios ---->
 
@@ -179,7 +179,6 @@ $rowus = mysqli_fetch_array($resultus);?>
 	<?php include("../footer.php");?>
 	</footer>
 </div>
-
 <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
 <!-- javascript
     ================================================== -->

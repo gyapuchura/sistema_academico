@@ -102,6 +102,8 @@ while ($field = mysqli_fetch_field($result)){
 		<ul class="dropdown-menu">
 			<li><a href="../evaluacion/para_evaluacion.php">EVENTOS PARA EVALUACIÓN</a></li>
 			<li><a href="../evaluacion/certificacion_eventos.php">CERTIFICACION</a></li>
+
+
 		</ul>
 	</li>
 
@@ -110,6 +112,36 @@ while ($field = mysqli_fetch_field($result)){
 } else {
 }
 ?>
+
+<?php
+$sql = "SELECT perfil  from usuarios  where idusuario = '$idusuario_ss' and perfil = '$perfil_ss' ";
+$result = mysqli_query($link,$sql);
+$row = mysqli_fetch_array($result);
+
+/****** Seleccionamos el perfil del suaurio que accedera a las opciones de sistema ******/	
+if ($row[0] == 'PARTICIPANTE'){
+
+mysqli_field_seek($result,0);
+while ($field = mysqli_fetch_field($result)){
+} do {	
+	?>
+
+	<li class="dropdown">
+	<a href="#" data-toggle="dropdown" class="dropdown-toggle">OPCIONES PARTICIPANTE<b class="caret"></b></a>
+		<ul class="dropdown-menu">
+			<li><a href="../evaluacion/eventos_participante.php">EVENTOS DEL PARTICIPANTE</a></li>
+			<li><a href="../inscripciones/datos_participante.php">DATOS PERSONALES</a></li>
+
+
+		</ul>
+	</li>
+
+	<?php
+} while ($row = mysqli_fetch_array($result));
+} else {
+}
+?>
+
 	<li class="active"><a href="../inicio.php">INICIO</a></li>
 	</ul>
 </div>
