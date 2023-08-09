@@ -34,8 +34,9 @@
 		} do {
 	 ?>
 	 <li><a href="../planes/planes_anuales.php">PLANES ANUALES</a></li>
-	 <li><a href="#">OBJETIVOS ANUALES</a></li>
-	 <li><a href="#">MACROCURRICULAS</a></li>
+	 <li><a href="../planes/objetivos_anuales_l.php">OBJETIVOS ANUALES</a></li>
+	 <li><a href="../planes/macrocurriculas_l.php">MACROCURRICULAS</a></li>
+	 <li><a href="../planes/microcurriculas_l.php">MICROCURRICULAS</a></li>
 	 <li><a href="../planes/tematicas.php">TEMÁTICAS</a></li>
 
 	<?php
