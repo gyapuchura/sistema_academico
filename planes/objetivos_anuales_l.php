@@ -1,14 +1,7 @@
 <?php include("../cabf.php");?>
 <?php include("../inc.config.php");?>
 <?php
-/**
-* Se mostrara el listado de todas las areas organizacionales correspondientes a una subcontraloria o despacho de la CGE.
-*
-* @idusuario_ss int //variable de sesion de usuario en formato numero entero
-* @idnombre_ss int //variable de sesion de nombres y apellidos de usuario en formato numero entero
-* @perfil_ss varchar //variable de sesion de perfil de usuario en formato numero entero
-*
-*/
+
 date_default_timezone_set('America/La_Paz');
 $fecha_ram			= date("Ymd");
 $fecha 			    = date("Y-m-d");
@@ -40,10 +33,10 @@ if($_SESSION['perfil_ss'] != "ADMINISTRADOR"){
 <link href="../css/fancybox/jquery.fancybox.css" rel="stylesheet">
 <link href="../css/flexslider.css" rel="stylesheet" />
 <link href="../css/style.css" rel="stylesheet" />
-
 <link rel="stylesheet" href="../css/jquery-ui.min.css">
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/dataTables.bootstrap.min.css">
+
 </head>
 <body>
 <div id="wrapper">
@@ -95,19 +88,15 @@ $rowus = mysqli_fetch_array($resultus);?>
 	<div class="container">
 		<div class="row">
 		<div class="tg-main-section tg-banner tg-haslayout parallax-window" data-parallax="scroll" data-bleed="100" data-speed="0.2" data-image-src="images/slider/img-03.jpg">
-        <h4 align="center"><a href="planes_anuales.php">VOLVER</a></h4>
+
 		</div>
    	<div class="about-logo">
-      <h3 align="center">OBJETIVOS DEL <?php echo $row0[1]?> .- <?php echo $row0[2]?></h3>
+      <h3 align="center">OBJETIVOS ANUALES</h3>
     
        <p>EN ESTA SECCIÓN SE REALIZA LA GESTIÓN DE OBJETIVOS ANUALES.</p>
     </div>
     </div>
-    <div class="row">
-        <form name="FORMU" action="nuevo_objetivo.php" method="post">
-        <button type="submit" class="btn btn-primary">NUEVO OBJETIVO</button>
-        </form>
-    </div>
+
 
 <div class="container">
 <div class="row">
@@ -117,59 +106,36 @@ $rowus = mysqli_fetch_array($resultus);?>
 </div>
 <!--- GESTION DE OBJETIVOS ---->
 
-<div class="table-responsive">
-      <table class="table table-bordered" id="example" width="100%" cellspacing="0">
-            <thead>
-                <tr>
-                    <th>Nª</th>
-                    <th>CÓDIGO OBJETIVO</th>
-                    <th>OBJETIVO ANUAL</th>
-                    <th>META</th>
-                    <th>PRESUPUESTO</th>
-                    <th>VER OBJETIVO</th>
-                    <th>VER MACROCURRICULAS</th>
-                </tr>
-            </thead>
-			<tbody>
-                
-            <?php
-            $numero=1;
-            $sql =" SELECT idobjetivo_anual, idplan_anual, codigo, correlativo, objetivo_anual, meta, presupuesto FROM objetivo_anual ";
-            $result = mysqli_query($link,$sql);
-            if ($row = mysqli_fetch_array($result)){
-            mysqli_field_seek($result,0);
-            while ($field = mysqli_fetch_field($result)){
-            } do {
-            ?>
-				<tr>
-                <td><?php echo $numero;?></td>
-				<td><?php echo $row[2];?></td>
-                <td><?php echo $row[4];?></td>
-				<td><?php echo $row[5];?></td>
-                <td><?php echo $row[6];?></td>
-                                <td>                                                
-                <form name="VALIDA" action="valida_objetivo_mod.php" method="post">
-                <input name="idobjetivo_anual" type="hidden" value="<?php echo $row[0];?>">
-                <button type="submit" class="btn btn-primary">VER OBJETIVO</button></form>
-                </td>
-                <td>                                                
-                <form name="VALIDA" action="valida_objetivo.php" method="post">
-                <input name="idobjetivo_anual" type="hidden" value="<?php echo $row[0];?>">
-                <button type="submit" class="btn btn-primary">VER MACROCURRICULAS</button></form>
-                </td>
-                </tr>  
-            <?php
-            $numero=$numero+1;  
-            }
-            while ($row = mysqli_fetch_array($result));
-            } else {
-            }
-            ?>
-            </tbody>
-        </table>
-    </div>
+<div class="box-area">
 
-<!--- gestion de usuarios ---->
+<div class="row">
+  <div class="col-md-3"><h4>PLAN ANUAL:</h4></div>
+  <div class="col-md-9">
+  <select name="idplan_anual"  id="idplan_anual" class="form-control" required>
+        <option value="">ELEGIR</option>
+        <?php 
+        $sql1 = " SELECT idplan_anual, denominacion, gestion FROM plan_anual ";
+        $result1 = mysqli_query($link,$sql1);
+        if ($row1 = mysqli_fetch_array($result1)){
+        mysqli_field_seek($result1,0);
+        while ($field1 = mysqli_fetch_field($result1)){
+        } do {
+        echo "<option value=".$row1[0].">".$row1[1]." - ".$row1[2]."</option>";
+        } while ($row1 = mysqli_fetch_array($result1));
+        } else {
+        echo "No se encontraron resultados!";
+        } 
+        ?>
+        </select>
+  </div> 
+  </div>
+  </div>
+    </br>
+
+  <div id="objetivo_anual">
+  
+  </div>
+<!--- GESTION DE OBJETIVOS ANUALES ---->
 
 </div>
 </br>
@@ -200,5 +166,17 @@ $rowus = mysqli_fetch_array($resultus);?>
 <script src="../js/jquery.dataTables.min.js"></script>
 <script src="../js/script.js"></script>
 <script src="../js/dataTables.bootstrap.min.js"></script>
+<script language="javascript">
+$(document).ready(function(){
+   $("#idplan_anual").change(function () {
+           $("#idplan_anual option:selected").each(function () {
+            plan_anual=$(this).val();
+            $.post("objetivo_anual.php", {plan_anual:plan_anual}, function(data){
+            $("#objetivo_anual").html(data);
+            });
+        });
+   })
+});
+</script>
 </body>
 </html>
