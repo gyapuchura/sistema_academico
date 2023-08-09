@@ -32,7 +32,7 @@ $rowm=mysqli_fetch_array($resultm);
 
 $correlativo=$rowm[0]+1;
 
-$codigo="INS/MDSYD-".$correlativo."/".$gestion;
+$codigo="INS/MSYD-".$correlativo."/".$gestion;
 
 //----- Realizamos la seleccion de tipo de dependencias ------//
 
