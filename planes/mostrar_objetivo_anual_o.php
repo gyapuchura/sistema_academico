@@ -1,8 +1,10 @@
 <?php include("../cabf.php");?>
 <?php include("../inc.config.php");?>
 <?php
-/**
-* Se mostrara el listado de todas las areas organizacionales correspondientes a una subcontraloria o despacho de la CGE.
+/*
+*
+* SE REALIZA EL REGISTRO DE UNA NUEVO OBJETIVO ANUAL.
+* Desde esta pagina se puede regustrar un nuevo plan anual dentro de una unidad organizacional.
 *
 * @idusuario_ss int //variable de sesion de usuario en formato numero entero
 * @idnombre_ss int //variable de sesion de nombres y apellidos de usuario en formato numero entero
@@ -10,21 +12,19 @@
 *
 */
 date_default_timezone_set('America/La_Paz');
-$fecha_ram			= date("Ymd");
-$fecha 			    = date("Y-m-d");
+$fecha_ram	 = date("Ymd");
+$fecha 		   = date("Y-m-d");
 
-$idusuario_ss    =  $_SESSION['idusuario_ss'];
-$idnombre_ss     =  $_SESSION['idnombre_ss'];
-$perfil_ss       =  $_SESSION['perfil_ss'];
-$idplan_anual_ss =  $_SESSION['idplan_anual_ss'];
+$idusuario_ss  =  $_SESSION['idusuario_ss'];
+$idnombre_ss   =  $_SESSION['idnombre_ss'];
+$perfil_ss     =  $_SESSION['perfil_ss'];
 
-$sql0 =" SELECT idplan_anual, codigo, denominacion, gestion FROM plan_anual WHERE idplan_anual='$idplan_anual_ss' ";
+$idobjetivo_anual_ss = $_SESSION['idobjetivo_anual_ss'];
+
+$sql0 =" SELECT idobjetivo_anual, codigo, objetivo_anual, meta, presupuesto  ";
+$sql0.=" FROM objetivo_anual WHERE idobjetivo_anual='$idobjetivo_anual_ss'";
 $result0 = mysqli_query($link,$sql0);
 $row0 = mysqli_fetch_array($result0);
-
-if($_SESSION['perfil_ss'] != "ADMINISTRADOR"){ 		
-	header("Location:../index.php");	
-}
 
 ?>
 <!DOCTYPE html>
@@ -43,7 +43,7 @@ if($_SESSION['perfil_ss'] != "ADMINISTRADOR"){
 
 <link rel="stylesheet" href="../css/jquery-ui.min.css">
 <link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="../css/dataTables.bootstrap.min.css">
+
 </head>
 <body>
 <div id="wrapper">
@@ -77,100 +77,84 @@ $rowus = mysqli_fetch_array($resultus);?>
                 <?php include("../menu_planes.php");?>
             </div>
         </div>
-
-<script language="javascript" src="../js/jquery-3.1.1.min.js"></script>
-
 	</header><!-- end header -->
 	<section id="inner-headline">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="pageTitle">OBJETIVOS ANUALES</h2>
+				<h2 class="pageTitle">OBJETIVO ANUAL <?php echo $row0[1];?></h2>
 			</div>
 		</div>
 	</div>
 	</section>
 	<section id="content">
-        
 	<div class="container">
 		<div class="row">
 		<div class="tg-main-section tg-banner tg-haslayout parallax-window" data-parallax="scroll" data-bleed="100" data-speed="0.2" data-image-src="images/slider/img-03.jpg">
-        <h4 align="center"><a href="planes_anuales.php">VOLVER</a></h4>
-		</div>
-   	<div class="about-logo">
-      <h3 align="center">OBJETIVOS DEL <?php echo $row0[1]?> .- <?php echo $row0[2]?></h3>
-    
-       <p>EN ESTA SECCIÓN SE REALIZA LA GESTIÓN DE OBJETIVOS ANUALES.</p>
-    </div>
-    </div>
-    <div class="row">
-        <form name="FORMU" action="nuevo_objetivo.php" method="post">
-        <button type="submit" class="btn btn-primary">NUEVO OBJETIVO</button>
-        </form>
+    <h4 align="center"><a href="objetivos_anuales_l.php">VOLVER A OBJETIVOS</a></h4>
+  </div>
+</br>
     </div>
 
 <div class="container">
+
+<!-- javascript --->
+<form name="FORM9" action="guarda_mod_objetivo_o.php" method="post">
+
+<div class="box-area">
+
 <div class="row">
-<div class="col-lg-12">
+  <div class="col-md-4"><h4>DESCRIPCIÓN DEL OBJETIVO:</h4></div>
+  <div class="col-md-8"><textarea class="form-control" rows="3" name="objetivo_anual" required><?php echo $row0[2];?></textarea></div> 
+</div>
+
+<div class="row">
+  <div class="col-md-3"><h4>META (Número de Eventos):</h4></div>
+  <div class="col-md-3"><input type="text" class="form-control" name="meta" value="<?php echo $row0[3];?>" required></div> 
+  <div class="col-md-3"><h4>PRESUPUESTO ASIGNADO [Bs]:</h4></div>
+  <div class="col-md-3"><input type="text" class="form-control" name="presupuesto" value="<?php echo $row0[4];?>" required></div>  
+</div>
+
+<div class="row">
+  <div class="col-md-3"><h4></h4></div>
+  <div class="col-md-9">    
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  GUARDAR DATOS DEL OBJETIVO
+  </button>
+  </div>
+  </div>
+</div>
 
 </div>
-</div>
-<!--- GESTION DE OBJETIVOS ---->
-
-<div class="table-responsive">
-      <table class="table table-bordered" id="example" width="100%" cellspacing="0">
-            <thead>
-                <tr>
-                    <th>Nª</th>
-                    <th>CÓDIGO OBJETIVO</th>
-                    <th>OBJETIVO ANUAL</th>
-                    <th>META</th>
-                    <th>PRESUPUESTO</th>
-                    <th>VER OBJETIVO</th>
-                    <th>VER MACROCURRICULAS</th>
-                </tr>
-            </thead>
-			<tbody>
-                
-            <?php
-            $numero=1;
-            $sql =" SELECT idobjetivo_anual, idplan_anual, codigo, correlativo, objetivo_anual, meta, presupuesto FROM objetivo_anual ";
-            $result = mysqli_query($link,$sql);
-            if ($row = mysqli_fetch_array($result)){
-            mysqli_field_seek($result,0);
-            while ($field = mysqli_fetch_field($result)){
-            } do {
-            ?>
-				<tr>
-                <td><?php echo $numero;?></td>
-				<td><?php echo $row[2];?></td>
-                <td><?php echo $row[4];?></td>
-				<td><?php echo $row[5];?></td>
-                <td><?php echo $row[6];?></td>
-                                <td>                                                
-                <form name="VALIDA" action="valida_objetivo_mod.php" method="post">
-                <input name="idobjetivo_anual" type="hidden" value="<?php echo $row[0];?>">
-                <button type="submit" class="btn btn-primary">VER OBJETIVO</button></form>
-                </td>
-                <td>                                                
-                <form name="VALIDA" action="valida_objetivo.php" method="post">
-                <input name="idobjetivo_anual" type="hidden" value="<?php echo $row[0];?>">
-                <button type="submit" class="btn btn-primary">VER MACROCURRICULAS</button></form>
-                </td>
-                </tr>  
-            <?php
-            $numero=$numero+1;  
-            }
-            while ($row = mysqli_fetch_array($result));
-            } else {
-            }
-            ?>
-            </tbody>
-        </table>
+<!---- --->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">REGISTRO NUEVO OBJETIVO ANUAL</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ¿Esta seguro de Registrar el Nuevo Objetivo?
+       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCELAR</button>
+        <button type="submit" class="btn btn-primary pull-center">CONFIRMAR REGISTRO</button>     
+      </div>
     </div>
+  </div>
+</div>
+</form>
 
-<!--- gestion de usuarios ---->
+</br>
+<div class="row">
+<div class="col-md-12">  
+</div>
+</div>
 
+<!-- javascript --->
 </div>
 </br>
   </section>
@@ -197,8 +181,12 @@ $rowus = mysqli_fetch_array($resultus);?>
 <script src="../js/custom.js"></script>
 <script src="../contact/jqBootstrapValidation.js"></script>
 <script src="../contact/contact_me.js"></script>
-<script src="../js/jquery.dataTables.min.js"></script>
-<script src="../js/script.js"></script>
-<script src="../js/dataTables.bootstrap.min.js"></script>
+<script src="../js/jquery-ui.min.js"></script>
+<script src="../js/datepicker-es.js"></script>
+<script>
+    $("#fecha1").datepicker($.datepicker.regional[ "es" ]);
+    $("#fecha2").datepicker($.datepicker.regional[ "es" ]);
+    $("#fecha3").datepicker($.datepicker.regional[ "es" ]);
+</script>
 </body>
 </html>

@@ -399,7 +399,7 @@ $(document).ready(function(){
    $("#idprofesion").change(function () {
            $("#idprofesion option:selected").each(function () {
             profesion=$(this).val();
-            $.post("especialidad_medica.php", {profesion:profesion}, function(data){
+            $.post("especialidad_medica_u.php", {profesion:profesion}, function(data){
             $("#especialidad_medica").html(data);
             });
         });
@@ -412,7 +412,7 @@ $(document).ready(function(){
    $("#iddependencia").change(function () {
            $("#iddependencia option:selected").each(function () {
             dependencia=$(this).val();
-            $.post("../eventos/dependencia_mds.php", {dependencia:dependencia}, function(data){
+            $.post("dependencia_mds_u.php", {dependencia:dependencia}, function(data){
             $("#dependencia_mds").html(data);
             });
         });

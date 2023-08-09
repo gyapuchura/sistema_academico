@@ -73,7 +73,7 @@ $cargo_red_salud = $link->real_escape_string(htmlentities($_POST['cargo_red_salu
       else {
 
   /* Primero Insertamos los datos en la tabla de nombres */
-  $sql0 = " INSERT INTO nombre (paterno, materno, nombre, ci, exp, fecha_nac, complemento, idnacionalidad , idgenero) ";
+  $sql0 = " INSERT INTO nombre (paterno, materno, nombre, ci, exp, fecha_nac, complemento, idnacionalidad, idgenero) ";
   $sql0.= " VALUES ('$paterno','$materno','$nombre','$ci','$exp','$fecha_nac','$complemento','$idnacionalidad','$idgenero') ";
   $result0 = mysqli_query($link,$sql0);
   
@@ -88,8 +88,8 @@ $cargo_red_salud = $link->real_escape_string(htmlentities($_POST['cargo_red_salu
   $idusuario_in = mysqli_insert_id($link);
   $_SESSION['idusuario_in_ss'] = $idusuario_in; 
 
-  $sql1 = " INSERT INTO nombre_datos (idnombre, idusuario, idformacion_academica, idprofesion, idespecialidad_medica, correo, celular, direccion_dom ) ";
-  $sql1.= " VALUES ('$idnombre','$idusuario_in','$idformacion_academica','$idprofesion','$idespecialidad_medica','$correo','$celular','$direccion_dom' ) ";
+  $sql1 = " INSERT INTO nombre_datos (idnombre, idusuario, idformacion_academica, idprofesion, idespecialidad_medica, correo, celular, direccion_dom, iddepartamento ) ";
+  $sql1.= " VALUES ('$idnombre','$idusuario_in','$idformacion_academica','$idprofesion','$idespecialidad_medica','$correo','$celular','$direccion_dom','$idresidencia' ) ";
   $result1 = mysqli_query($link,$sql1);
 
   $idnombre_datos = mysqli_insert_id($link);
