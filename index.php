@@ -1,7 +1,3 @@
-<?php 
-session_start();
-$_SESSION = array();
-session_destroy(); ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -18,6 +14,10 @@ session_destroy(); ?>
 <link href="bootstrap3/css/bootstrap.css" rel="stylesheet" />
 <link href="css/login-register.css" rel="stylesheet" />
 <link rel="stylesheet" href="css/font-awesome.css">
+
+<script src="jquery/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="bootstrap3/js/bootstrap.js" type="text/javascript"></script>
+<script src="js/login-register.js" type="text/javascript"></script>
 </head>
 <body>
 <div id="wrapper" class="home-page">
@@ -33,8 +33,6 @@ session_destroy(); ?>
 </div>
 	<!-- start header -->
 	<header>
-
-  
 	</header>
 	<!-- end header -->
 	<section id="banner">
@@ -46,7 +44,7 @@ session_destroy(); ?>
                 <img src="img/slides/safci_1.png" alt="" />
                 <div class="flex-caption">
                     <h3></h3>
-					<p></p>
+					          <p></p>
                 </div>
               </li>
               <li>
@@ -59,7 +57,6 @@ session_destroy(); ?>
         </div>
 	<!-- end slider -->
 	</section>
-
 <div class="container">
 		<div class="row">
             <div class="col-sm-3">
@@ -71,7 +68,7 @@ session_destroy(); ?>
             <div class="col-sm-3">
             <a href="aula/login/index.php"><h1>AULA VIRTUAL</h1></a>
             </div>
-        </div>
+    </div>
 </div>
 		 <div class="modal fade login" id="loginModal">
 		      <div class="modal-dialog login animated">
@@ -123,8 +120,6 @@ session_destroy(); ?>
 <script src="js/jquery.magnific-popup.min.js"></script>
 <script src="js/animate.js"></script>
 <script src="js/custom.js"></script>
-<script src="jquery/jquery-1.10.2.js" type="text/javascript"></script>
-<script src="bootstrap3/js/bootstrap.js" type="text/javascript"></script>
-<script src="js/login-register.js" type="text/javascript"></script>
+
 </body>
 </html>
