@@ -33,10 +33,9 @@
 </div>
 	<!-- start header -->
 	<header>
-<<<<<<< HEAD
+
 <h2 align="center" class="text-danger">AMBIENTE DE PRUEBAS DEL SISTEMA ACADÉMICO</h2>
-=======
->>>>>>> feature_gonzalombp
+
 	</header>
 	<!-- end header -->
 	<section id="banner">
