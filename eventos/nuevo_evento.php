@@ -175,7 +175,28 @@ $row_p = mysqli_fetch_array($result_p);
 <div class="col-md-1">
 <input type="text" class="form-control" name="cupo_max" required>
 </div>
+</div>
 
+<div class="row">
+  <div class="col-md-6"><h4>TIPO DE CONFIRMACIÓN DE INSCRIPCIÓN:</h4></div>
+  <div class="col-md-6">
+   <select name="idtipo_inscripcion"  id="idtipo_inscripcion" class="form-control" required>
+   <option value="">-SELECCIONE-</option>
+<?php
+$sql1 = "SELECT idtipo_inscripcion, tipo_inscripcion FROM tipo_inscripcion";
+$result1 = mysqli_query($link,$sql1);
+if ($row1 = mysqli_fetch_array($result1)){
+mysqli_field_seek($result1,0);
+while ($field1 = mysqli_fetch_field($result1)){
+} do {
+echo "<option value=". $row1[0]. ">". $row1[1]. "</option>";
+} while ($row1 = mysqli_fetch_array($result1));
+} else {
+echo "No se encontraron resultados!";
+}
+?>
+</select>
+</div>
 </div>
 
 <div class="row">

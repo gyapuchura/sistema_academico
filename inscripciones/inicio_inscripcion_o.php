@@ -82,18 +82,28 @@ $row0 = mysqli_fetch_array($result0);
 
 <div class="container">
 
-<!-- javascript --->
-
-<div class="box-area">
+<!---- BEGIN opciones con iconos ------->
 
 <div class="row">
-  <div class="col-md-1"></div>
-  <div class="col-md-3"><a href="oferta.php"><h4>VOLVER</h4></a></div>
-  <div class="col-md-4"><a href="registro_inscripcion_o.php"><h4 class="text-info">NUEVO USUARIO</h4></a></div>
-  <div class="col-md-4"><a href="inicio_inscripcion_ci_o.php"><h4 class="text-success">USUARIO REGISTRADO</h4></div> 
-</div>
+		<div class="skill-home"> <div class="skill-home-solid clearfix"> 
+		<div class="col-md-4 text-center">
+		<span class="icons c1"><i class="fa fa-book"></i></span><div class="box-area">
+		<h3>EVENTOS PROGRAMADOS</h3> <p>Volver para elegir otro evento programado acerca de la misma temática.</p> <a href="eventos_tema_o.php"><h4 class="text-info">VOLVER</h4></a></div>
+		</div>
+		<div class="col-md-4 text-center"> 
+		<span class="icons c2"><i class="fa fa-users"></i></span> <div class="box-area">
+		<h3>NUEVO USUARIO</h3><p>En caso de ser la primera vez que toma unn curso en la plataforma académica en salud</p> <a href="registro_inscripcion_o.php"><h4 class="text-info">REGISTRARSE</h4></a></div>
+		</div>
+		<div class="col-md-4 text-center"> 
+		<span class="icons c3"><i class="fa fa-user"></i></span> <div class="box-area">
+		<h3>USUARIO REGISTRADO</h3><p>haga clic en caso de ya estar registrado en sistema, use su número de Cédula de Identidad.</p> <a href="inicio_inscripcion_ci_o.php"><h4 class="text-success">CONTINUAR</h4></a></div>
+		</div>
+		</div></div>
+</div> 
 
-</div>
+    <!---- END opciones con iconos ------->
+
+
 </br>
 
 

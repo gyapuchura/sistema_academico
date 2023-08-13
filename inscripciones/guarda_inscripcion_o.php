@@ -32,6 +32,19 @@ $idprofesion           = $_POST['idprofesion'];
     } else {
     $idespecialidad_medica = '45';
     }
+//------ DEFINIMOS LA INSCRIPCION DIRECTA E INDIRECTA (begin)--------//
+
+$sql_in    = " SELECT idevento, idtipo_inscripcion FROM evento WHERE idevento='$idevento_ss' ";
+$result_in = mysqli_query($link,$sql_in);
+$row_in    = mysqli_fetch_array($result_in);
+
+if ($$row_in[1] == '1') {
+    $idestado_inscripcion = '1';    
+    } else {
+    $idestado_inscripcion = '2';
+    }
+
+    //------ DEFINIMOS LA INSCRIPCION DIRECTA E INDIRECTA (end)--------//
 
 $correo  = $link->real_escape_string(htmlentities($_POST['correo']));
 $celular = $link->real_escape_string(htmlentities($_POST['celular']));
@@ -99,7 +112,7 @@ $rowm=mysqli_fetch_array($resultm);
 
 $correlativo=$rowm[0]+1;
 
-$codigo="INS/MDSYD-".$correlativo."/".$gestion;
+$codigo="INS/MSYD-".$correlativo."/".$gestion;
 
 //----- Realizamos la seleccion de tipo de dependencias ------//
 
@@ -117,7 +130,7 @@ if ($iddependencia == '1') {
     $sql8 = " INSERT INTO inscripcion (idevento, idusuario, idnombre, idnombre_datos, iddato_laboral, ";
     $sql8.= " idestado_inscripcion, idestado_evaluacion, correlativo, codigo, fecha_preins, fecha_ins, gestion, idcomentario_evaluacion )";
     $sql8.= " VALUES ('$idevento_ss','$idusuario_in','$idnombre','$idnombre_datos','$iddato_laboral', ";
-    $sql8.= " '1','1','$correlativo','$codigo','$fecha','$fecha','$gestion','1')";
+    $sql8.= " '$idestado_inscripcion','1','$correlativo','$codigo','$fecha','$fecha','$gestion','1')";
     $result8 = mysqli_query($link,$sql8);  
 
     $idinscripcion = mysqli_insert_id($link);
@@ -141,7 +154,7 @@ if ($iddependencia == '1') {
         $sql8 = " INSERT INTO inscripcion (idevento, idusuario, idnombre, idnombre_datos, iddato_laboral, ";
         $sql8.= " idestado_inscripcion, idestado_evaluacion, correlativo, codigo, fecha_preins, fecha_ins, gestion, idcomentario_evaluacion)";
         $sql8.= " VALUES ('$idevento_ss','$idusuario_in','$idnombre','$idnombre_datos','$iddato_laboral', ";
-        $sql8.= " '1','1','$correlativo','$codigo','$fecha','$fecha','$gestion','1')";
+        $sql8.= " '$idestado_inscripcion','1','$correlativo','$codigo','$fecha','$fecha','$gestion','1')";
         $result8 = mysqli_query($link,$sql8); 
 
         $idinscripcion = mysqli_insert_id($link);
@@ -165,7 +178,7 @@ if ($iddependencia == '1') {
         $sql8 = " INSERT INTO inscripcion (idevento, idusuario, idnombre, idnombre_datos, iddato_laboral, ";
         $sql8.= " idestado_inscripcion, idestado_evaluacion, correlativo, codigo, fecha_preins, fecha_ins, gestion, idcomentario_evaluacion )";
         $sql8.= " VALUES ('$idevento_ss','$idusuario_in','$idnombre','$idnombre_datos','$iddato_laboral', ";
-        $sql8.= " '1','1','$correlativo','$codigo','$fecha','$fecha','$gestion','1')";
+        $sql8.= " '$idestado_inscripcion','1','$correlativo','$codigo','$fecha','$fecha','$gestion','1')";
         $result8 = mysqli_query($link,$sql8); 
 
         $idinscripcion = mysqli_insert_id($link);

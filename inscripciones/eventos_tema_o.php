@@ -104,7 +104,7 @@ $row0 = mysqli_fetch_array($result0);
                     <th>VER EVENTO</th>
                 </tr>
             </thead>
-			<tbody>
+			<tbody> 
             <?php
             $numero=1;
             $sql =" SELECT evento.idevento, evento.codigo, tematica.tematica, evento.fecha_inicio, evento.fecha_fin, evento.iddocente, evento.idestado_registro ";

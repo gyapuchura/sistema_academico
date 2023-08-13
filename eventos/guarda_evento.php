@@ -24,6 +24,7 @@ $idpublicacion 	= $_POST['idpublicacion'];
 $cupo_min       = $link->real_escape_string($_POST['cupo_min']);
 $cupo_max       = $link->real_escape_string($_POST['cupo_max']);
 $idmodalidad    = $_POST['idmodalidad'];
+$idtipo_inscripcion = $_POST['idtipo_inscripcion'];
 $iddepartamento = $_POST['iddepartamento'];
 $idprovincia    = $_POST['idprovincia'];
 $idmunicipio    = $_POST['idmunicipio'];
@@ -47,9 +48,9 @@ $gestion     = $row_o[2];
 $codigo      = "MSYD/".$sigla_depto."-".$correlativo."/".$row_o[2];
 
 $sql7 = " INSERT INTO evento (idobjetivo_anual, idmacrocurricula, idmicrocurricula, codigo, correlativo, gestion, fecha_inicio,";
-$sql7.= " fecha_fin, idpublicacion, cupo_min, cupo_max, idmodalidad, iddepartamento, idprovincia, idmunicipio, iddocente, idusuario, idestado_registro, idestado_ejecucion)";
+$sql7.= " fecha_fin, idpublicacion, cupo_min, cupo_max, idmodalidad, idtipo_inscripcion, iddepartamento, idprovincia, idmunicipio, iddocente, idusuario, idestado_registro, idestado_ejecucion)";
 $sql7.= " VALUES ('$idobjetivo_anual','$idmacrocurricula','$idmicrocurricula','$codigo','$correlativo','$gestion','$fecha_inicio','$fecha_fin', ";
-$sql7.= " '$idpublicacion','$cupo_min','$cupo_max','$idmodalidad','$iddepartamento','$idprovincia','$idmunicipio','$iddocente','$idusuario_ss','1','1') ";
+$sql7.= " '$idpublicacion','$cupo_min','$cupo_max','$idmodalidad','$idtipo_inscripcion','$iddepartamento','$idprovincia','$idmunicipio','$iddocente','$idusuario_ss','1','1') ";
 $result7 = mysqli_query($link,$sql7);
 $idevento = mysqli_insert_id($link);
 
