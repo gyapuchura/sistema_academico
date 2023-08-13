@@ -29,6 +29,7 @@ $fecha_fin        = $fecha_j[2].'-'.$fecha_j[1].'-'.$fecha_j[0];
 $idpublicacion    = $_POST['idpublicacion'];
 $cupo_min         = $link->real_escape_string(htmlentities($_POST['cupo_min']));
 $cupo_max         = $link->real_escape_string(htmlentities($_POST['cupo_max']));
+$idtipo_inscripcion = $_POST['idtipo_inscripcion'];
 $idmodalidad      = $_POST['idmodalidad'];
 $iddepartamento   = $_POST['iddepartamento'];
 $idprovincia      = $_POST['idprovincia'];
@@ -37,7 +38,7 @@ $iddocente        = $_POST['iddocente'];
 
 $sql8 =" UPDATE evento SET idobjetivo_anual='$idobjetivo_anual', idmacrocurricula='$idmacrocurricula', ";
 $sql8.=" idmicrocurricula='$idmicrocurricula', fecha_inicio='$fecha_inicio', fecha_fin='$fecha_fin', ";
-$sql8.=" idpublicacion='$idpublicacion', cupo_min='$cupo_min', cupo_max='$cupo_max', idmodalidad='$idmodalidad', ";
+$sql8.=" idpublicacion='$idpublicacion', cupo_min='$cupo_min', cupo_max='$cupo_max', idtipo_inscripcion='$idtipo_inscripcion', idmodalidad='$idmodalidad', ";
 $sql8.=" iddepartamento='$iddepartamento', idprovincia='$idprovincia', idmunicipio='$idmunicipio', iddocente='$iddocente'  WHERE idevento ='$idevento_ss' ";
 $result8 = mysqli_query($link,$sql8);
 

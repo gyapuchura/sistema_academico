@@ -83,7 +83,7 @@ $row_l = mysqli_fetch_array($result_l);
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="pageTitle">ACTUALIZAR DATOS USUARIO</h2>
+				<h2 class="pageTitle">NUEVO USUARIO</h2>
 			</div>
 		</div>
 	</div>
@@ -94,12 +94,14 @@ $row_l = mysqli_fetch_array($result_l);
 </br>
 <!-- MUESTRA LA PREINSCRIPCION REALIZADA --->
 
+
 <div class="row">
-    <div class="col-md-6"><h3>1.- ACTUALIZAR DATOS PERSONALES:</h3></div>
+    <div class="col-md-12"><h3 class="text-success">EL USUARIO SE REGISTRO CORRECTAMENTE!!</h3></div>
+</div>
+<div class="row">
+    <div class="col-md-6"><h3>1.- DATOS PERSONALES:</h3></div>
     <div class="col-md-6"></div>
 </div>
-
-
 
 <input type="hidden" name="idnombre_mod" value="<?php echo $row_n[9];?>">
 <div class="box-area">

@@ -17,7 +17,7 @@ $gestion = date("Y");
 
 $sql_e =" SELECT idevento, idobjetivo_anual, idmacrocurricula, idmicrocurricula, codigo, correlativo,";
 $sql_e.=" gestion, fecha_inicio, fecha_fin, iddepartamento, idprovincia, idmunicipio, idpublicacion, idmodalidad,";
-$sql_e.=" cupo_min, cupo_max, iddocente, idusuario, idestado_registro FROM evento WHERE idevento='$idevento_ss'";
+$sql_e.=" cupo_min, cupo_max, iddocente, idusuario, idestado_registro, idobjetivo_anual, idtipo_inscripcion FROM evento WHERE idevento='$idevento_ss'";
 $result_e = mysqli_query($link,$sql_e);
 $row_e = mysqli_fetch_array($result_e);
 
@@ -230,6 +230,29 @@ $row_ev = mysqli_fetch_array($result_ev);
 <input type="text" class="form-control" name="cupo_max" value="<?php echo $row_e[15]?>" equired>
 </div>
 
+</div>
+
+<div class="row">
+  <div class="col-md-6"><h4>TIPO DE CONFIRMACIÓN DE INSCRIPCIÓN::</h4></div>
+  <div class="col-md-6">
+  <select name="idtipo_inscripcion"  id="idtipo_inscripcion" class="form-control">
+      <option selected>Seleccione</option>
+      <?php
+      $sqlv = "SELECT idtipo_inscripcion, tipo_inscripcion FROM tipo_inscripcion ";
+      $resultv = mysqli_query($link,$sqlv);
+      if ($rowv = mysqli_fetch_array($resultv)){
+      mysqli_field_seek($resultv,0);
+      while ($fieldv = mysqli_fetch_field($resultv)){
+      } do {
+      ?>
+      <option value="<?php echo $rowv[0];?>" <?php if ($rowv[0]==$row_e[20]) echo "selected";?> ><?php echo $rowv[1];?> </option>
+      <?php
+      } while ($rowv = mysqli_fetch_array($resultv));
+      } else {
+      }
+      ?>
+    </select>
+</div>
 </div>
 
 <div class="row">

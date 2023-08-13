@@ -17,12 +17,12 @@ $gestion = date("Y");
 
 $sql_e =" SELECT evento.idevento, evento.codigo, objetivo_anual.codigo, objetivo_anual.objetivo_anual, macrocurricula.codigo, macrocurricula.macrocurricula, tematica.tematica, ";
 $sql_e.=" evento.fecha_inicio, evento.fecha_fin, publicacion.publicacion, evento.cupo_min, evento.cupo_max, modalidad.modalidad, ";
-$sql_e.=" departamento.departamento, municipios.municipio, provincias.provincia, nombre.nombre, nombre.paterno, nombre.materno, microcurricula.codigo ";
-$sql_e.=" FROM evento, objetivo_anual, macrocurricula, microcurricula, tematica, publicacion, modalidad, departamento, municipios, provincias, nombre, usuarios ";
+$sql_e.=" departamento.departamento, municipios.municipio, provincias.provincia, nombre.nombre, nombre.paterno, nombre.materno, microcurricula.codigo, tipo_inscripcion.tipo_inscripcion ";
+$sql_e.=" FROM evento, objetivo_anual, macrocurricula, microcurricula, tematica, publicacion, modalidad, departamento, municipios, provincias, nombre, usuarios, tipo_inscripcion";
 $sql_e.=" WHERE evento.idobjetivo_anual=objetivo_anual.idobjetivo_anual AND evento.idmacrocurricula=macrocurricula.idmacrocurricula ";
 $sql_e.=" AND evento.idmicrocurricula=microcurricula.idmicrocurricula AND microcurricula.idtematica=tematica.idtematica ";
-$sql_e.=" AND evento.idpublicacion=publicacion.idpublicacion AND evento.idmodalidad=modalidad.idmodalidad  ";
-$sql_e.=" AND evento.iddepartamento=departamento.iddepartamento AND evento.idprovincia=provincias.idprovincia  ";
+$sql_e.=" AND evento.idpublicacion=publicacion.idpublicacion AND evento.idmodalidad=modalidad.idmodalidad AND evento.idtipo_inscripcion=tipo_inscripcion.idtipo_inscripcion ";
+$sql_e.=" AND evento.iddepartamento=departamento.iddepartamento AND evento.idprovincia=provincias.idprovincia ";
 $sql_e.=" AND evento.idmunicipio=municipios.idmunicipio AND evento.iddocente=usuarios.idusuario ";
 $sql_e.=" AND usuarios.idnombre=nombre.idnombre AND microcurricula.idtematica=tematica.idtematica AND evento.idevento='$idevento_ss' ";
 $result_e = mysqli_query($link,$sql_e);
@@ -156,8 +156,10 @@ $row_e = mysqli_fetch_array($result_e);
 </div>
 
 <div class="row">
-  <div class="col-md-3"><h4>MODALIDAD:</h4></div>
-  <div class="col-md-9"><h4 class="text-muted"><?php echo $row_e[12];?></h4></div>
+  <div class="col-md-2"><h4>MODALIDAD:</h4></div>
+  <div class="col-md-2"><h4 class="text-muted"><?php echo $row_e[12];?></h4></div>
+  <div class="col-md-4"><h4>TIPO DE CONFIRMACIÓN DE INSCRIPCIÓN:</h4></div>
+  <div class="col-md-4"><h4 class="text-muted"><?php echo $row_e[20];?></h4></div>
 </div>
 
 <div class="row">

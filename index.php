@@ -41,14 +41,14 @@
         <div id="main-slider" class="flexslider">
             <ul class="slides">
               <li>
-                <img src="img/slides/safci_1.png" alt="" />
+                <img src="img/slides/safci_7.png" alt="" />
                 <div class="flex-caption">
                     <h3></h3>
 					          <p></p>
                 </div>
               </li>
               <li>
-                <img src="img/slides/safci_2.png" alt="" />
+                <img src="img/slides/safci_8.png" alt="" />
                 <div class="flex-caption">
                     <h3></h3>
                 </div>
@@ -60,43 +60,51 @@
 <div class="container">
 		<div class="row">
             <div class="col-sm-3">
-            <h1><a class="tg-btn" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">INGRESAR</a></h1>
+            <h1><a class="btn btn-primary" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">INGRESAR</a></h1>
             </div>
 			      <div class="col-sm-6">
-            <a href="inscripciones/oferta.php"><h1>OFERTA ACADÉMICA</h1></a>
+            <h1><a class="btn btn-primary pull-right" href="inscripciones/oferta.php">OFERTA ACADÉMICA</a></h1>
             </div>
             <div class="col-sm-3">
-            <a href="aula/login/index.php"><h1>AULA VIRTUAL</h1></a>
+            <h1><a class="btn btn-primary pull-right" href="aula/login/index.php">AULA VIRTUAL</a></h1>
             </div>
     </div>
 </div>
-		 <div class="modal fade login" id="loginModal">
-		      <div class="modal-dialog login animated">
-    		      <div class="modal-content">
-    		         <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Ingresar Como</h4>
+
+		  <div class="modal fade login" id="loginModal">
+		    <div class="modal-dialog login animated">
+    		  <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title">Ingresar Como</h4>
+              </div>
+              <div class="modal-body">
+                <div class="box">
+                  <div class="content">
+                    <div class="error"></div>
+                      <div class="form loginBox">
+                          <form method="post" action="validacion.php" accept-charset="UTF-8">
+                          <input id="usuario" class="form-control" type="text" placeholder="usuario" name="usuario">
+                          <input id="password" class="form-control" type="password" placeholder="password" name="password">
+                          <button type="submit" class="btn btn-primary">ACCEDER</button>
+                          </form>
+                      </div>
                     </div>
-                    <div class="modal-body">
-                        <div class="box">
-                             <div class="content">
-                                <div class="error"></div>
-                                  <div class="form loginBox">
-                                      <form method="post" action="validacion.php" accept-charset="UTF-8">
-                                      <input id="usuario" class="form-control" type="text" placeholder="usuario" name="usuario">
-                                      <input id="password" class="form-control" type="password" placeholder="password" name="password">
-                                    <button type="submit" class="tg-btn" align="center">ACCEDER</button>
-                                      </form>
-                                  </div>
-                                </div>
-                             </div>
-                        </div>
-    		        </div>
-		      </div>
-		  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+              <div class="row"> 
+                </br>
+              </div> 
+              </div>
+
+           </div>
+        </div>
+      </div>
 
 	<!-- FOOTER -->
-
+</div>
 <footer>
 
 <?php include("footer.php");?>
