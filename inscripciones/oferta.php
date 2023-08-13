@@ -26,10 +26,13 @@ $fecha 			    = date("Y-m-d");
 <link href="../css/fancybox/jquery.fancybox.css" rel="stylesheet">
 <link href="../css/flexslider.css" rel="stylesheet" />
 <link href="../css/style.css" rel="stylesheet" />
-
 <link rel="stylesheet" href="../css/jquery-ui.min.css">
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/dataTables.bootstrap.min.css">
+
+<script src="../jquery/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="../bootstrap3/js/bootstrap.js" type="text/javascript"></script>
+<script src="../js/login-register.js" type="text/javascript"></script>
 </head>
 <body>
 <div id="wrapper">
@@ -153,6 +156,8 @@ $fecha 			    = date("Y-m-d");
 <script src="../js/jquery.dataTables.min.js"></script>
 <script src="../js/script.js"></script>
 <script src="../js/dataTables.bootstrap.min.js"></script>
+
+
 <script>
 $(document).ready(function() {
 $('#example2').DataTable( {

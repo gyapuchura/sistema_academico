@@ -34,32 +34,34 @@ if ($row_e = mysqli_fetch_array($result_e)) {
     
 //---- Consultamos el cupo en el evento programado -----//
 
-$sql_c = " SELECT idevento, cupo_max FROM evento WHERE idevento = '$idevento' ";
+$sql_c    = " SELECT idevento, cupo_max FROM evento WHERE idevento = '$idevento' ";
 $result_c = mysqli_query($link,$sql_c);
-$row_c = mysqli_fetch_array($result_c);
+$row_c    = mysqli_fetch_array($result_c);
 $cupo_max = $row_c[1];
 
-$sql_oc = " SELECT COUNT(*) FROM inscripcion WHERE idestado_inscripcion='2' AND idevento='$idevento' ";
+$sql_oc    = " SELECT COUNT(*) FROM inscripcion WHERE idestado_inscripcion='2' AND idevento='$idevento' ";
 $result_oc = mysqli_query($link,$sql_oc);
-$row_oc = mysqli_fetch_array($result_oc);
-$cupo_oc = $row_oc[0];
+$row_oc    = mysqli_fetch_array($result_oc);
+$cupo_oc   = $row_oc[0];
 
-if ($cupo_oc <= $cupo_max) {
-   
-$sql8 = " UPDATE inscripcion SET idestado_inscripcion ='2', fecha_ins='$fecha' ";
-$sql8.= " WHERE idinscripcion = '$idinscripcion' ";
-$result8 = mysqli_query($link,$sql8);
+    if ($cupo_oc == $cupo_max) {
+ 
+        //------ si el cupo ocupado es igual al cupo maximo el evento ya no se ofertara ----//
+        $sql9 = " UPDATE evento SET idestado_registro ='3'  ";
+        $sql9.= " WHERE idevento = '$idevento' ";
+        $result9 = mysqli_query($link,$sql9);
+    
+        header("Location:mensaje_sin_cupo.php");
 
-header("Location:mensaje_confirmacion_ins.php");
+    } else {
 
-} else {
+    $sql8 = " UPDATE inscripcion SET idestado_inscripcion ='2', fecha_ins='$fecha' ";
+    $sql8.= " WHERE idinscripcion = '$idinscripcion' ";
+    $result8 = mysqli_query($link,$sql8);
 
-    header("Location:mensaje_sin_cupo.php");
+    header("Location:mensaje_confirmacion_ins.php");
 
-}
-}
-
-
-
+        }
+    }
 
 ?>
