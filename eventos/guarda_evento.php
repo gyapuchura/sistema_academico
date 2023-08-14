@@ -47,10 +47,10 @@ $correlativo = $rowe[0]+1;
 $gestion     = $row_o[2];
 $codigo      = "MSYD/".$sigla_depto."-".$correlativo."/".$row_o[2];
 
-$sql7 = " INSERT INTO evento (idobjetivo_anual, idmacrocurricula, idmicrocurricula, codigo, correlativo, gestion, fecha_inicio,";
-$sql7.= " fecha_fin, idpublicacion, cupo_min, cupo_max, idmodalidad, idtipo_inscripcion, iddepartamento, idprovincia, idmunicipio, iddocente, idusuario, idestado_registro, idestado_ejecucion)";
+$sql7 = " INSERT INTO evento (idobjetivo_anual, idmacrocurricula, idmicrocurricula, codigo, correlativo, gestion, fecha_inicio, fecha_fin,";
+$sql7.= " idpublicacion, cupo_min, cupo_max, idmodalidad, idtipo_inscripcion, iddepartamento, idprovincia, idmunicipio, iddocente, idusuario, idestado_registro, idestado_ejecucion, fecha_registro) ";
 $sql7.= " VALUES ('$idobjetivo_anual','$idmacrocurricula','$idmicrocurricula','$codigo','$correlativo','$gestion','$fecha_inicio','$fecha_fin', ";
-$sql7.= " '$idpublicacion','$cupo_min','$cupo_max','$idmodalidad','$idtipo_inscripcion','$iddepartamento','$idprovincia','$idmunicipio','$iddocente','$idusuario_ss','1','1') ";
+$sql7.= " '$idpublicacion','$cupo_min','$cupo_max','$idmodalidad','$idtipo_inscripcion','$iddepartamento','$idprovincia','$idmunicipio','$iddocente','$idusuario_ss','1','1','$fecha') ";
 $result7 = mysqli_query($link,$sql7);
 $idevento = mysqli_insert_id($link);
 

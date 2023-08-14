@@ -40,9 +40,9 @@ $idplan_anual_ss = $_SESSION['idplan_anual_ss'];
          <p class="pull-left hidden-xs">MINISTERIO DE SALUD Y DEPORTES</p>
          <p class="pull-right"><i class="fa fa-user"></i>
         <?php
-$sqlus =" SELECT nombre, paterno, materno FROM nombre WHERE idnombre='$idnombre_ss'";
-$resultus = mysqli_query($link,$sqlus);
-$rowus = mysqli_fetch_array($resultus);?>
+            $sqlus =" SELECT nombre, paterno, materno FROM nombre WHERE idnombre='$idnombre_ss'";
+            $resultus = mysqli_query($link,$sqlus);
+            $rowus = mysqli_fetch_array($resultus);?>
         <?php echo $rowus[0];?> <?php echo $rowus[1];?> <?php echo $rowus[2];?></p>
       </div>
     </div>
@@ -96,8 +96,9 @@ $rowus = mysqli_fetch_array($resultus);?>
 </div>
 </br>
 <div class="row">
-<div class="col-md-12"><h4 align="center"><a href="administrar_eventos.php">VOLVER</a></h4>
-</div>
+<div class="col-md-4"><h4 align="center"><a href="administrar_eventos.php">VOLVER</a></h4></div>
+<div class="col-md-4"><h4 align="center"></div>
+<div class="col-md-4"><h4 align="center"><a href="eventos.php">IR A EVENTOS</a></h4></div>
 </div>
 
 <!-- javascript --->
