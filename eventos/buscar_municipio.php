@@ -2,6 +2,9 @@
 
       $b = $_POST['b'];
 
+      if ($b == '' || $b == ' ') {
+            echo "No se han escrito el nombre del municipio.";
+      } else {
             $numero=1;
             $sql =" SELECT municipios.iddepartamento, municipios.idprovincia, municipios.idmunicipio, municipios.municipio, ";
             $sql.=" departamento.departamento FROM municipios, departamento WHERE municipios.iddepartamento=departamento.iddepartamento ";
@@ -18,10 +21,10 @@
                         $idprovincia    = $row[1];
                         $idmunicipio    = $row[2];
                         $departamento   = $row[4];
-                        $municipio      = $row[3];
+                        $municipio      = mb_strtoupper($row[3]);
 
 
-                        echo $numero.".- ".$departamento." - ".$municipio." - ";
+                        echo $numero.".- ".$municipio." - ".$departamento." - ";
                         echo "<input name='idmunicipio' type='radio' value=".$idmunicipio." required>";	
                         echo "<input name='idprovincia' type='hidden' value=".$idprovincia.">";	
                         echo "<input name='iddepartamento' type='hidden' value=".$iddepartamento.">";	                        
@@ -31,5 +34,5 @@
                   }
             }
       
-
+      }
 ?>

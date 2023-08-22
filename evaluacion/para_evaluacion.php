@@ -93,7 +93,7 @@ $rowus = mysqli_fetch_array($resultus);?>
 
 </div>
 </div>
-<!--- GESTION DE EMPRESAS ---->
+<!--- begin EVENTOS PARA EVALUCION  ---->
 
 <div class="table-responsive">
     <table class="table table-bordered" id="example" width="100%" cellspacing="0">
@@ -170,7 +170,7 @@ $rowus = mysqli_fetch_array($resultus);?>
     </table>
 </div>
 
-<!--- gestion de usuarios ---->
+<!--- end EVENTOS PARA EVALUCION  ---->
 
 </div>
 </br>

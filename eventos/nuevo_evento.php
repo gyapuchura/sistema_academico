@@ -230,9 +230,9 @@ echo "No se encontraron resultados!";
 <select name="iddocente"  id="iddocente" class="form-control" required>
    <option value="">-SELECCIONE-</option>
 <?php
-$sql1 = " SELECT usuarios.idusuario, nombre.nombre, nombre.paterno, nombre.materno FROM usuarios, nombre ";
-$sql1.= " WHERE usuarios.idnombre=nombre.idnombre AND usuarios.condicion='ACTIVO' AND usuarios.perfil='DOCENTE' ";
-$sql1.= " ORDER BY nombre.paterno ";
+$sql1 = " SELECT docente.iddocente, usuarios.idusuario, nombre.paterno, nombre.materno, nombre.nombre FROM docente, usuarios, nombre  ";
+$sql1.= " WHERE docente.idusuario=usuarios.idusuario AND usuarios.idnombre=nombre.idnombre AND usuarios.condicion='ACTIVO'  ";
+$sql1.= "  AND usuarios.perfil='DOCENTE' ORDER BY nombre.paterno  ";
 $result1 = mysqli_query($link,$sql1);
 if ($row1 = mysqli_fetch_array($result1)){
 mysqli_field_seek($result1,0);
