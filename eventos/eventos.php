@@ -112,15 +112,16 @@ $rowus = mysqli_fetch_array($resultus);?>
                     <th>FECHA INICIO</th>
                     <th>FECHA FINALIZACIÓN</th>
                     <th>DOCENTE</th>
+                    <th>FECHA REGISTRO</th>
                     <th>VER EVENTO</th>
                 </tr>
             </thead>
 			<tbody>
             <?php
             $numero=1;
-            $sql =" SELECT evento.idevento, evento.codigo, tematica.tematica, evento.fecha_inicio, evento.fecha_fin, evento.iddocente, evento.idestado_registro ";
+            $sql =" SELECT evento.idevento, evento.codigo, tematica.tematica, evento.fecha_inicio, evento.fecha_fin, evento.iddocente, evento.idestado_registro, evento.fecha_registro ";
             $sql.=" FROM evento, microcurricula, tematica WHERE evento.idmicrocurricula=microcurricula.idmicrocurricula AND ";
-            $sql.=" microcurricula.idtematica=tematica.idtematica ORDER BY evento.fecha_registro DESC ";
+            $sql.=" microcurricula.idtematica=tematica.idtematica ORDER BY evento.idevento DESC ";
             $result = mysqli_query($link,$sql);
             if ($row = mysqli_fetch_array($result)){
             mysqli_field_seek($result,0);
@@ -153,7 +154,13 @@ $rowus = mysqli_fetch_array($resultus);?>
                 ?>
                 <?php echo $rowd[0];?> <?php echo $rowd[1];?> <?php echo $rowd[2];?>    
                 </td>
-                
+                <td>
+                    <?php 
+                    $fecha_r = explode('-',$row[7]);
+                    $f_registro = $fecha_r[2].'/'.$fecha_r[1].'/'.$fecha_r[0];
+                    echo $f_registro;
+                    ?>   
+                </td>
                 <td>     
                 <?php  if ($row[6] == '1') { ?>
                     <form name="VALIDA" action="valida_evento.php" method="post">
@@ -162,7 +169,7 @@ $rowus = mysqli_fetch_array($resultus);?>
                     <button type="submit" class="btn-link">VER/MODIFICAR</button></form>
                 <?php } else { ?>
                         CONSOLIDADO
-                    <?php  } ?>  
+                <?php  } ?>  
                 </td>
                 </tr>  
             <?php

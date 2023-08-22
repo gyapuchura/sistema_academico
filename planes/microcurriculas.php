@@ -141,7 +141,7 @@ $rowus = mysqli_fetch_array($resultus);?>
             $numero=1;
             $sql =" SELECT microcurricula.idmicrocurricula, microcurricula.codigo, tematica.tematica, microcurricula.carga_horaria, ";
             $sql.=" microcurricula.pre_requisito, microcurricula.costo FROM microcurricula, tematica ";
-            $sql.=" WHERE microcurricula.idtematica=tematica.idtematica ORDER BY microcurricula.idmicrocurricula ";
+            $sql.=" WHERE microcurricula.idtematica=tematica.idtematica AND microcurricula.idmacrocurricula ='$idmacrocurricula_ss' ORDER BY microcurricula.idmicrocurricula ";
             $result = mysqli_query($link,$sql);
             if ($row = mysqli_fetch_array($result)){
             mysqli_field_seek($result,0);

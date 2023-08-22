@@ -134,7 +134,7 @@ $rowus = mysqli_fetch_array($resultus);?>
                 
             <?php
             $numero=1;
-            $sql =" SELECT idobjetivo_anual, idplan_anual, codigo, correlativo, objetivo_anual, meta, presupuesto FROM objetivo_anual ";
+            $sql =" SELECT idobjetivo_anual, idplan_anual, codigo, correlativo, objetivo_anual, meta, presupuesto FROM objetivo_anual WHERE idplan_anual='$idplan_anual_ss' ";
             $result = mysqli_query($link,$sql);
             if ($row = mysqli_fetch_array($result)){
             mysqli_field_seek($result,0);

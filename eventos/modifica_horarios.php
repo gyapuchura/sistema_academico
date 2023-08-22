@@ -14,7 +14,7 @@ $codigo_evento_ss = $_SESSION['codigo_evento_ss'];
 
 $gestion = date("Y");
 
-$sql_e =" SELECT evento.idevento, tematica.tematica FROM evento, microcurricula, tematica WHERE evento.idmicrocurricula=microcurricula.idmicrocurricula ";
+$sql_e =" SELECT evento.idevento, tematica.tematica, evento.fecha_inicio, evento.fecha_fin FROM evento, microcurricula, tematica WHERE evento.idmicrocurricula=microcurricula.idmicrocurricula ";
 $sql_e.=" AND microcurricula.idtematica=tematica.idtematica AND evento.idevento='$idevento_ss'  ";
 $result_e = mysqli_query($link,$sql_e);
 $row_e = mysqli_fetch_array($result_e);
@@ -89,6 +89,32 @@ $row_e = mysqli_fetch_array($result_e);
         <h2 class="text-muted"><?php echo $codigo_evento_ss;?></h2>
         <h2 class="text-muted"><?php echo $row_e[1];?></h2>
 			</div>		
+
+      <div class="box-area">
+
+<div class="row">
+  <div class="col-md-3"><h4>FECHA DE INICIO:</h4></div>
+  <div class="col-md-3">
+    <h4 class="text-muted">
+        <?php 
+        $fecha_i = explode('-',$row_e[2]);
+        $f_inicio    = $fecha_i[2].'/'.$fecha_i[1].'/'.$fecha_i[0];
+        echo $f_inicio;
+        ?>    
+    </h4></div>
+  <div class="col-md-3"><h4>FECHA DE FINALIZACIÓN:</h4></div>
+  <div class="col-md-3">
+    <h4 class="text-muted">
+        <?php 
+        $fecha_f = explode('-',$row_e[3]);
+        $f_final = $fecha_f[2].'/'.$fecha_f[1].'/'.$fecha_f[0];
+        echo $f_final;
+        ?>  
+    </h4></div>
+</div>
+</div>
+
+
 </div>
 <div class="container" style="padding-top: 1em;">
 <table class="table table-condensed">

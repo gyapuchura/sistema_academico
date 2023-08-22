@@ -86,7 +86,7 @@ $rowus = mysqli_fetch_array($resultus);?>
 	<div class="container">
 		<div class="row">
 		<div class="tg-main-section tg-banner tg-haslayout parallax-window" data-parallax="scroll" data-bleed="100" data-speed="0.2" data-image-src="images/slider/img-03.jpg">
-        <h4 align="center"><a href="para_evaluacion.php">VOLVER</a></h4>
+        <h4 align="center"><a href="eventos_docente.php">VOLVER</a></h4>
         <h2 align="center"><?php echo $codigo_evento_ss;?></h2>
         <h2 align="center"><?php echo $row0[0];?></h2>
 		</div>
@@ -116,9 +116,9 @@ $rowus = mysqli_fetch_array($resultus);?>
 			<tbody>
             <?php
             $numero=1;
-            $sql =" SELECT inscripcion.idinscripcion, inscripcion.codigo, nombre.ci, nombre.complemento, nombre.paterno, nombre.materno, nombre.nombre, inscripcion.nota_final, inscripcion.nota_final, ";
-            $sql.=" comentario_evaluacion.comentario_evaluacion FROM inscripcion, nombre, comentario_evaluacion WHERE inscripcion.idnombre=nombre.idnombre AND inscripcion.idestado_inscripcion='2' ";
-            $sql.=" AND inscripcion.idcomentario_evaluacion=comentario_evaluacion.idcomentario_evaluacion AND inscripcion.idevento='$idevento_ss' ORDER BY inscripcion.idinscripcion ";
+            $sql =" SELECT inscripcion.idinscripcion, inscripcion.codigo, nombre.ci, nombre.complemento, nombre.paterno, nombre.materno, nombre.nombre, inscripcion.nota_final, comentario_evaluacion.comentario_evaluacion, ";
+            $sql.=" evento.idestado_ejecucion FROM evento, inscripcion, nombre, comentario_evaluacion WHERE inscripcion.idnombre=nombre.idnombre AND inscripcion.idestado_inscripcion='2' AND inscripcion.idevento=evento.idevento ";
+            $sql.=" AND inscripcion.idcomentario_evaluacion=comentario_evaluacion.idcomentario_evaluacion AND inscripcion.idevento='$idevento_ss' ORDER BY inscripcion.idinscripcion  ";
             $result = mysqli_query($link,$sql);
             if ($row = mysqli_fetch_array($result)){
             mysqli_field_seek($result,0);
@@ -127,20 +127,27 @@ $rowus = mysqli_fetch_array($resultus);?>
             ?>
 				<tr>
 				<td><?php echo $numero;?></td>
-                <td><?php echo $row[1];?></td>
+        <td><?php echo $row[1];?></td>
 				<td><?php echo $row[2];?> <?php echo $row[3];?></td>
-                <td><?php echo $row[4];?></td>
-                <td><?php echo $row[5];?></td>
-                <td><?php echo $row[6];?></td>               
-                <form name="VALIDA" action="guarda_nota_final.php" method="post">
-                <td><input type="text" class="form-control" name="nota_final" value="<?php echo $row[7]?>" required 
-                <?php if ($row[8] != '') { } else { echo "autofocus"; }?> ></td>
-                <td><?php echo $row[9];?></td>
-                <td>  
-                    <input name="idinscripcion" type="hidden" value="<?php echo $row[0];?>" >
-                    <button type="submit" class="btn btn-primary">GUARDAR</button></form>
-                </td>                
-                </tr>  
+        <td><?php echo $row[4];?></td>
+        <td><?php echo $row[5];?></td>
+        <td>
+          <?php echo $row[6];?> 
+        </td>               
+        <td>
+        <form name="GUARDA" action="guarda_nota_final_doc.php" method="post">
+        <input type="text" class="form-control" name="nota_final" value="<?php echo $row[7]?>" required <?php if ($row[9] == '4') { echo "disabled";} else {  }?>
+        <?php if ($row[7] != '0') { } else { echo "autofocus"; }?>>
+        </td>
+        <td>
+        <?php  if ($row[7] >= '71') { echo '<p class="text-success">'; } else { echo '<p class="text-danger">'; } ?>  
+        <?php echo $row[8]?></p>
+        </td>
+        <td>  
+            <input name="idinscripcion" type="hidden" value="<?php echo $row[0];?>" >
+            <button type="submit" class="btn btn-primary">GUARDAR</button></form>
+        </td>           
+        </tr>  
             <?php
             $numero=$numero+1;  
             }
@@ -152,7 +159,7 @@ $rowus = mysqli_fetch_array($resultus);?>
     </table>
 </div>
 
-<form name="FORM_EVAL" action="finaliza_evaluacion.php" method="post">
+<form name="FORM_EVAL" action="finaliza_evaluacion_doc.php" method="post">
 <input type="hidden" name="idevento" value="<?php echo $idevento_ss;?>">
     <div class="row">
         <div class="col-md-4"><h4></h4></div>

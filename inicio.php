@@ -140,8 +140,7 @@ mysqli_field_seek($result,0);
 while ($field = mysqli_fetch_field($result)){ 
 } do {
 ?>
-                <!--- Control Interno ACCESO SCEP --->       
-                     
+                <!--- Control Interno ACCESO SCEP --->                            
             <div class="col-md-4 col-sm-6 col-xs-12 gallery-item-wrapper nature">
                 <div class="gallery-item">
                     <div class="gallery-thumb">
@@ -167,7 +166,6 @@ while ($field = mysqli_fetch_field($result)){
 
 <?php
 ////////	SISTEMA DE CONTROL INTERNO ACCESO UAI******/	
-
 $sql = "SELECT perfil  from usuarios  where idusuario = '$idusuario_ss' and perfil = '$perfil_ss' ";
 $result = mysqli_query($link,$sql);
 $row = mysqli_fetch_array($result);
@@ -185,12 +183,12 @@ while ($field = mysqli_fetch_field($result)){
                         <a href="#" class="gallery-link"><i class="fa fa-link"></i></a>
                     </div>
                     <div class="gallery-details">
-                        <div class="editContent">
-                            <h5>GESTIÓN ADMINISTRATIVA</h5>
-                        </div>
-                        <div class="editContent">
-                            <p>Permite realizar la gestión de la Informacion administrativa del sistema académico.</p>
-                        </div>
+                    <div class="editContent">
+                        <h5>GESTIÓN ADMINISTRATIVA</h5>
+                    </div>
+                    <div class="editContent">
+                        <p>Permite realizar la gestión de la Informacion administrativa del sistema académico.</p>
+                    </div>
                     </div>
                 </div>
             </div>  
@@ -200,6 +198,7 @@ while ($field = mysqli_fetch_field($result)){
 }
 ?>         
 
+        <!--- SESIÓN DEL PARTICIPANTE -->
 <?php
 ////////	/****** eleccion de acceso para el perfil DAF- UAI - SCEP ******/		
 $sql = "SELECT perfil  from usuarios  where idusuario = '$idusuario_ss' and perfil = '$perfil_ss' ";
@@ -211,7 +210,7 @@ mysqli_field_seek($result,0);
 while ($field = mysqli_fetch_field($result)){
 } do {
 ?>  
-        <!--- SESIÓN DEL PARTICIPANTE -->
+
             <div class="col-md-4 col-sm-6 col-xs-12 gallery-item-wrapper nature">
                 <div class="gallery-item">
                     <div class="gallery-thumb">
@@ -234,6 +233,44 @@ while ($field = mysqli_fetch_field($result)){
     } else { 
     }
 ?>     
+
+<!----- begin - Sesion del Docente -------->
+
+<?php
+////////	/****** eleccion de acceso para el perfil DAF- UAI - SCEP ******/		
+$sql = "SELECT perfil  from usuarios  where idusuario = '$idusuario_ss' and perfil = '$perfil_ss' ";
+$result = mysqli_query($link,$sql);
+$row = mysqli_fetch_array($result);
+
+if ($row[0] == 'DOCENTE' ){
+mysqli_field_seek($result,0);
+while ($field = mysqli_fetch_field($result)){
+} do {
+?>  
+            <div class="col-md-4 col-sm-6 col-xs-12 gallery-item-wrapper nature">
+                <div class="gallery-item">
+                    <div class="gallery-thumb">
+                        <img src="img/works/gestion_docente.jpg" class="img-responsive" alt="5th gallery Thumb">
+                        <div class="image-overlay"></div>                             
+                        <a href="evaluacion/eventos_docente.php" class="gallery-link"><i class="fa fa-link"></i></a>
+                    </div>
+                    <div class="gallery-details">
+                        <div class="editContent">
+                            <h5>SESIÓN DEL TUTOR/DOCENTE</h5>
+                        </div>
+                        <div class="editContent">
+                            <p>PERMITE REALIZAR TAREAS ESPECÍFICAS DEL DOCENTE O TUTOR</p>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+<?php
+    } while ($row = mysqli_fetch_array($result));
+    } else { 
+    }
+?>    
+
+<!----- end - Sesion del Docente -------->
 
 <?php
 ////////	/****** eleccion de acceso para el perfil DAF- UAI - SCEP ******/		
