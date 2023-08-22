@@ -9,13 +9,9 @@ $idusuario_ss  =  $_SESSION['idusuario_ss'];
 $idnombre_ss   =  $_SESSION['idnombre_ss'];
 $perfil_ss     =  $_SESSION['perfil_ss'];
 
-$idevento_ss      = $_SESSION['idevento_ss'];
-$codigo_evento_ss = $_SESSION['codigo_evento_ss'];
-
-$sql0 = " SELECT tematica.tematica FROM evento, microcurricula, tematica WHERE evento.idmicrocurricula=microcurricula.idmicrocurricula ";
-$sql0.= " AND microcurricula.idtematica=tematica.idtematica AND evento.idevento='$idevento_ss' ";
-$result0 = mysqli_query($link,$sql0);
-$row0 = mysqli_fetch_array($result0);
+if($_SESSION['perfil_ss'] != "DOCENTE"){ 		
+	header("Location:../index.php");	
+}
 
 ?>
 <!DOCTYPE html>
@@ -26,7 +22,6 @@ $row0 = mysqli_fetch_array($result0);
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="" />
 
-<!-- c+ss -->
 <link href="../css/bootstrap.min.css" rel="stylesheet" />
 <link href="../css/fancybox/jquery.fancybox.css" rel="stylesheet">
 <link href="../css/flexslider.css" rel="stylesheet" />
@@ -68,57 +63,54 @@ $rowus = mysqli_fetch_array($resultus);?>
                 <?php include("../menu_academico.php");?>
             </div>
         </div>
-
-<script language="javascript" src="../js/jquery-3.1.1.min.js"></script>
-
-	</header><!-- end header -->
+	</header>
+    <!-- end header -->
 	<section id="inner-headline">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="pageTitle">EVALUACIÓN A PARTICIPANTES</h2>
+				<h2 class="pageTitle">EVENTOS DEL DOCENTE </h2>
 			</div>
 		</div>
 	</div>
 	</section>
-
 	<section id="content">
+
 	<div class="container">
 		<div class="row">
 		<div class="tg-main-section tg-banner tg-haslayout parallax-window" data-parallax="scroll" data-bleed="100" data-speed="0.2" data-image-src="images/slider/img-03.jpg">
-        <h4 align="center"><a href="para_evaluacion.php">VOLVER</a></h4>
-        <h2 align="center"><?php echo $codigo_evento_ss;?></h2>
-        <h2 align="center"><?php echo $row0[0];?></h2>
 		</div>
+   	<div class="about-logo">
+      <h3>DOCENTE:</h3>
+      <h3 class="text-muted"><?php echo $rowus[0];?> <?php echo $rowus[1];?> <?php echo $rowus[2];?></h3>   
+       <p>EN ESTA SECCIÓN SE REALIZA EL SEGUIMIENTO A LOS EVENTOS DE CAPACITACION REALIZADOS POR EL DOCENTEE.</p>
     </div>
+    </div>
+    
+<!--- begin EVENTOS DEL DOCENTE ---->
 
-<div class="container">
-        <div class="row">
-        <div class="col-lg-12"><h2>PARTICIPANTES A EVALUAR</h2></div>
-        </div>
-<!--- REGISTRO DE PRE-INSCRITOS ---->
 
 <div class="table-responsive">
-<table class="table table-bordered" id="example" width="100%" cellspacing="0">
-            <thead>
-                <tr>
+    <table class="table table-bordered" id="example" width="100%" cellspacing="0">
+        <thead>
+            <tr>
                 <th>Nª</th>
-                <th>CÓDIGO INSCRIPCIÓN</th>
-                <th>CEDULA DE IDENTIDAD</th>
-                <th>PATERNO</th>
-                <th>MATERNO</th>
-                <th>NOMBRES</th>
-                <th>NOTA FINAL</th>
-                <th>OBSERVACIÓN</th>
-                <th>ACCIÓN</th>
-                </tr>
+                <th>CÓDIGO</th>
+                <th>EVENTO</th>
+                <th>FECHA INICIO</th>
+                <th>FECHA FINALIZACIÓN</th>
+                <th>DOCENTE</th>
+                <th>EVALUAR PARTICIPANTES</th>
+                <th>CERTIFICADO DOCENTE</th>
+            </tr>
             </thead>
 			<tbody>
             <?php
             $numero=1;
-            $sql =" SELECT inscripcion.idinscripcion, inscripcion.codigo, nombre.ci, nombre.complemento, nombre.paterno, nombre.materno, nombre.nombre, inscripcion.nota_final, inscripcion.nota_final, ";
-            $sql.=" comentario_evaluacion.comentario_evaluacion FROM inscripcion, nombre, comentario_evaluacion WHERE inscripcion.idnombre=nombre.idnombre AND inscripcion.idestado_inscripcion='2' ";
-            $sql.=" AND inscripcion.idcomentario_evaluacion=comentario_evaluacion.idcomentario_evaluacion AND inscripcion.idevento='$idevento_ss' ORDER BY inscripcion.idinscripcion ";
+            $sql =" SELECT evento.idevento, evento.codigo, tematica.tematica, evento.fecha_inicio, evento.fecha_fin, evento.iddocente, ";
+            $sql.=" evento.idestado_ejecucion, evento.fecha_registro FROM evento, microcurricula, tematica, docente  ";
+            $sql.=" WHERE evento.idmicrocurricula=microcurricula.idmicrocurricula AND microcurricula.idtematica=tematica.idtematica  ";
+            $sql.=" AND  evento.iddocente=docente.iddocente AND docente.idusuario='$idusuario_ss' ORDER BY evento.idevento DESC ";
             $result = mysqli_query($link,$sql);
             if ($row = mysqli_fetch_array($result)){
             mysqli_field_seek($result,0);
@@ -128,18 +120,45 @@ $rowus = mysqli_fetch_array($resultus);?>
 				<tr>
 				<td><?php echo $numero;?></td>
                 <td><?php echo $row[1];?></td>
-				<td><?php echo $row[2];?> <?php echo $row[3];?></td>
-                <td><?php echo $row[4];?></td>
-                <td><?php echo $row[5];?></td>
-                <td><?php echo $row[6];?></td>               
-                <form name="VALIDA" action="guarda_nota_final.php" method="post">
-                <td><input type="text" class="form-control" name="nota_final" value="<?php echo $row[7]?>" required 
-                <?php if ($row[8] != '') { } else { echo "autofocus"; }?> ></td>
-                <td><?php echo $row[9];?></td>
-                <td>  
-                    <input name="idinscripcion" type="hidden" value="<?php echo $row[0];?>" >
-                    <button type="submit" class="btn btn-primary">GUARDAR</button></form>
-                </td>                
+				<td><?php echo $row[2];?></td>
+                <td>
+                    <?php 
+                    $fecha_i = explode('-',$row[3]);
+                    $f_inicio    = $fecha_i[2].'/'.$fecha_i[1].'/'.$fecha_i[0];
+                    echo $f_inicio;
+                    ?>            
+                </td>
+                <td>
+                    <?php 
+                    $fecha_f = explode('-',$row[4]);
+                    $f_final = $fecha_f[2].'/'.$fecha_f[1].'/'.$fecha_f[0];
+                    echo $f_final;
+                    ?>   
+                </td>
+                <td>
+                    <?php 
+                    $sqld =" SELECT nombre.nombre, nombre.paterno, nombre.materno FROM nombre, usuarios WHERE usuarios.idnombre=nombre.idnombre ";
+                    $sqld.=" AND usuarios.idusuario='$row[5]' ";
+                    $resultd = mysqli_query($link,$sqld);
+                    $rowd = mysqli_fetch_array($resultd);
+                    ?>
+                <?php echo $rowd[0];?> <?php echo $rowd[1];?> <?php echo $rowd[2];?>    
+                </td>
+                
+                <td>     
+                <?php  if ($row[6] == '1') { ?>
+                    <form name="VALIDA" action="valida_evento_eval_doc.php" method="post">
+                    <input name="codigo" type="hidden" value="<?php echo $row[1];?>">
+                    <input name="idevento" type="hidden" value="<?php echo $row[0];?>">
+                    <button type="submit" class="btn-link">EVALUAR PARTICIPANTES</button></form>
+                <?php } else { ?>
+                       <p align="center">EVALUACIÓN CONSOLIDADA</p>
+                <?php } ?>  
+                </td>
+                <td>
+                <a href="imprime_certificado_doc.php?idevento=<?php echo $row[0];?>" target="_blank">
+                <?php if ($row[6] == '4') { echo "<p align='center'>IMPRIMIR CERTIFICADO</p>"; } else { }?></a>
+                </td>
                 </tr>  
             <?php
             $numero=$numero+1;  
@@ -152,43 +171,9 @@ $rowus = mysqli_fetch_array($resultus);?>
     </table>
 </div>
 
-<form name="FORM_EVAL" action="finaliza_evaluacion.php" method="post">
-<input type="hidden" name="idevento" value="<?php echo $idevento_ss;?>">
-    <div class="row">
-        <div class="col-md-4"><h4></h4></div>
-        <div class="col-md-8">    
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                FINALIZAR EVALUACIÓN
-            </button>
-        </div>
-        </div>
-    </div>
- 
-<!-- modal de confirmacion de envio de datos-->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">FINALIZAR EVALUACIÓN</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        </div>
-        <div class="modal-body">        
-            Esta seguro de Finalizar la evaluación?
-            posteriormenete no se podrán realizar cambios.
-        </div>
-        <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCELAR</button>
-        <button type="submit" class="btn btn-primary pull-center">CONFIRMAR FINALIZACIÓN</button>    
-      </div>
-    </div>
-  </div>
+<!--- end EVENTOS DEL DOCENTE ---->
+
 </div>
-</div>
-</div>
-</form>
-<!-- Modal -->
 </br>
   </section>
 	<footer>

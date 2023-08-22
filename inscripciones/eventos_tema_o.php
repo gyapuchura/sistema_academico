@@ -108,8 +108,8 @@ $row0 = mysqli_fetch_array($result0);
             <?php
             $numero=1;
             $sql =" SELECT evento.idevento, evento.codigo, tematica.tematica, evento.fecha_inicio, evento.fecha_fin, evento.iddocente, evento.idestado_registro ";
-            $sql.=" FROM evento, microcurricula, tematica WHERE evento.idmicrocurricula=microcurricula.idmicrocurricula AND ";
-            $sql.=" microcurricula.idtematica=tematica.idtematica AND evento.idestado_registro='2' AND microcurricula.idtematica='$idtematica_ss' ";
+            $sql.=" FROM evento, microcurricula, tematica WHERE evento.idmicrocurricula=microcurricula.idmicrocurricula AND microcurricula.idtematica=tematica.idtematica ";
+            $sql.=" AND evento.idestado_registro='2' AND microcurricula.idtematica='$idtematica_ss' ORDER BY evento.idevento DESC ";
             $result = mysqli_query($link,$sql);
             if ($row = mysqli_fetch_array($result)){
             mysqli_field_seek($result,0);

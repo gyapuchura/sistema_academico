@@ -139,7 +139,7 @@ $rowus = mysqli_fetch_array($resultus);?>
             $numero=1;
             $sql =" SELECT macrocurricula.idmacrocurricula, macrocurricula.macrocurricula, ambito.ambito, ";
             $sql.=" macrocurricula.codigo, macrocurricula.correlativo, macrocurricula.idusuario FROM macrocurricula, ambito ";
-            $sql.=" WHERE macrocurricula.idambito=ambito.idambito ORDER BY macrocurricula.idmacrocurricula ";
+            $sql.=" WHERE macrocurricula.idambito=ambito.idambito AND macrocurricula.idobjetivo_anual='$idobjetivo_anual_ss' ORDER BY macrocurricula.idmacrocurricula ";
             $result = mysqli_query($link,$sql);
             if ($row = mysqli_fetch_array($result)){
             mysqli_field_seek($result,0);
