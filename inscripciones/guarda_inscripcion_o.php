@@ -11,12 +11,12 @@ $idevento_ss      =  $_SESSION['idevento_ss'];
 $codigo_evento_ss =  $_SESSION['codigo_evento_ss'];
 
 //-----DATOS ENVIADOS EN EL FORMULARIO DE PREINSCRIPCION ----- //
-$nombre      = $link->real_escape_string(htmlentities($_POST['nombre']));
-$paterno     = $link->real_escape_string(htmlentities($_POST['paterno']));
-$materno     = $link->real_escape_string(htmlentities($_POST['materno']));
-$ci          = $link->real_escape_string(htmlentities($_POST['ci']));
-$complemento = $link->real_escape_string(htmlentities($_POST['complemento']));
-$exp         = $link->real_escape_string(htmlentities($_POST['exp']));
+$nombre      = $link->real_escape_string($_POST['nombre']);
+$paterno     = $link->real_escape_string($_POST['paterno']);
+$materno     = $link->real_escape_string($_POST['materno']);
+$ci          = $link->real_escape_string($_POST['ci']);
+$complemento = $link->real_escape_string($_POST['complemento']);
+$exp         = $link->real_escape_string($_POST['exp']);
 
 $nacimiento  = $_POST['fecha_nac'];
 $fecha_n     = explode('/',$nacimiento);
@@ -52,20 +52,20 @@ $celular = $link->real_escape_string(htmlentities($_POST['celular']));
 $iddependencia = $_POST['iddependencia'];
 
 //para el caso de participante de otra entidad.
-$entidad       = $link->real_escape_string(htmlentities($_POST['entidad']));
-$cargo_entidad = $link->real_escape_string(htmlentities($_POST['cargo_entidad']));
+$entidad       = $link->real_escape_string($_POST['entidad']);
+$cargo_entidad = $link->real_escape_string($_POST['cargo_entidad']);
 
 //para el caso de participante del Ministerio de Salud y Deportes.
 $idministerio = $_POST['idministerio'];
 $iddireccion  = $_POST['iddireccion'];
 $idarea       = $_POST['idarea'];
-$cargo_mds    = $link->real_escape_string(htmlentities($_POST['cargo_mds']));
+$cargo_mds    = $link->real_escape_string($_POST['cargo_mds']);
 
 //para el caso de participante de una Red de salud.
 $iddepartamento = $_POST['iddepartamento'];
 $idred_salud    = $_POST['idred_salud'];
 $idestablecimiento_salud = $_POST['idestablecimiento_salud'];
-$cargo_red_salud = $link->real_escape_string(htmlentities($_POST['cargo_red_salud']));
+$cargo_red_salud = $link->real_escape_string($_POST['cargo_red_salud']);
 
 //----- Guardamos datos de usuario nuevo ------//
 

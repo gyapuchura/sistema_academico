@@ -238,7 +238,7 @@ if ($row1 = mysqli_fetch_array($result1)){
 mysqli_field_seek($result1,0);
 while ($field1 = mysqli_fetch_field($result1)){
 } do {
-echo "<option value=".$row1[0].">".$row1[2]." ".$row1[3]." ".$row1[1]."</option>";
+echo "<option value=".$row1[0].">".$row1[2]." ".$row1[3]." ".$row1[4]."</option>";
 } while ($row1 = mysqli_fetch_array($result1));
 } else {
 echo "No se encontraron resultados!";
