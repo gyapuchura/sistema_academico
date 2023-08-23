@@ -142,6 +142,33 @@ while ($field = mysqli_fetch_field($result)){
 }
 ?>
 
+<?php
+$sql = "SELECT perfil  from usuarios  where idusuario = '$idusuario_ss' and perfil = '$perfil_ss' ";
+$result = mysqli_query($link,$sql);
+$row = mysqli_fetch_array($result);
+
+/****** Seleccionamos el perfil del suaurio que accedera a las opciones de sistema ******/	
+if ($row[0] == 'DOCENTE'){
+
+mysqli_field_seek($result,0);
+while ($field = mysqli_fetch_field($result)){
+} do {	
+	?>
+
+	<li class="dropdown">
+	<a href="#" data-toggle="dropdown" class="dropdown-toggle">OPCIONES DOCENTE<b class="caret"></b></a>
+		<ul class="dropdown-menu">
+			<li><a href="../evaluacion/eventos_docente.php">EVENTOS DEL DOCENTE</a></li>
+			<li><a href="#">DATOS DOCENTE</a></li>
+		</ul>
+	</li>
+
+	<?php
+} while ($row = mysqli_fetch_array($result));
+} else {
+}
+?>
+
 	<li class="active"><a href="../inicio.php">INICIO</a></li>
 	</ul>
 </div>
