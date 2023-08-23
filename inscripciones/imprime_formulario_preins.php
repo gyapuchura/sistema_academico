@@ -195,6 +195,9 @@ if ($row_l[3] == '1') {
     $pdf->Cell(64,5,mb_convert_encoding('CARGO QUE OCUPA:','iso-8859-1','utf-8'),1,0,'L');
     $cargo_entidad = mb_strtoupper($row_l[5]);
     $pdf->MultiCell(128,5,mb_convert_encoding($cargo_entidad,'iso-8859-1','utf-8'),'LTRB','L',false);
+
+//  cargo_entidad
+
 } else {
     if ($row_l[3] == '2') {
         $sql_d =" SELECT iddepartamento, departamento FROM departamento WHERE iddepartamento = '$row_l[10]' ";
@@ -231,6 +234,8 @@ if ($row_l[3] == '1') {
         $pdf->Cell(64,5,mb_convert_encoding('CARGO:','iso-8859-1','utf-8'),1,0,'L');
         $pdf->MultiCell(128,5,mb_convert_encoding($cargo_salud,'iso-8859-1','utf-8'),'LTRB','L',false);
         
+// variable $cargo_salud
+
     } else {
         if ($row_l[3] == '3') {
 
