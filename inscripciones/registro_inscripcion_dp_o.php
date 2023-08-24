@@ -119,9 +119,6 @@ $iddato_laboral = $row_l[0];
      <input type="hidden" name="idusuario_inscrito" value="<?php echo $idusuario_inscrito;?>">
      <input type="hidden" name="idnombre_datos" value="<?php echo $idnombre_datos;?>">
      <input type="hidden" name="iddato_laboral" value="<?php echo $iddato_laboral;?>">
-
-     <input type="hidden" name="idusuario_inscrito" value="<?php echo $idusuario_inscrito;?>">
-     <input type="hidden" name="idusuario_inscrito" value="<?php echo $idusuario_inscrito;?>">
      
 <div class="box-area">
 
@@ -193,7 +190,7 @@ $iddato_laboral = $row_l[0];
           while ($fieldv = mysqli_fetch_field($resultv)){
           } do {
           ?>
-          <option value="<?php echo $rowv[0];?>" <?php if ($rowv[0]==$row_n[8]) echo "selected";?> ><?php echo $rowv[1];?></option>
+          <option value="<?php echo $rowv[0];?>" <?php if ($rowv[0]==$row_n[7]) echo "selected";?> ><?php echo $rowv[1];?></option>
           <?php
           } while ($rowv = mysqli_fetch_array($resultv));
           } else {

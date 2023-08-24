@@ -24,7 +24,7 @@ $idnombre_solicitante  = $_POST['idnombre_solicitante'];
 //---- verificamos que el numero de ci del solicitante ya este confirmado -----//
 
 $sql_e = " SELECT inscripcion.idinscripcion, nombre.ci FROM inscripcion, nombre WHERE inscripcion.idnombre=nombre.idnombre ";
-$sql_e.= " AND inscripcion.idestado_inscripcion='2' AND inscripcion.idnombre='$idnombre_solicitante' ";
+$sql_e.= " AND inscripcion.idestado_inscripcion='2' AND inscripcion.idnombre='$idnombre_solicitante' AND inscripcion.idevento='$idevento_ss' ";
 $result_e = mysqli_query($link,$sql_e);
 if ($row_e = mysqli_fetch_array($result_e)) {
 

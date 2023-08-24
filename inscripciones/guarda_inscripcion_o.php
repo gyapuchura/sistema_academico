@@ -38,15 +38,15 @@ $sql_in    = " SELECT idevento, idtipo_inscripcion FROM evento WHERE idevento='$
 $result_in = mysqli_query($link,$sql_in);
 $row_in    = mysqli_fetch_array($result_in);
 
-if ($$row_in[1] == '1') {
-    $idestado_inscripcion = '1';    
+if ($row_in[1] == '1') {
+    $idestado_inscripcion = '1';  //inscripcion con confirmacion   
     } else {
-    $idestado_inscripcion = '2';
+    $idestado_inscripcion = '2';  //inscripcion directa
     }
 
     //------ DEFINIMOS LA INSCRIPCION DIRECTA E INDIRECTA (end)--------//
 
-$correo  = $link->real_escape_string(htmlentities($_POST['correo']));
+$correo  = $link->real_escape_string($_POST['correo']);
 $celular = $link->real_escape_string(htmlentities($_POST['celular']));
 
 $iddependencia = $_POST['iddependencia'];
