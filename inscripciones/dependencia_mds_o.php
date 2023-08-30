@@ -73,7 +73,7 @@ $iddependencia  = $_POST['dependencia'];
     <div class="row">
     <div class="col-md-4"><h4>DEPENDIENTE DEL:</h4></div>
     <div class="col-md-8">
-       <select name="idministerio"  id="idministerio" class="form-control">
+       <select name="idministerio"  id="idministerio" class="form-control" required>
           <option value="">ELEGIR</option>
           <?php
           $sql1 = "select idministerio, ministerio, sigla from ministerio";
@@ -116,7 +116,7 @@ $iddependencia  = $_POST['dependencia'];
     <div class="row">
     <div class="col-md-3"><h4>DEPARTAMENTO:</h4></div>
     <div class="col-md-9">
-       <select name="iddepartamento"  id="iddepartamento" class="form-control">
+       <select name="iddepartamento"  id="iddepartamento" class="form-control" required>
           <option value="">ELEGIR</option>
           <?php
           $sql1 = "select iddepartamento, departamento from departamento";

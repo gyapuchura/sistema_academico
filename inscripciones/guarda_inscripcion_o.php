@@ -32,22 +32,10 @@ $idprofesion           = $_POST['idprofesion'];
     } else {
     $idespecialidad_medica = '45';
     }
-//------ DEFINIMOS LA INSCRIPCION DIRECTA E INDIRECTA (begin)--------//
 
-$sql_in    = " SELECT idevento, idtipo_inscripcion FROM evento WHERE idevento='$idevento_ss' ";
-$result_in = mysqli_query($link,$sql_in);
-$row_in    = mysqli_fetch_array($result_in);
-
-if ($row_in[1] == '1') {
-    $idestado_inscripcion = '1';  //inscripcion con confirmacion   
-    } else {
-    $idestado_inscripcion = '2';  //inscripcion directa
-    }
-
-    //------ DEFINIMOS LA INSCRIPCION DIRECTA E INDIRECTA (end)--------//
 
 $correo  = $link->real_escape_string($_POST['correo']);
-$celular = $link->real_escape_string(htmlentities($_POST['celular']));
+$celular = $link->real_escape_string($_POST['celular']);
 
 $iddependencia = $_POST['iddependencia'];
 
@@ -113,6 +101,20 @@ $rowm=mysqli_fetch_array($resultm);
 $correlativo=$rowm[0]+1;
 
 $codigo="INS/MSYD-".$correlativo."/".$gestion;
+
+//------ DEFINIMOS LA INSCRIPCION DIRECTA E INDIRECTA (begin)--------//
+
+$sql_in    = " SELECT idevento, idtipo_inscripcion FROM evento WHERE idevento='$idevento_ss' ";
+$result_in = mysqli_query($link,$sql_in);
+$row_in    = mysqli_fetch_array($result_in);
+
+if ($row_in[1] == '1') {
+    $idestado_inscripcion = '1';  //inscripcion con confirmacion   
+    } else {
+    $idestado_inscripcion = '2';  //inscripcion directa
+    }
+
+    //------ DEFINIMOS LA INSCRIPCION DIRECTA E INDIRECTA (end)--------//
 
 //----- Realizamos la seleccion de tipo de dependencias ------//
 

@@ -1,10 +1,9 @@
-<option value="0">Elegir DIRECCION/PROGRAMA</option>
 <?php
 include("../inc.config.php");
-$options="";
 
-$idministerio = $_POST["ministerio"];
-
+$idministerio = $_POST["ministerio"];?>
+<option value="">Elegir DIRECCION/PROGRAMA</option>
+<?php
 $sql2 = "SELECT iddireccion, direccion, sigla FROM direccion WHERE idministerio='$idministerio' ORDER BY iddireccion";
 $result2 = mysqli_query($link,$sql2);
 if ($row2 = mysqli_fetch_array($result2)){
