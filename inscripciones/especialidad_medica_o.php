@@ -16,7 +16,7 @@ if ($idprofesion != '1') {
 <div class="row">
   <div class="col-md-3"><h4>ESPECIALIDAD MÉDICA:</h4></div>
   <div class="col-md-9">
-       <select name="idespecialidad_medica"  id="idespecialidad_medica" class="form-control">
+       <select name="idespecialidad_medica"  id="idespecialidad_medica" class="form-control" required>
           <option value="">ELEGIR</option>
           <?php
           $sql1 = "select idespecialidad_medica, especialidad_medica from especialidad_medica";
