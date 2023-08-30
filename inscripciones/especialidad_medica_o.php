@@ -6,10 +6,6 @@ $idprofesion  = $_POST['profesion'];
 if ($idprofesion != '1') {
   ?>
 
-<input type="hidden" name="iddepartamento" value="4" >
-<input type="hidden" name="idprovincia" value="52" >
-<input type="hidden" name="idmunicipio" value="137" >
-
 <?php 
 } else {
     ?>   
