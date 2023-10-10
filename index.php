@@ -69,7 +69,7 @@
           <h1><a class="btn btn-primary pull-center" href="aula/login/index.php">AULA VIRTUAL</a></h1>
           </div>
           <div class="col-sm-3">
-          <h1><a class="btn btn-primary pull-center" href="medi-safci/index.php">MEDI-SAFCI</a></h1>
+          <h1><a class="btn btn-primary pull-center" href="../medi-safci/index.php">MEDI-SAFCI</a></h1>
           </div>
       </div>
   </div>
