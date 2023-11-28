@@ -17,12 +17,12 @@ $gestion = date("Y");
 $sql_e =" SELECT evento.idevento, evento.codigo, objetivo_anual.codigo, objetivo_anual.objetivo_anual, macrocurricula.codigo, macrocurricula.macrocurricula, tematica.tematica, ";
 $sql_e.=" evento.fecha_inicio, evento.fecha_fin, publicacion.publicacion, evento.cupo_min, evento.cupo_max, modalidad.modalidad, ";
 $sql_e.=" departamento.departamento, municipios.municipio, provincias.provincia, nombre.nombre, nombre.paterno, nombre.materno, microcurricula.codigo ";
-$sql_e.=" FROM evento, objetivo_anual, macrocurricula, microcurricula, tematica, publicacion, modalidad, departamento, municipios, provincias, nombre, usuarios ";
+$sql_e.=" FROM evento, objetivo_anual, macrocurricula, microcurricula, tematica, publicacion, modalidad, departamento, municipios, provincias, nombre, usuarios, docente ";
 $sql_e.=" WHERE evento.idobjetivo_anual=objetivo_anual.idobjetivo_anual AND evento.idmacrocurricula=macrocurricula.idmacrocurricula ";
 $sql_e.=" AND evento.idmicrocurricula=microcurricula.idmicrocurricula AND microcurricula.idtematica=tematica.idtematica ";
 $sql_e.=" AND evento.idpublicacion=publicacion.idpublicacion AND evento.idmodalidad=modalidad.idmodalidad  ";
 $sql_e.=" AND evento.iddepartamento=departamento.iddepartamento AND evento.idprovincia=provincias.idprovincia  ";
-$sql_e.=" AND evento.idmunicipio=municipios.idmunicipio AND evento.iddocente=usuarios.idusuario ";
+$sql_e.=" AND evento.idmunicipio=municipios.idmunicipio AND evento.iddocente=docente.iddocente AND docente.idusuario=usuarios.idusuario ";
 $sql_e.=" AND usuarios.idnombre=nombre.idnombre AND microcurricula.idtematica=tematica.idtematica AND evento.idevento='$idevento_ss' ";
 $result_e = mysqli_query($link,$sql_e);
 $row_e = mysqli_fetch_array($result_e);
@@ -93,7 +93,7 @@ $row_e = mysqli_fetch_array($result_e);
 	<div class="container">
 		<div class="row">
 		<div class="tg-main-section tg-banner tg-haslayout parallax-window" data-parallax="scroll" data-bleed="100" data-speed="0.2" data-image-src="images/slider/img-03.jpg">
-        <h4 align="center"><a href="eventos.php">VOLVER</a></h4>
+        <h4 align="center"><a href="administrar_eventos.php">VOLVER</a></h4>
         </br>
         <h2 align="center"><?php echo $codigo_evento_ss;?> .- <?php echo $row_e[6];?></h2> 
   </div>
