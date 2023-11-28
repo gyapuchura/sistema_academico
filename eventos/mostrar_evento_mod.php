@@ -353,16 +353,16 @@ $row_ev = mysqli_fetch_array($result_ev);
   <select name="iddocente"  id="iddocente" class="form-control">
     <option selected>Seleccione</option>
     <?php
-    $sqlv = " SELECT usuarios.idusuario, nombre.nombre, nombre.paterno, nombre.materno ";
-    $sqlv.= " FROM usuarios, nombre WHERE usuarios.idnombre=nombre.idnombre AND usuarios.condicion='ACTIVO' AND usuarios.perfil='DOCENTE'  ";
-    $sqlv.= " ORDER BY nombre.paterno ";
+    $sqlv = " SELECT docente.iddocente, usuarios.idusuario, nombre.paterno, nombre.materno, nombre.nombre FROM docente, usuarios, nombre ";
+    $sqlv.= " WHERE docente.idusuario=usuarios.idusuario AND usuarios.idnombre=nombre.idnombre AND usuarios.condicion='ACTIVO' ";
+    $sqlv.= " AND usuarios.perfil='DOCENTE' ORDER BY nombre.paterno ";
     $resultv = mysqli_query($link,$sqlv);
     if ($rowv = mysqli_fetch_array($resultv)){
     mysqli_field_seek($resultv,0);
     while ($fieldv = mysqli_fetch_field($resultv)){
     } do {
     ?>
-    <option value="<?php echo $rowv[0];?>" <?php if ($rowv[0]==$row_e[16]) echo "selected";?> ><?php echo $rowv[1];?> <?php echo $rowv[2];?> <?php echo $rowv[3];?></option>
+    <option value="<?php echo $rowv[0];?>" <?php if ($rowv[0]==$row_e[16]) echo "selected";?> ><?php echo $rowv[4];?> <?php echo $rowv[2];?> <?php echo $rowv[3];?></option>
     <?php
     } while ($rowv = mysqli_fetch_array($resultv));
     } else {
