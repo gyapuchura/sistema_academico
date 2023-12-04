@@ -16,7 +16,7 @@ $gestion = date("Y");
 
 $sql_e =" SELECT evento.idevento, evento.codigo, objetivo_anual.codigo, objetivo_anual.objetivo_anual, macrocurricula.codigo, macrocurricula.macrocurricula, tematica.tematica, ";
 $sql_e.=" evento.fecha_inicio, evento.fecha_fin, publicacion.publicacion, evento.cupo_min, evento.cupo_max, modalidad.modalidad, ";
-$sql_e.=" departamento.departamento, municipios.municipio, provincias.provincia, nombre.nombre, nombre.paterno, nombre.materno, microcurricula.codigo ";
+$sql_e.=" departamento.departamento, provincias.provincia, municipios.municipio, nombre.nombre, nombre.paterno, nombre.materno, microcurricula.codigo ";
 $sql_e.=" FROM evento, objetivo_anual, macrocurricula, microcurricula, tematica, publicacion, modalidad, departamento, municipios, provincias, nombre, usuarios, docente ";
 $sql_e.=" WHERE evento.idobjetivo_anual=objetivo_anual.idobjetivo_anual AND evento.idmacrocurricula=macrocurricula.idmacrocurricula ";
 $sql_e.=" AND evento.idmicrocurricula=microcurricula.idmicrocurricula AND microcurricula.idtematica=tematica.idtematica ";
