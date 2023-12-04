@@ -307,7 +307,7 @@ $row_ev = mysqli_fetch_array($result_ev);
   <select name="idprovincia"  id="idprovincia" class="form-control">
       <option selected>Seleccione</option>
       <?php
-      $sqlv = "SELECT idprovincia, provincia FROM provinciaS ";
+      $sqlv = "SELECT idprovincia, provincia FROM provincias ";
       $resultv = mysqli_query($link,$sqlv);
       if ($rowv = mysqli_fetch_array($resultv)){
       mysqli_field_seek($resultv,0);
