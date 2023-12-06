@@ -101,13 +101,14 @@ $row0 = mysqli_fetch_array($result0);
                     <th>FECHA INICIO</th>
                     <th>FECHA FINALIZACIÓN</th>
                     <th>HORARIOS</th>
+                    <th>CUPOS DISPONIBLES</th>
                     <th>VER EVENTO</th>
                 </tr>
             </thead>
 			<tbody> 
             <?php
             $numero=1;
-            $sql =" SELECT evento.idevento, evento.codigo, tematica.tematica, evento.fecha_inicio, evento.fecha_fin, evento.iddocente, evento.idestado_registro ";
+            $sql =" SELECT evento.idevento, evento.codigo, tematica.tematica, evento.fecha_inicio, evento.fecha_fin, evento.iddocente, evento.idestado_registro, evento.cupo_max ";
             $sql.=" FROM evento, microcurricula, tematica WHERE evento.idmicrocurricula=microcurricula.idmicrocurricula AND microcurricula.idtematica=tematica.idtematica ";
             $sql.=" AND evento.idestado_registro='2' AND microcurricula.idtematica='$idtematica_ss' ORDER BY evento.idevento DESC ";
             $result = mysqli_query($link,$sql);
@@ -115,6 +116,16 @@ $row0 = mysqli_fetch_array($result0);
             mysqli_field_seek($result,0);
             while ($field = mysqli_fetch_field($result)){
             } do {
+
+                $sql_ins =" SELECT count(inscripcion.idinscripcion) FROM inscripcion, nombre WHERE inscripcion.idnombre=nombre.idnombre ";
+                $sql_ins.=" AND inscripcion.idestado_inscripcion='2' AND inscripcion.idevento='$row[0]' ORDER BY inscripcion.idinscripcion ";
+                $result_ins = mysqli_query($link,$sql_ins);
+                $row_ins = mysqli_fetch_array($result_ins); 
+                $cupo_ocupado = $row_ins[0];
+                $cupo_max = $row[7]; 
+                $cupo_disponible = $cupo_max - $cupo_ocupado;
+                    if ($cupo_ocupado < $cupo_max) {
+                        $cupo_evento = "HAY CUPOS";
             ?>
 				<tr>
 				<td><?php echo $numero;?></td>
@@ -152,6 +163,7 @@ $row0 = mysqli_fetch_array($result0);
                     }
                     ?>
                 </td>
+                <td><?php echo $cupo_disponible;?></td>
                 <td>                  
                     <form name="VALIDA" action="valida_evento_oferta_o.php" method="post">
                     <input name="codigo" type="hidden" value="<?php echo $row[1];?>">
@@ -161,6 +173,9 @@ $row0 = mysqli_fetch_array($result0);
                 </tr>  
             <?php
             $numero=$numero+1;  
+        } else {
+       
+        }
             }
             while ($row = mysqli_fetch_array($result));
             } else {
