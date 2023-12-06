@@ -399,7 +399,7 @@ $row_l = mysqli_fetch_array($result_l);
 
 
 <div class="row">
-<div class="col-md-6"><h3>3.- DATOS LABORALES: <?php echo $row_d[4];?></h3></div>
+<div class="col-md-6"><h3>3.- DATOS LABORALES:</h3></div>
 <div class="col-md-6"></div>
 </div>
 
