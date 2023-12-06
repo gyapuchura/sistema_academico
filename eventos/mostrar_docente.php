@@ -20,8 +20,8 @@ $row_d = mysqli_fetch_array($result_d);
 
 $sql_n =" SELECT nombre.nombre, nombre.paterno, nombre.materno, nombre.ci, nombre.complemento, nombre.exp, nombre.fecha_nac, nombre.idnacionalidad, ";
 $sql_n.=" nombre.idgenero, nombre_datos.idformacion_academica, nombre_datos.idprofesion, nombre_datos.idespecialidad_medica, nombre_datos.correo, ";
-$sql_n.=" nombre_datos.celular FROM nombre, nombre_datos, usuarios WHERE nombre_datos.idnombre=nombre.idnombre AND  ";
-$sql_n.=" usuarios.idnombre=nombre.idnombre AND usuarios.idusuario='$row_d[2]' ";
+$sql_n.=" nombre_datos.celular FROM nombre, nombre_datos, usuarios, docente WHERE nombre_datos.idnombre=nombre.idnombre AND  ";
+$sql_n.=" usuarios.idnombre=nombre.idnombre AND docente.idusuario=usuarios.idusuario AND docente.iddocente='$iddocente_ss' ";
 $result_n = mysqli_query($link,$sql_n);
 $row_n = mysqli_fetch_array($result_n);
 

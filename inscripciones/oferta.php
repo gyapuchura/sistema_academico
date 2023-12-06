@@ -1,13 +1,5 @@
 <?php include("../inc.config.php");?>
 <?php
-/**
-* Se mostrara el listado de todas las areas organizacionales correspondientes a una subcontraloria o despacho de la CGE.
-*
-* @idusuario_ss int //variable de sesion de usuario en formato numero entero
-* @idnombre_ss int //variable de sesion de nombres y apellidos de usuario en formato numero entero
-* @perfil_ss varchar //variable de sesion de perfil de usuario en formato numero entero
-*
-*/
 date_default_timezone_set('America/La_Paz');
 $fecha_ram			= date("Ymd");
 $fecha 			    = date("Y-m-d");
@@ -99,8 +91,22 @@ $fecha 			    = date("Y-m-d");
             mysqli_field_seek($result,0);
             while ($field = mysqli_fetch_field($result)){
             } do {
+
+              $sql_of = " SELECT evento.idevento, tematica.tematica, evento.cupo_max FROM evento, microcurricula, tematica ";
+              $sql_of.= " WHERE evento.idmicrocurricula=microcurricula.idmicrocurricula AND microcurricula.idtematica=tematica.idtematica ";
+              $sql_of.= " AND tematica.idtematica='$row[0]' AND idestado_registro='2' ";
+              $result_of = mysqli_query($link,$sql_of);
+              if ($row_of = mysqli_fetch_array($result_of)) {
+
+                $sql_ins =" SELECT count(inscripcion.idinscripcion) FROM inscripcion, nombre WHERE inscripcion.idnombre=nombre.idnombre ";
+                $sql_ins.=" AND inscripcion.idestado_inscripcion='2' AND inscripcion.idevento='$row_of[0]' ORDER BY inscripcion.idinscripcion ";
+                $result_ins = mysqli_query($link,$sql_ins);
+                $row_ins = mysqli_fetch_array($result_ins); 
+                $cupo_ocupado = $row_ins[0];
+                $cupo_max = $row_of[2]; 
+                    if ($cupo_ocupado < $cupo_max) {
             ?>
-				<tr>
+				        <tr>
 				        <td><?php echo $numero;?></td>
                 <td><img src="<?php echo $row[3];?>" class="img-thumbnail" alt=""></td>
 				        <td>
@@ -115,7 +121,9 @@ $fecha 			    = date("Y-m-d");
               </td>
                 </tr>  
             <?php
-            $numero=$numero+1;  
+            $numero=$numero+1; 
+            } else { }
+            } else { } 
             }
             while ($row = mysqli_fetch_array($result));
             } else {
