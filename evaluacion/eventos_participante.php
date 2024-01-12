@@ -138,8 +138,9 @@ $rowus = mysqli_fetch_array($resultus);?>
                     ?>   
                 </td>
                 <td><?php 
-                $sqld =" SELECT nombre.nombre, nombre.paterno, nombre.materno FROM nombre, usuarios WHERE usuarios.idnombre=nombre.idnombre ";
-                $sqld.=" AND usuarios.idusuario='$row[5]' ";
+                $sqld =" SELECT nombre.nombre, nombre.paterno, nombre.materno FROM evento, docente, nombre, usuarios WHERE evento.iddocente=docente.iddocente ";
+                $sqld.=" AND docente.idusuario=usuarios.idusuario AND usuarios.idnombre=nombre.idnombre   ";
+                $sqld.=" AND docente.iddocente='$row[5]' ";
                 $resultd = mysqli_query($link,$sqld);
                 $rowd = mysqli_fetch_array($resultd);
                 ?>
