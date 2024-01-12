@@ -61,10 +61,10 @@ $this->Image('fondo_certificado_imprimible.png','0','0','210','298','PNG');
             $lugar = strtolower($row_ev[3]);
             $lugar_cap = ucwords($lugar);
 
-            $fecha_i = explode('-',$row_i[10]);
-            $fecha_form = $fecha_i[2].'-'.$fecha_i[1].'-'.$fecha_i[0];
+            $fecha_c = explode('-',$fecha);
+            $fecha_certificado = $fecha_c[2].'-'.$fecha_c[1].'-'.$fecha_c[0];
 
-            switch ($fecha_i[1]) {
+            switch ($fecha_c[1]) {
                 case 1:
                     $mes = 'Enero';
                     break;
@@ -313,14 +313,14 @@ $this->Cell('95','38','','0','1','C','');
 $this->SetFont('Arial','','8');
 $this->Cell('95','5',mb_convert_encoding('CÓDIGO DE VERIFICACIÓN','iso-8859-1','utf-8'),'0','0','C','');
 $this->SetFont('Arial','','8');
-$this->Cell('95','5',mb_convert_encoding('Dr. Daniel Castañon Clavijo','iso-8859-1','utf-8'),'0','1','C','');
+$this->Cell('95','5',mb_convert_encoding('Dr. José Daniel Castañon Espinoza','iso-8859-1','utf-8'),'0','1','C','');
 $this->Cell('95','5','EVENTO: '.$row_ev[1],'0','0','C','');
-$this->Cell('95','5',mb_convert_encoding('RESPONSABLE DE CAPACITACIÓN PERMANENTE','iso-8859-1','utf-8'),'0','1','C','');
+$this->Cell('95','5',mb_convert_encoding('RESPONSABLE DE FORMACIÓN SAFCI','iso-8859-1','utf-8'),'0','1','C','');
 $this->Cell('95','5',$row_i[8],'0','0','C','');
 $this->Cell('95','5','MINISTERIO DE SALUD Y DEPORTES','0','1','C','');
 
 $this->SetFont('Arial','','12');
-$this->Cell('190','12',$lugar_cap.', '.$fecha_i[2].' de '.$mes.' de '.$fecha_i[0],'0','0','C','');
+$this->Cell('190','12',$lugar_cap.', '.$fecha_c[2].' de '.$mes.' de '.$fecha_c[0],'0','0','C','');
 
 // ----- generamos el codigo QR desde BAse de datos ---- //
 /*
