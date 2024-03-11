@@ -121,7 +121,6 @@ $this->Cell('95','10', mb_convert_encoding('CÉDULA DE IDENTIDAD','iso-8859-1','
 $this->SetFont('Arial','B','14');
 $this->Cell('95','10',$row_n[3].' '.$row_n[4].' '.$row_n[5],'0','1','L','');
 
-$this->Ln(5);
 $this->SetFont('Arial','','14');
 $this->Cell('190','10',mb_convert_encoding(' Por haber obtenido la calificación correspondiente a: ','iso-8859-1','utf-8'),'0','1','C','');
 
@@ -297,9 +296,9 @@ function subfijo($xx)
 $this->Cell('190','10',$nota_final_literal.' - '.numtoletras($cantidad).' puntos.','0','1','C','');
 $this->SetFont('Arial','','14');
 $this->Cell('190','10', mb_convert_encoding('En el curso de capacitación:','iso-8859-1','utf-8'),'0','1','C','');
-$this->Ln(5);
+
 $this->SetFont('Arial','B','18');
-$this->Cell('190','10',mb_convert_encoding($row_ev[2],'iso-8859-1','utf-8'),'0','1','C','');
+$this->MultiCell('190','10',mb_convert_encoding($row_ev[2],'iso-8859-1','utf-8'),'0','C',false);
 
 $this->Ln(5);
 $this->SetFont('Arial','','14');
@@ -313,9 +312,9 @@ $this->Cell('95','38','','0','1','C','');
 $this->SetFont('Arial','','8');
 $this->Cell('95','5',mb_convert_encoding('CÓDIGO DE VERIFICACIÓN','iso-8859-1','utf-8'),'0','0','C','');
 $this->SetFont('Arial','','8');
-$this->Cell('95','5',mb_convert_encoding('Dr. José Daniel Castañon Espinoza','iso-8859-1','utf-8'),'0','1','C','');
+$this->Cell('95','5',mb_convert_encoding('Dr. Luis Carlos Suarez Montaño','iso-8859-1','utf-8'),'0','1','C','');
 $this->Cell('95','5','EVENTO: '.$row_ev[1],'0','0','C','');
-$this->Cell('95','5',mb_convert_encoding('RESPONSABLE DE FORMACIÓN SAFCI','iso-8859-1','utf-8'),'0','1','C','');
+$this->Cell('95','5',mb_convert_encoding('COORDINADOR NACIONAL PROGRAMA SAFCI-MI SALUD','iso-8859-1','utf-8'),'0','1','C','');
 $this->Cell('95','5',$row_i[8],'0','0','C','');
 $this->Cell('95','5','MINISTERIO DE SALUD Y DEPORTES','0','1','C','');
 

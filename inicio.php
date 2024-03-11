@@ -93,13 +93,13 @@ $rowus = mysqli_fetch_array($resultus);
                 <div id="isotope-gallery-container">    
     
 <?php
-////////	/****** SISTEMA DE HOJAS DE RUTA ******/		
+////////	/****** SISTEMA ACADEMICO ******/		
 
 $sql = "SELECT perfil  from usuarios  where idusuario = '$idusuario_ss' and perfil = '$perfil_ss' ";
 $result = mysqli_query($link,$sql);
 $row = mysqli_fetch_array($result);
 
-if ($row[0] == 'ADMINISTRADOR' || $row[0] =='GERENTE' || $row[0] =='USUARIO'){
+if ($row[0] == 'ADMINISTRADOR' || $row[0] =='USUARIO'){
 
 mysqli_field_seek($result,0);
 while ($field = mysqli_fetch_field($result)){
@@ -169,7 +169,7 @@ while ($field = mysqli_fetch_field($result)){
 $sql = "SELECT perfil  from usuarios  where idusuario = '$idusuario_ss' and perfil = '$perfil_ss' ";
 $result = mysqli_query($link,$sql);
 $row = mysqli_fetch_array($result);
-if ($row[0] =='UAI-EMPRESA' ||  $row[0] =='ADMINISTRADOR'){
+if ($row[0] =='ADMINISTRADOR'){
 mysqli_field_seek($result,0);
 while ($field = mysqli_fetch_field($result)){ 
 } do {
@@ -205,12 +205,11 @@ $sql = "SELECT perfil  from usuarios  where idusuario = '$idusuario_ss' and perf
 $result = mysqli_query($link,$sql);
 $row = mysqli_fetch_array($result);
 
-if ($row[0] == 'PARTICIPANTE' ){
+if ($row[0] == 'PARTICIPANTE' || $row[0] == 'PERSONAL'){
 mysqli_field_seek($result,0);
 while ($field = mysqli_fetch_field($result)){
 } do {
 ?>  
-
             <div class="col-md-4 col-sm-6 col-xs-12 gallery-item-wrapper nature">
                 <div class="gallery-item">
                     <div class="gallery-thumb">
@@ -223,7 +222,7 @@ while ($field = mysqli_fetch_field($result)){
                             <h5>SESIÓN DEL PARTICIPANTE</h5>
                         </div>
                         <div class="editContent">
-                            <p>PERMITE REALIZAR EL SEGUIMIENTO A LA EVALUACION DE EVENTOS DE CAPACITACIÓN EN SALUD</p>
+                            <p>PERMITE REALIZAR EL SEGUIMIENTO A LA EVALUACIÓN DE EVENTOS DE CAPACITACIÓN EN SALUD</p>
                         </div>
                     </div>
                 </div>

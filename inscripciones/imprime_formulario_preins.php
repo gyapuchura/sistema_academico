@@ -190,7 +190,7 @@ if ($row_l[3] == '1') {
     $pdf->Cell(128,5,mb_convert_encoding($row_d[1],'iso-8859-1','utf-8'),1,1,'L');
 
     $pdf->Cell(64,5,mb_convert_encoding('ENTIDAD A LA QUE PERTENECE:','iso-8859-1','utf-8'),1,0,'L');
-    $entidad_publica = mb_strtoupper($row_l[4]);
+    $entidad_publica = mb_strtoupper($row_l[4]); 
     $pdf->MultiCell(128,5,mb_convert_encoding($entidad_publica,'iso-8859-1','utf-8'),'LTRB','L',false);
     $pdf->Cell(64,5,mb_convert_encoding('CARGO QUE OCUPA:','iso-8859-1','utf-8'),1,0,'L');
     $cargo_entidad = mb_strtoupper($row_l[5]);
