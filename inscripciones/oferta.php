@@ -3,6 +3,7 @@
 date_default_timezone_set('America/La_Paz');
 $fecha_ram			= date("Ymd");
 $fecha 			    = date("Y-m-d");
+$gestion        = date("Y");
 
 ?>
 <!DOCTYPE html>
@@ -94,7 +95,7 @@ $fecha 			    = date("Y-m-d");
 
               $sql_of = " SELECT evento.idevento, tematica.tematica, evento.cupo_max FROM evento, microcurricula, tematica ";
               $sql_of.= " WHERE evento.idmicrocurricula=microcurricula.idmicrocurricula AND microcurricula.idtematica=tematica.idtematica ";
-              $sql_of.= " AND tematica.idtematica='$row[0]' AND idestado_registro='2' ";
+              $sql_of.= " AND tematica.idtematica='$row[0]' AND evento.idestado_registro='2' AND evento.gestion='$gestion' ";
               $result_of = mysqli_query($link,$sql_of);
               if ($row_of = mysqli_fetch_array($result_of)) {
 
