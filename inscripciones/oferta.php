@@ -98,13 +98,6 @@ $gestion        = date("Y");
               $sql_of.= " AND tematica.idtematica='$row[0]' AND evento.idestado_registro='2' AND evento.gestion='$gestion' ";
               $result_of = mysqli_query($link,$sql_of);
               if ($row_of = mysqli_fetch_array($result_of)) {
-
-                $sql_ins =" SELECT count(idinscripcion) FROM inscripcion WHERE idestado_inscripcion='2' AND idevento='$row_of[0]' ORDER BY idinscripcion ";
-                $result_ins = mysqli_query($link,$sql_ins);
-                $row_ins = mysqli_fetch_array($result_ins); 
-                $cupo_ocupado = $row_ins[0];
-                $cupo_max = $row_of[2]; 
-                    if ($cupo_ocupado < $cupo_max) {
             ?>
 				        <tr>
 				        <td><?php echo $numero;?></td>
@@ -114,15 +107,17 @@ $gestion        = date("Y");
                 <h4><?php echo $row[1];?></h4>
                 <p><?php echo $row[2];?>.</p>
                 </br>
+
                 <form name="VALIDA" action="valida_tematica_oferta_o.php" method="post">
                 <input name="idtematica" type="hidden" value="<?php echo $row[0];?>">
                 <button type="submit" class="btn btn-primary" >VER EVENTOS PROGRAMADOS</button> 
                 </form>
+
               </td>
                 </tr>  
             <?php
             $numero=$numero+1; 
-            } else { }
+           
             } else { } 
             }
             while ($row = mysqli_fetch_array($result));
