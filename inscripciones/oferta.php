@@ -99,8 +99,7 @@ $gestion        = date("Y");
               $result_of = mysqli_query($link,$sql_of);
               if ($row_of = mysqli_fetch_array($result_of)) {
 
-                $sql_ins =" SELECT count(inscripcion.idinscripcion) FROM inscripcion, nombre WHERE inscripcion.idnombre=nombre.idnombre ";
-                $sql_ins.=" AND inscripcion.idestado_inscripcion='2' AND inscripcion.idevento='$row_of[0]' ORDER BY inscripcion.idinscripcion ";
+                $sql_ins =" SELECT count(idinscripcion) FROM inscripcion WHERE idestado_inscripcion='2' AND idevento='$row_of[0]' ORDER BY idinscripcion ";
                 $result_ins = mysqli_query($link,$sql_ins);
                 $row_ins = mysqli_fetch_array($result_ins); 
                 $cupo_ocupado = $row_ins[0];
