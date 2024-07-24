@@ -22,6 +22,10 @@ $perfil_ss     =  $_SESSION['perfil_ss'];
 $idplan_anual_ss     = $_SESSION['idplan_anual_ss'];
 $idobjetivo_anual_ss = $_SESSION['idobjetivo_anual_ss'];
 
+if($_SESSION['perfil_ss'] != "ADMINISTRADOR"){      
+  header("Location:../index.php");    
+}
+
 $sql0 =" SELECT idobjetivo_anual, codigo, objetivo_anual, meta, presupuesto  ";
 $sql0.=" FROM objetivo_anual WHERE idobjetivo_anual='$idobjetivo_anual_ss'";
 $result0 = mysqli_query($link,$sql0);

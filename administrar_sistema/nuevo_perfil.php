@@ -32,6 +32,11 @@ $sql_l.= " idministerio, iddireccion, idarea, cargo_mds, iddepartamento, idred_s
 $sql_l.= " FROM dato_laboral WHERE idnombre='$idnombre_mod_ss' ORDER BY iddato_laboral DESC LIMIT 1";
 $result_l = mysqli_query($link,$sql_l);
 $row_l = mysqli_fetch_array($result_l);
+
+if($_SESSION['perfil_ss'] != "ADMINISTRADOR"){ 		
+	header("Location:../salir.php");	
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
