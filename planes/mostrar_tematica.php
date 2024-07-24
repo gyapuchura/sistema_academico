@@ -21,6 +21,10 @@ $perfil_ss     =  $_SESSION['perfil_ss'];
 
 $idtematica_ss =  $_SESSION['idtematica_ss'];
 
+if($_SESSION['perfil_ss'] != "ADMINISTRADOR"){      
+  header("Location:../index.php");    
+}
+
 $sql0 =" SELECT idtematica, tematica FROM tematica WHERE idtematica='$idtematica_ss' ";
 $result0 = mysqli_query($link,$sql0);
 $row0 = mysqli_fetch_array($result0);

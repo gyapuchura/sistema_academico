@@ -18,7 +18,7 @@ $idnombre_ss   =  $_SESSION['idnombre_ss'];
 $perfil_ss     =  $_SESSION['perfil_ss'];
 
 if($_SESSION['perfil_ss'] != "ADMINISTRADOR"){ 		
-	header("Location:../index.php");	
+	header("Location:../salir.php");	
 }
 
 ?>

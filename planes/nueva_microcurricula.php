@@ -23,6 +23,10 @@ $idplan_anual_ss     = $_SESSION['idplan_anual_ss'];
 $idobjetivo_anual_ss = $_SESSION['idobjetivo_anual_ss'];
 $idmacrocurricula_ss = $_SESSION['idmacrocurricula_ss'];
 
+if($_SESSION['perfil_ss'] != "ADMINISTRADOR"){      
+  header("Location:../index.php");    
+}
+
 $sql0 =" SELECT macrocurricula.idmacrocurricula, macrocurricula.codigo, macrocurricula.macrocurricula,  ";
 $sql0.=" ambito.ambito, modelo_educativo.modelo_educativo FROM macrocurricula, ambito, modelo_educativo WHERE macrocurricula.idambito=ambito.idambito  ";
 $sql0.=" AND macrocurricula.idmodelo_educativo=modelo_educativo.idmodelo_educativo AND macrocurricula.idmacrocurricula='$idmacrocurricula_ss' ";

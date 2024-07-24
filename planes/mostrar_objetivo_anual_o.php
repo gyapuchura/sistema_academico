@@ -19,6 +19,10 @@ $idusuario_ss  =  $_SESSION['idusuario_ss'];
 $idnombre_ss   =  $_SESSION['idnombre_ss'];
 $perfil_ss     =  $_SESSION['perfil_ss'];
 
+if($_SESSION['perfil_ss'] != "ADMINISTRADOR"){      
+  header("Location:../index.php");    
+}
+
 $idobjetivo_anual_ss = $_SESSION['idobjetivo_anual_ss'];
 
 $sql0 =" SELECT idobjetivo_anual, codigo, objetivo_anual, meta, presupuesto  ";

@@ -24,6 +24,10 @@ $idobjetivo_anual_ss = $_SESSION['idobjetivo_anual_ss'];
 $idmacrocurricula_ss = $_SESSION['idmacrocurricula_ss'];
 $idmicrocurricula_ss = $_SESSION['idmicrocurricula_ss'];
 
+if($_SESSION['perfil_ss'] != "ADMINISTRADOR"){      
+  header("Location:../index.php");    
+}
+
 $sql_a =" SELECT idmicrocurricula, codigo, idtematica, carga_horaria, objetivo_curso, idtipo_costo, costo, ";
 $sql_a.=" pre_requisito, idtipo_evento, idnivel_curricular ";
 $sql_a.=" FROM microcurricula WHERE idmicrocurricula='$idmicrocurricula_ss' ";
