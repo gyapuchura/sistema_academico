@@ -18,6 +18,11 @@ $idnombre_ss     =  $_SESSION['idnombre_ss'];
 $perfil_ss       =  $_SESSION['perfil_ss'];
 $idplan_anual_ss =  $_SESSION['idplan_anual_ss'];
 
+if($_SESSION['perfil_ss'] != "ADMINISTRADOR"){      
+    header("Location:../index.php");    
+  }
+  
+
 $sql0 =" SELECT idplan_anual, codigo, denominacion, gestion FROM plan_anual WHERE idplan_anual='$idplan_anual_ss' ";
 $result0 = mysqli_query($link,$sql0);
 $row0 = mysqli_fetch_array($result0);

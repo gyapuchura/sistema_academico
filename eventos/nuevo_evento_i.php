@@ -12,6 +12,11 @@ $perfil_ss     = $_SESSION['perfil_ss'];
 
 $gestion = date("Y");
 
+if($_SESSION['perfil_ss'] != "ADMINISTRADOR"){      
+  header("Location:../index.php");    
+}
+
+
 $sql_p =" SELECT idplan_anual, codigo, denominacion, gestion FROM plan_anual WHERE gestion='$gestion' ";
 $result_p = mysqli_query($link,$sql_p);
 $row_p = mysqli_fetch_array($result_p);
