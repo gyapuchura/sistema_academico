@@ -1,3 +1,4 @@
+<?php include("../cabf.php");?>
 <?php include("../inc.config.php");?>
 <?php
 define('FPDF_FONTPATH','font/');
