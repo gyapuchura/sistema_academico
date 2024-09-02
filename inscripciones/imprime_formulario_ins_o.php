@@ -1,4 +1,4 @@
-<?php include("../cabf.php");?>
+
 <?php include("../inc.config.php");?>
 <?php
 date_default_timezone_set('America/La_Paz');
@@ -493,7 +493,7 @@ $row_ev = mysqli_fetch_array($result_ev);
     $separador='|';
     $tamano='M';
 
-    $_REQUEST['data'] = 'http://192.168.250.253:8888/sistema_academico/eventos/imprime_formulario_ins.php?idinscripcion='.$row_i[0];
+    $_REQUEST['data'] = 'https://virtual-safci.minsalud.gob.bo/inscripciones/imprime_formulario_ins.php?idinscripcion='.$row_i[0];
     $_REQUEST['size'] = 2 ;
     $_REQUEST['level'] = $tamano ;
 
