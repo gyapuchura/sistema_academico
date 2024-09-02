@@ -1,4 +1,4 @@
-<?php include("../cabf.php");?>
+<?php include("../cabf_o.php");?>
 <?php
 include("../inc.config.php");
 $iddireccion = $_POST["direccion"];
