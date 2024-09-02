@@ -1,4 +1,4 @@
-<?php include("../cabf.php");?>
+<?php include("../cabf_o.php");?>
 <?php
 require('../fpdf/fpdf.php');
 class PDF extends FPDF
