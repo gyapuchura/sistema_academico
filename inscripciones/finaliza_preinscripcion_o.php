@@ -10,7 +10,6 @@ $idtematica_ss    = $_SESSION['idtematica_ss'];
 $idevento_ss      = $_SESSION['idevento_ss'];
 $codigo_evento_ss = $_SESSION['codigo_evento_ss'];
 $idinscripcion_ss = $_SESSION['idinscripcion_ss'];
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -83,7 +82,7 @@ $idinscripcion_ss = $_SESSION['idinscripcion_ss'];
 
 <div class="row">
   <div class="col-md-3"></div>
-  <div class="col-md-9"><h4 class="text-success">HA FINALIZADO EL PROCESO DE PREINSCRIPCIÓN AL EVENTO DE CAPACITACIÓN:</h4></div> 
+  <div class="col-md-9"><h4 class="text-success">HA FINALIZADO EL PROCESO DE PREINSCRIPCIÓN AL EVENTO DE CAPACITACIÓN: <?php  echo $idinscripcion_ss;?></h4></div> 
 </div>
 <div class="row">
   <div class="col-md-3"></div>
