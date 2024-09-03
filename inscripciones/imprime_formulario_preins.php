@@ -1,5 +1,10 @@
-<?php include("../cabf_o.php");?>
 <?php
+include("../inc.config.php");
+date_default_timezone_set('America/La_Paz');
+$fecha_ram	= date("Ymd");
+$fecha   	= date("Y-m-d");
+
+$idinscripcion = $_GET['idinscripcion'];
 require('../fpdf/fpdf.php');
 class PDF extends FPDF
 {
@@ -22,13 +27,7 @@ $this->Cell(0,10,'Pagina '.$this->PageNo().'',0,0,'C');
 }
 //---- CODIGO PHP PARA GENERAR DATOS DE INSCRIPCION -----//
 
-include("../inc.config.php");
 
-date_default_timezone_set('America/La_Paz');
-$fecha_ram	= date("Ymd");
-$fecha   	= date("Y-m-d");
-
-$idinscripcion = $_GET['idinscripcion'];
 
 //---- CONECTAR CON $_GET['idinscripcion'] ----//
 $gestion = date("Y");

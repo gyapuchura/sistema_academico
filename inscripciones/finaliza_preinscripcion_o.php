@@ -104,7 +104,7 @@ $idinscripcion_ss = $_SESSION['idinscripcion_ss'];
 <div class="row">
   <div class="col-md-2"></div>
   <div class="col-md-4">
-  <a href="imprime_formulario_ins_o.php?idinscripcion=<?php echo $idinscripcion_ss;?>" target="_blank" class="Estilo12" onClick="window.open(this.href, this.target, 'width=900,height=850,scrollbars=YES,top=50,left=200'); return false;">
+  <a href="imprime_formulario_preins.php?idinscripcion=<?php echo $idinscripcion_ss;?>" target="_blank" class="Estilo12" onClick="window.open(this.href, this.target, 'width=900,height=850,scrollbars=YES,top=50,left=200'); return false;">
   <h4 class="text-info">IMPRIMIR FORMULARIO</h4></a>
   </div>
   <div class="col-md-2"></div>
