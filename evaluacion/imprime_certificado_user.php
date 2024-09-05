@@ -1,5 +1,5 @@
 
-<?php include("../cabf.php");?><?php
+<?php
 define('FPDF_FONTPATH','font/');
 require('../fpdf/fpdf.php');
 

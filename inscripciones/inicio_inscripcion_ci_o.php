@@ -91,7 +91,7 @@ $row0 = mysqli_fetch_array($result0);
   <div class="col-md-2"></div> 
   <div class="col-md-10"><h4 class="text-info">INTRODUZCA SU NÚMERO DE CI PARA REALIZAR SU PREINSCRIPCIÓN</h4></div> 
 </div>
-
+ 
 <form name="FINALIZA" action="busca_usuario_registrado_o.php" method="post">	
 <div class="row">
   <div class="col-md-4"></div> 
