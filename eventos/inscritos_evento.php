@@ -116,7 +116,7 @@ $rowus = mysqli_fetch_array($resultus);?>
 			<tbody>
             <?php
             $numero=1;
-            $sql =" SELECT inscripcion.idinscripcion, inscripcion.codigo, nombre.ci, nombre.complemento, nombre.paterno, nombre.materno, nombre.nombre FROM inscripcion, nombre ";
+            $sql =" SELECT inscripcion.idinscripcion, inscripcion.codigo, nombre.ci, nombre.complemento, nombre.paterno, nombre.materno, nombre.nombre, inscripcion.idnombre FROM inscripcion, nombre ";
             $sql.=" WHERE inscripcion.idnombre=nombre.idnombre AND inscripcion.idestado_inscripcion='1' AND inscripcion.idevento='$idevento_ss' ORDER BY inscripcion.idinscripcion  ";
             $result = mysqli_query($link,$sql);
             if ($row = mysqli_fetch_array($result)){
@@ -138,10 +138,11 @@ $rowus = mysqli_fetch_array($resultus);?>
                 <a href="../inscripciones/imprime_formulario_preins.php?idinscripcion=<?php echo $row[0];?>" target="_blank">IMPRIMIR</a>
                 </td>
                 <td>  
-                    <form name="VALIDA" action="valida_inscrito_adm.php" method="post">
+                  <!--  <form name="VALIDA" action="valida_inscrito_adm.php" method="post">  -->
+                    <form name="CONFIRMA" action="confirma_inscripcion_o.php" method="post">
                     <input name="idinscripcion" type="hidden" value="<?php echo $row[0];?>">
-                    <input name="idtematica" type="hidden" value="<?php echo $row0[0];?>">
-                    <button type="submit" class="btn btn-primary">GESTIONAR</button></form>
+                    <input name="idnombre_solicitante" type="hidden" value="<?php echo $row[7];?>">
+                    <button type="submit" class="btn btn-primary">CONFIRMAR INSCRIPCIÓN</button></form>
                 </td>
                 </tr>  
             <?php
@@ -177,7 +178,7 @@ $rowus = mysqli_fetch_array($resultus);?>
 			<tbody>
             <?php
             $numero=1;
-            $sql =" SELECT inscripcion.idinscripcion, inscripcion.codigo, nombre.ci, nombre.complemento, nombre.paterno, nombre.materno, nombre.nombre  ";
+            $sql =" SELECT inscripcion.idinscripcion, inscripcion.codigo, nombre.ci, nombre.complemento, nombre.paterno, nombre.materno, nombre.nombre, inscripcion.idnombre   ";
             $sql.=" FROM inscripcion, nombre WHERE inscripcion.idnombre=nombre.idnombre AND inscripcion.idestado_inscripcion='2' AND inscripcion.idevento='$idevento_ss' ORDER BY inscripcion.idinscripcion  ";
             $result = mysqli_query($link,$sql);
             if ($row = mysqli_fetch_array($result)){

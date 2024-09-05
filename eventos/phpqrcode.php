@@ -1,4 +1,3 @@
-<?php include("../cabf.php");?>
 <?php
 	 /**
 * GENERACION DE CODIGO QR

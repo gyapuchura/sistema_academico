@@ -12,10 +12,12 @@ $idtematica_ss    =  $_SESSION['idtematica_ss'];
 $idevento_ss      =  $_SESSION['idevento_ss'];
 $codigo_evento_ss =  $_SESSION['codigo_evento_ss'];
 
-$ci = $_POST['ci'];
+$ci = $link->real_escape_string($_POST['ci']); 
 
 if ($ci == '') {
+
     header("Location:inicio_inscripcion_ci_o.php");
+    
 } else {
    
     $sql = " SELECT usuarios.idusuario, usuarios.idnombre, nombre.nombre, nombre.paterno, ";
