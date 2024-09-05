@@ -1,4 +1,3 @@
-<?php include("../cabf.php");?>
 <div class="navbar-collapse collapse ">
      <ul class="nav navbar-nav">
 

@@ -1,10 +1,10 @@
+<?php include("../cabf_o.php");?>
 <?php include("../inc.config.php");?>
 <?php
 date_default_timezone_set('America/La_Paz');
 $fecha_ram			= date("Ymd");
 $fecha 			    = date("Y-m-d");
 $gestion        = date("Y");
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -49,7 +49,7 @@ $gestion        = date("Y");
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                  <a class="navbar-brand" href="../intranet.php"><img src="../img/logo_saes.png" alt="logo"/></a>
+                  <a class="navbar-brand" href="#"><img src="../img/logo_saes.png" alt="logo"/></a>
                 </div>
             </div>
         </div>
@@ -128,7 +128,7 @@ $gestion        = date("Y");
                 </table>
             </div>
 
-<!--- gestion de usuarios ---->
+<!--- gestion de usuarios ----> 
 
 </div>
 </br>

@@ -52,7 +52,7 @@ $row0 = mysqli_fetch_array($result0);
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                  <a class="navbar-brand" href="../inicio.php"><img src="../img/logo_saes.png" alt="logo"/></a>
+                  <a class="navbar-brand" href="#"><img src="../img/logo_saes.png" alt="logo"/></a>
                 </div>
 
             </div>
