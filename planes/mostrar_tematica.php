@@ -25,7 +25,7 @@ if($_SESSION['perfil_ss'] != "ADMINISTRADOR"){
   header("Location:../index.php");    
 }
 
-$sql0 =" SELECT idtematica, tematica FROM tematica WHERE idtematica='$idtematica_ss' ";
+$sql0 =" SELECT idtematica, tematica, descripcion, url FROM tematica WHERE idtematica='$idtematica_ss' ";
 $result0 = mysqli_query($link,$sql0);
 $row0 = mysqli_fetch_array($result0);
 
@@ -108,8 +108,14 @@ $rowus = mysqli_fetch_array($resultus);?>
 
 <div class="row">
   <div class="col-md-4"><h4>DENOMINACIÓN DE LA TEMÁTICA:</h4></div>
-  <div class="col-md-8"><textarea class="form-control" rows="3" name="tematica" required><?php echo $row0[1];?></textarea></div> 
+  <div class="col-md-8"><textarea class="form-control" rows="2" name="tematica" required><?php echo $row0[1];?></textarea></div> 
 </div>
+
+<div class="row">
+  <div class="col-md-4"><h4>DESCRIPCIÓN DE LA TEMÁTICA:</h4></div>
+  <div class="col-md-8"><textarea class="form-control" rows="5" name="descripcion" required><?php echo $row0[2];?></textarea></div> 
+</div>
+
 
 <div class="row">
   <div class="col-md-3"><h4></h4></div>
@@ -118,10 +124,10 @@ $rowus = mysqli_fetch_array($resultus);?>
   GUARDAR CAMBIOS
   </button>
   </div>
-  </div>
 </div>
 
-</div>
+
+
 <!---- --->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -138,6 +144,58 @@ $rowus = mysqli_fetch_array($resultus);?>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCELAR</button>
         <button type="submit" class="btn btn-primary pull-center">CONFIRMAR MODIFICACIÓN</button>     
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+</div>
+
+</br></br>
+
+<form name="FORM10" action="guarda_mod_tematica_img.php" method="post" enctype="multipart/form-data">
+
+<div class="box-area">
+
+<div class="row">
+  <div class="col-md-4"><h4>IMAGEN REPRESENTATIVA DE LA TEMÁTICA (ACTUAL):</h4></div>
+  <div class="col-md-8"><img src="<?php echo $row0[3];?>" alt="50"></div> 
+</div>
+
+<div class="row">
+  <div class="col-md-4"><h4>CAMBIAR IMAGEN:</h4></div>
+  <div class="col-md-8">
+    <input type="file" name="file" id="file" > 
+  </div> 
+</div>
+
+<div class="row">
+  <div class="col-md-3"><h4></h4></div>
+  <div class="col-md-9">    
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">
+    CAMBIAR IMAGEN
+  </button>
+  </div>
+  </div>
+</div>
+
+</div>
+<!---- --->
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">CAMBIAR LA IMAGEN DE LA TEMÁTICA</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ¿Esta seguro de modificar la IMAGEN DE LA  TEMÁTICA?
+       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCELAR</button>
+        <button type="submit" class="btn btn-primary pull-center">CONFIRMAR CAMBIO</button>     
       </div>
     </div>
   </div>

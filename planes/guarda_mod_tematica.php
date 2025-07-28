@@ -11,12 +11,14 @@ $perfil_ss     =  $_SESSION['perfil_ss'];
 
 $idtematica_ss =  $_SESSION['idtematica_ss'];
 
-$tematica      = $link->real_escape_string($_POST['tematica']);
 
-$sql8 = " UPDATE tematica SET tematica='$tematica', idusuario='$idusuario_ss' ";
-$sql8.= " WHERE idtematica ='$idtematica_ss' ";
-$result8 = mysqli_query($link,$sql8);
+$tematica    = $link->real_escape_string($_POST['tematica']);
+$descripcion = $link->real_escape_string($_POST['descripcion']);
 
-header("Location:mostrar_tematica.php");
+        $sql8 = " UPDATE tematica SET tematica='$tematica', descripcion='$descripcion', idusuario='$idusuario_ss' ";
+        $sql8.= " WHERE idtematica ='$idtematica_ss' ";
+        $result8 = mysqli_query($link,$sql8);
 
+        header("Location:mostrar_tematica.php");
+      
 ?>

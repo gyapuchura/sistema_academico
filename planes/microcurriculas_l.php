@@ -119,7 +119,7 @@ $rowus = mysqli_fetch_array($resultus);?>
         mysqli_field_seek($result1,0);
         while ($field1 = mysqli_fetch_field($result1)){
         } do {
-        echo "<option value=".$row1[0].">".$row1[1]." - ".$row1[2]."</option>";
+        echo "<option value=".$row1[0].">".$row1[1]." - Gestión: ".$row1[2]."</option>";
         } while ($row1 = mysqli_fetch_array($result1));
         } else {
         echo "No se encontraron resultados!";

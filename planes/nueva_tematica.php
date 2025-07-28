@@ -13,8 +13,6 @@ if($_SESSION['perfil_ss'] != "ADMINISTRADOR"){
   header("Location:../index.php");    
 }
 
-$idplan_anual_ss     =  $_SESSION['idplan_anual_ss'];
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -88,13 +86,25 @@ $rowus = mysqli_fetch_array($resultus);?>
 <div class="container">
 
 <!-- javascript --->
-<form name="FORM9" action="guarda_tematica.php" method="post">
+<form name="FORM9" action="guarda_tematica.php" method="post" enctype="multipart/form-data">
 
 <div class="box-area">
 
 <div class="row">
   <div class="col-md-4"><h4>DENOMINACIÓN DE LA TEMÁTICA:</h4></div>
   <div class="col-md-8"><textarea class="form-control" rows="3" name="tematica" required></textarea></div> 
+</div>
+
+<div class="row">
+  <div class="col-md-4"><h4>DESCRIPCIÓN DE LA TEMÁTICA:</h4></div>
+  <div class="col-md-8"><textarea class="form-control" rows="6" name="descripcion" required></textarea></div> 
+</div>
+
+<div class="row">
+  <div class="col-md-4"><h4>IMAGEN REPRESENTATIVA DE LA TEMÁTICA:</h4></div>
+  <div class="col-md-8">
+    <input type="file" name="file" id="file" > 
+  </div> 
 </div>
 
 <div class="row">
