@@ -110,13 +110,14 @@ $rowus = mysqli_fetch_array($resultus);?>
                 <tr>
                     <th>Nª</th>
                     <th>DENOMINACIÓN DE LA TEMÁTICA</th>
+                    <th>IMAGEN REPRESENTATIVA</th>
                     <th>DETALLE</th>
                 </tr>
             </thead>
 			<tbody>
             <?php
             $numero=1;
-            $sql =" SELECT idtematica, tematica FROM tematica WHERE idtematica != '1'";
+            $sql =" SELECT idtematica, tematica, url FROM tematica WHERE idtematica != '1' ORDER BY idtematica DESC ";
             $result = mysqli_query($link,$sql);
             if ($row = mysqli_fetch_array($result)){
             mysqli_field_seek($result,0);
@@ -124,8 +125,9 @@ $rowus = mysqli_fetch_array($resultus);?>
             } do {
             ?>
 				<tr>
-				<td><?php echo $numero;?></td>
+				        <td><?php echo $numero;?></td>
                 <td><?php echo $row[1];?></td>
+                <td><img src="<?php echo $row[2];?>" alt="50"></td>
                 <td>                                                
                 <form name="VALIDA" action="valida_tematica_mod.php" method="post">
                 <input name="idtematica" type="hidden" value="<?php echo $row[0];?>">
