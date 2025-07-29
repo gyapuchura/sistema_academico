@@ -159,6 +159,23 @@ $rowus = mysqli_fetch_array($resultus);?>
     </table>
 </div>
 
+    <div class="row">
+        <div class="col-lg-3">
+        </br>
+            <a href="imprime_reporte_calificaciones.php" target="_blank" class="Estilo12" onClick="window.open(this.href, this.target, 'width=980,height=1000,scrollbars=YES,top=50,left=200'); return false;">
+                IMPRIME REPORTE DE CALIFICACIONES</a>
+        </div>
+        <div class="col-lg-3">
+
+        </div>
+        <div class="col-lg-3"></div>
+        <div class="col-lg-3">
+        <form name="INSCRITOS" action="planilla_calificaciones.php" method="post">
+        <h3><button type="submit" class="btn btn-link">REPORTE DE CALIFICACIONES EN EXCEL</button></h3>
+        </form>
+        </div> 
+    </div>  
+
    </br>
   </section>
 	<footer>
