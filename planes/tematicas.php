@@ -97,12 +97,13 @@ $rowus = mysqli_fetch_array($resultus);?>
     </div>
 
 <div class="container">
+
 <div class="row">
 <div class="col-lg-12">
 
-</div>
-</div>
+
 <!--- GESTION DE EMPRESAS ---->
+
 
 <div class="table-responsive">
       <table class="table table-bordered" id="example" width="100%" cellspacing="0">
@@ -147,7 +148,9 @@ $rowus = mysqli_fetch_array($resultus);?>
 
 <!--- gestion de usuarios ---->
 
-</div>
+    </div>
+  </div>
+
 </br>
   </section>
 	<footer>

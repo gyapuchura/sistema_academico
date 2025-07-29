@@ -224,7 +224,7 @@ $rowus = mysqli_fetch_array($resultus);?>
         <form name="INSCRITOS" action="inscritos_evento_excel.php" method="post">
         <h3><button type="submit" class="btn btn-link">GENERAR LISTA EN EXCEL</button></h3>
         </form>
-        </div>
+        </div> 
     </div>                            
 </div>
 </br>
