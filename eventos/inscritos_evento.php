@@ -178,8 +178,11 @@ $rowus = mysqli_fetch_array($resultus);?>
 			<tbody>
             <?php
             $numero=1;
-            $sql =" SELECT inscripcion.idinscripcion, inscripcion.codigo, nombre.ci, nombre.complemento, nombre.paterno, nombre.materno, nombre.nombre, inscripcion.idnombre   ";
-            $sql.=" FROM inscripcion, nombre WHERE inscripcion.idnombre=nombre.idnombre AND inscripcion.idestado_inscripcion='2' AND inscripcion.idevento='$idevento_ss' ORDER BY inscripcion.idinscripcion  ";
+
+            $sql =" SELECT inscripcion.idinscripcion, inscripcion.codigo, nombre.ci, nombre.complemento, nombre.exp, nombre.paterno, nombre.materno, nombre.nombre, inscripcion.idnombre ";
+            $sql.=" FROM inscripcion, nombre, nombre_datos  ";
+            $sql.=" WHERE inscripcion.idnombre=nombre.idnombre AND inscripcion.idnombre_datos=nombre_datos.idnombre_datos ";
+            $sql.=" AND inscripcion.idevento='$idevento_ss' AND inscripcion.idestado_inscripcion='2' ORDER BY inscripcion.idinscripcion ";
             $result = mysqli_query($link,$sql);
             if ($row = mysqli_fetch_array($result)){
             mysqli_field_seek($result,0);
@@ -189,10 +192,10 @@ $rowus = mysqli_fetch_array($resultus);?>
 				<tr>
 				<td><?php echo $numero;?></td>
                 <td><?php echo $row[1];?> </td>
-				<td><?php echo $row[2];?> <?php echo $row[3];?></td>
-                <td><?php echo $row[4];?></td>
+				<td><?php echo $row[2];?> <?php echo $row[3];?> </td>
                 <td><?php echo $row[5];?></td>
                 <td><?php echo $row[6];?></td>
+                <td><?php echo $row[7];?></td>
                 <td>
                 <a href="imprime_formulario_ins.php?idinscripcion=<?php echo $row[0];?>" target="_blank" class="Estilo12" onClick="window.open(this.href, this.target, 'width=750,height=850,scrollbars=YES,top=50,left=200'); return false;">VER FORMULARIO</a>
                 </td>
@@ -214,7 +217,6 @@ $rowus = mysqli_fetch_array($resultus);?>
     <div class="row">
         <div class="col-lg-3">
         <form name="MOODLE" action="inscritos_moodle_excel.php" method="post">
-        <input type="hidden" name="idempresa" value="<?php echo $idempresa;?>">
         <h3><button type="submit" class="btn btn-link">GENERAR LISTA PARA MOODLE</button></h3>
         </form>
         </div>
