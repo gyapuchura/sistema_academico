@@ -117,8 +117,9 @@ $row0 = mysqli_fetch_array($result0);
             while ($field = mysqli_fetch_field($result)){
             } do {
 
-                $sql_ins =" SELECT count(inscripcion.idinscripcion) FROM inscripcion, nombre WHERE inscripcion.idnombre=nombre.idnombre ";
-                $sql_ins.=" AND inscripcion.idestado_inscripcion='2' AND inscripcion.idevento='$row[0]' ORDER BY inscripcion.idinscripcion ";
+                $sql_ins =" SELECT count(inscripcion.idinscripcion) FROM inscripcion, nombre, nombre_datos WHERE inscripcion.idnombre=nombre.idnombre AND  ";
+                $sql_ins.=" inscripcion.idnombre_datos=nombre_datos.idnombre_datos AND inscripcion.idestado_inscripcion='2'  ";
+                $sql_ins.=" AND inscripcion.idevento='$row[0]' ORDER BY inscripcion.idinscripcion ";
                 $result_ins = mysqli_query($link,$sql_ins);
                 $row_ins = mysqli_fetch_array($result_ins); 
                 $cupo_ocupado = $row_ins[0];
