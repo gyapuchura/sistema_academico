@@ -8,7 +8,7 @@
 				    Programa SAFCI - MI SALUD<br>
 					Av. Gral. Lanza 2123, La Paz</address>
 					<p>
-						<i class="icon-phone"></i> (521) 69020390 <br>
+						<i class="icon-phone"></i>  <br>
 						<i class="icon-envelope-alt"></i>
 					</p>
 				</div>
