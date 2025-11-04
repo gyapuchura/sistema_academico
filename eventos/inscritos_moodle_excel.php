@@ -50,16 +50,25 @@ $row0 = mysqli_fetch_array($result0);
             <td width="62" style="font-size: 11px; text-align: center;"><strong>course 1</strong></td>
           </tr>
         <?php
-$numero=1;
-$sql =" SELECT inscripcion.codigo, nombre.ci, nombre.complemento, nombre.exp, nombre.paterno, nombre.materno, nombre.nombre, nombre_datos.correo,  ";
-$sql.=" nombre_datos.celular, departamento.departamento, evento.codigo FROM inscripcion, nombre, nombre_datos, dato_laboral, departamento, evento WHERE inscripcion.idnombre=nombre.idnombre ";
-$sql.=" AND inscripcion.idnombre_datos=nombre_datos.idnombre_datos AND  inscripcion.iddato_laboral=dato_laboral.iddato_laboral ";
-$sql.=" AND dato_laboral.iddepartamento=departamento.iddepartamento AND inscripcion.idevento=evento.idevento AND inscripcion.idevento='$idevento_ss' AND inscripcion.idestado_inscripcion='2' ORDER BY inscripcion.codigo ";
+        $numero=1;
+$sql =" SELECT inscripcion.codigo, nombre.ci, nombre.complemento, nombre.exp, nombre.paterno, nombre.materno, nombre.nombre,   ";
+$sql.=" nombre_datos.correo, nombre_datos.celular, inscripcion.iddato_laboral FROM inscripcion, nombre, nombre_datos  ";
+$sql.=" WHERE inscripcion.idnombre=nombre.idnombre AND inscripcion.idnombre_datos=nombre_datos.idnombre_datos ";
+$sql.=" AND inscripcion.idevento='$idevento_ss' AND inscripcion.idestado_inscripcion='2' ORDER BY inscripcion.codigo  ";
 $result = mysqli_query($link,$sql);
 if ($row = mysqli_fetch_array($result)){
 mysqli_field_seek($result,0);
 while ($field = mysqli_fetch_field($result)){
 } do {
+
+$sql_d =" SELECT dato_laboral.iddato_laboral, departamento.departamento FROM departamento, dato_laboral WHERE dato_laboral.iddepartamento=departamento.iddepartamento ";
+$sql_d.=" AND dato_laboral.iddato_laboral='$row[9]' ORDER BY dato_laboral.iddato_laboral DESC LIMIT 1 ";
+$result_d = mysqli_query($link,$sql_d);
+if ($row_d = mysqli_fetch_array($result_d)) {
+  $depto = $row_d[1];
+} else {
+  $depto = 'LA PAZ';
+}
     ?>
         <tr>
         <td style="font-size: 11px; text-align: center;"><?php echo $row[1];?></td>
@@ -73,7 +82,7 @@ while ($field = mysqli_fetch_field($result)){
         $lastname = strtoupper($row[5]);
         echo $lastname;?></td>
         <td style="text-align: center; font-size: 10px;"><?php echo $row[7];?></td>
-        <td style="text-align: center; font-size: 10px;"><?php echo $row[9];?></td>
+        <td style="text-align: center; font-size: 10px;"><?php echo $depto;?></td>
         <td style="text-align: center; font-size: 10px;"></td>
         </tr>
 		<?php
